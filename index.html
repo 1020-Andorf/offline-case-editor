@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<meta name="theme-color" content="#0e2d49">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="OST Falleditor">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<title>Trainingsapp OST Andorf – Offline-Falleditor</title>
+<style>
+:root{--navy:#0e2d49;--blue:#1976d2;--bg:#eef5fb;--card:#fff;--line:#c9d9e8;--text:#102c48;--muted:#67809a;--green:#14ae61;--red:#ef2845;--purple:#6742db;--orange:#e48b0d}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text);font-size:16px;line-height:1.4;padding-bottom:env(safe-area-inset-bottom)}
+header{background:var(--navy);color:#fff;padding:calc(24px + env(safe-area-inset-top)) clamp(18px,4vw,52px) 24px}header h1{margin:0;font-size:30px}header p{margin:4px 0 0;color:#c9d7e4}
+main{max-width:1280px;margin:auto;padding:24px}.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px;margin-bottom:18px}.card h2{margin:0 0 16px;font-size:24px}.sub{font-size:19px;font-weight:800;margin:22px 0 10px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.full{grid-column:1/-1}.vitals{display:grid;grid-template-columns:repeat(8,minmax(90px,1fr));gap:9px}.field label,.vitals label{display:block;font-weight:700;font-size:14px;margin-bottom:5px}input,textarea,select,button{font:inherit}input,textarea,select{width:100%;border:1px solid #b7cadc;border-radius:9px;padding:10px;background:#fff;color:var(--text)}textarea{resize:vertical}.actions{display:flex;gap:10px;flex-wrap:wrap}.btn{border:1px solid #a8bfd4;background:#fff;border-radius:10px;padding:11px 16px;font-weight:800;cursor:pointer}.primary{background:var(--blue);border-color:var(--blue);color:#fff}.green{background:var(--green);border-color:var(--green);color:#fff}.danger{background:#fff1f3;border-color:#ffb9c5;color:#a30d28}.helper{color:var(--muted);font-size:14px}.dev{border:1px solid var(--line);border-radius:13px;padding:14px;margin:10px 0;background:#f9fcff}.devhead{display:grid;grid-template-columns:1fr 150px 240px;gap:10px;align-items:end}.devhead strong{font-size:18px}.images{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}.thumb{width:110px}.thumb img{width:110px;height:80px;object-fit:contain;background:#f2f5f7;border:1px solid var(--line);border-radius:8px}.thumb small{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.status{padding:12px 14px;border-radius:10px;background:#e8f4ff;margin-top:12px;display:none}.status.show{display:block}.badge{display:inline-block;background:#dcecff;color:#09579f;padding:3px 8px;border-radius:999px;font-size:12px;font-weight:800}
+@media(max-width:800px){main{padding:12px}.grid{grid-template-columns:1fr}.vitals{grid-template-columns:repeat(2,1fr)}.devhead{grid-template-columns:1fr}.full{grid-column:auto}header h1{font-size:24px}}
+</style>
+</head>
+<body>
+<header><h1>Trainingsapp OST Andorf</h1><p>Offline-Falleditor · funktioniert ohne Pi und ohne Internet</p></header>
+<main>
+<section class="card" id="pwaHint" style="display:none">
+ <h2>Auf iPhone / iPad installieren</h2>
+ <p class="helper">In Safari: <b>Teilen</b> → <b>Zum Home-Bildschirm</b>. Danach startet der Falleditor wie eine App und funktioniert auch ohne Internet.</p>
+</section>
+<section class="card">
+ <h2>Fallpaket</h2>
+ <p class="helper">Erstelle einen Fall vollständig offline. Mit <b>Fallpaket exportieren</b> entsteht eine <code>.vitasim</code>-Datei inklusive Fallbildern. Später importierst du sie im Falleditor am Pi.</p>
+ <div class="actions"><button class="btn" onclick="newCase()">Neuer Fall</button><label class="btn">Fallpaket öffnen<input id="packageOpen" type="file" accept=".vitasim,.json,application/json" hidden onchange="openPackage(this.files[0])"></label><button class="btn green" onclick="exportPackage()">Fallpaket exportieren</button></div>
+ <div id="status" class="status"></div>
+</section>
+<section class="card">
+ <h2>Grunddaten</h2>
+ <div class="grid">
+  <div class="field"><label>ID / Dateiname</label><input id="id" placeholder="z. B. anaphylaxie-01"></div>
+  <div class="field"><label>Name</label><input id="name" placeholder="z. B. Anaphylaxie"></div>
+  <div class="field full"><label>Fallbeschreibung</label><input id="description" placeholder="Kurze Ausgangssituation"></div>
+  <div class="field"><label>Vorerkrankungen</label><input id="preExistingConditions"></div>
+  <div class="field"><label>Medikation</label><input id="medication"></div>
+  <div class="field full"><label>Risikofaktoren</label><input id="riskFactors"></div>
+  <div class="field full"><label>Falltext für Ausbilder</label><textarea id="instructorText" rows="5"></textarea></div>
+  <div class="field"><label>EKG-Rhythmus</label><select id="rhythm"></select></div>
+  <div class="field"><label>Fallbilder</label><input id="imageInput" type="file" accept="image/jpeg,image/png,image/webp" multiple onchange="addImages(this.files)"><div class="helper">JPG/PNG/WEBP. Bilder werden direkt im .vitasim-Paket gespeichert.</div></div>
+  <div class="field full"><div id="images" class="images"></div></div>
+ </div>
+ <div class="sub">Ausgangswerte</div><div id="baseVitals" class="vitals"></div>
+</section>
+<section class="card"><h2>Ereignisgesteuerte Fallentwicklung</h2><p class="helper">Die vier Standardreaktionen entsprechen dem Pi-Falleditor.</p><div id="standardDevs"></div></section>
+<section class="card"><h2>Eigene Ereignisse</h2><div class="actions"><button class="btn primary" onclick="addCustom()">+ Eigenes Ereignis</button></div><div id="customDevs"></div></section>
+<section class="card"><div class="actions"><button class="btn green" onclick="exportPackage()">Fallpaket exportieren (.vitasim)</button><button class="btn" onclick="downloadJson()">Nur JSON exportieren</button></div></section>
+</main>
+<script>
+const rhythms=[['sinus','Sinusrhythmus'],['svt','SVT'],['vt','VT'],['vf','Kammerflimmern'],['asystole','Asystolie'],['stemi','STEMI'],['bigeminy','Bigeminus'],['torsades','Torsaden'],['av1','AV-Block I°'],['av2mobitz1','AV-Block II° Wenckebach'],['av2mobitz2','AV-Block II° Mobitz II'],['av3','AV-Block III°']];
+const keys=[['hr','HF'],['spo2','SpO₂'],['rr','AF'],['systolic','SYS'],['diastolic','DIA'],['temp','Temp'],['etco2','EtCO₂'],['glucose','BZ']];
+let images=[];let customCount=0;
+function options(allowKeep=false){return (allowKeep?'<option value="">Rhythmus beibehalten</option>':'')+rhythms.map(([v,t])=>`<option value="${v}">${t}</option>`).join('')}
+rhythm.innerHTML=options(false);
+function vitalsHtml(prefix){return keys.map(([k,t])=>`<label>${t}<input id="${prefix}${k}" type="number" ${k==='temp'||k==='etco2'?'step="0.1"':'step="1"'}></label>`).join('')}
+baseVitals.innerHTML=vitalsHtml('base_');
+const std=[['worse','Verschlechterung'],['better','Besserung'],['critical','Kritischer Zustand'],['stabilize','Stabilisierung']];
+standardDevs.innerHTML=std.map(([k,t])=>devHtml('std_'+k,t,false)).join('');
+function devHtml(prefix,title,custom){return `<div class="dev" data-prefix="${prefix}"><div class="devhead"><strong>${title}</strong><label>Dauer (s)<input id="${prefix}_duration" type="number" min="1" max="3600"></label><label>EKG-Rhythmus<select id="${prefix}_rhythm">${options(true)}</select></label></div>${custom?`<label style="display:block;margin-top:8px;font-weight:700">Name<input id="${prefix}_name" value="${title}"></label>`:''}<label style="display:block;margin-top:8px;font-weight:700">Kurze Beschreibung<textarea id="${prefix}_description" rows="2" maxlength="240"></textarea></label><div class="vitals" style="margin-top:10px">${vitalsHtml(prefix+'_')}</div>${custom?`<button class="btn danger" style="margin-top:10px" onclick="this.closest('.dev').remove()">Entfernen</button>`:''}</div>`}
+function addCustom(data){const p='custom_'+(++customCount);const box=document.createElement('div');box.innerHTML=devHtml(p,data?.name||'Eigenes Ereignis',true);customDevs.appendChild(box.firstElementChild);if(data)fillDev(p,data)}
+const $ = (id) => document.getElementById(id);
+const els = {
+  status: $('status'), id: $('id'), caseName: $('name'), description: $('description'),
+  preExistingConditions: $('preExistingConditions'), medication: $('medication'),
+  riskFactors: $('riskFactors'), instructorText: $('instructorText'), rhythm: $('rhythm'),
+  imageInput: $('imageInput'), packageOpen: $('packageOpen'), customDevs: $('customDevs')
+};
+function setStatus(s){els.status.textContent=s;els.status.classList.add('show')}
+
+function cleanId(s){return String(s||'').trim().toLowerCase().replace(/[^a-z0-9_-]/g,'-').replace(/-+/g,'-').replace(/^-|-$/g,'')}
+function readVitals(prefix){const o={};for(const [k] of keys){const v=Number(document.getElementById(prefix+k).value);if(!Number.isFinite(v))throw new Error('Bitte alle Vitalwerte vollständig eingeben.');o[k]=v}return o}
+function readDev(prefix,custom=false){const duration=Number(document.getElementById(prefix+'_duration').value);if(!Number.isFinite(duration)||duration<=0)throw new Error('Bitte gültige Ereignisdauern eingeben.');const d={duration,description:document.getElementById(prefix+'_description').value.trim(),rhythm:document.getElementById(prefix+'_rhythm').value,values:readVitals(prefix+'_')};if(custom){d.name=document.getElementById(prefix+'_name').value.trim();if(!d.name)throw new Error('Eigenes Ereignis braucht einen Namen.')}return d}
+function collectPreset(){const pid=cleanId(els.id.value);if(!pid||!els.caseName.value.trim())throw new Error('Bitte ID und Name angeben.');const developments={};for(const [k] of std)developments[k]=readDev('std_'+k);const customDevelopments=[...document.querySelectorAll('#customDevs .dev')].map(x=>readDev(x.dataset.prefix,true));return {id:pid,name:els.caseName.value.trim(),description:els.description.value.trim(),preExistingConditions:els.preExistingConditions.value.trim(),medication:els.medication.value.trim(),riskFactors:els.riskFactors.value.trim(),instructorText:els.instructorText.value.trim(),rhythm:els.rhythm.value,images:images.map(x=>x.name),values:readVitals('base_'),developments,customDevelopments}}
+function fillVitals(prefix,v={}){for(const [k] of keys)document.getElementById(prefix+k).value=v[k]??''}
+function fillDev(prefix,d={}){document.getElementById(prefix+'_duration').value=d.duration??60;document.getElementById(prefix+'_description').value=d.description||'';document.getElementById(prefix+'_rhythm').value=d.rhythm||'';fillVitals(prefix+'_',d.values||{})}
+function fillPreset(p){els.id.value=p.id||'';els.caseName.value=p.name||'';els.description.value=p.description||'';els.preExistingConditions.value=p.preExistingConditions||'';els.medication.value=p.medication||'';els.riskFactors.value=p.riskFactors||'';els.instructorText.value=p.instructorText||'';els.rhythm.value=p.rhythm||'sinus';fillVitals('base_',p.values||{});for(const [k] of std)fillDev('std_'+k,p.developments?.[k]||{values:p.values||{},duration:60});els.customDevs.innerHTML='';customCount=0;(p.customDevelopments||[]).forEach(addCustom)}
+async function addImages(files){for(const f of [...files]){if(f.size>8*1024*1024){setStatus(`${f.name}: größer als 8 MB – übersprungen.`);continue}const data=await fileDataUrl(f);images=images.filter(x=>x.name!==f.name);images.push({name:f.name,type:f.type,data});}els.imageInput.value='';renderImages()}
+function fileDataUrl(f){return new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(String(r.result));r.onerror=()=>rej(r.error);r.readAsDataURL(f)})}
+function renderImages(){document.getElementById('images').innerHTML=images.map((x,i)=>`<div class="thumb"><img src="${x.data}"><small>${x.name}</small><button class="btn danger" style="padding:4px 8px;margin-top:4px" onclick="images.splice(${i},1);renderImages()">×</button></div>`).join('')}
+async function blobDownload(name,data,type='application/json'){
+  const blob=new Blob([data],{type});
+  const file=new File([blob],name,{type});
+  try{
+    if(navigator.canShare && navigator.share && navigator.canShare({files:[file]})){
+      await navigator.share({files:[file],title:name,text:'VitaSim Fallpaket'});
+      return true;
+    }
+  }catch(e){ if(e && e.name==='AbortError') return false; }
+  if(window.showSaveFilePicker){
+    try{
+      const handle=await window.showSaveFilePicker({suggestedName:name,types:[{description:'VitaSim Fallpaket',accept:{[type]:['.vitasim','.json']}}]});
+      const writable=await handle.createWritable(); await writable.write(blob); await writable.close(); return true;
+    }catch(e){ if(e && e.name==='AbortError') return false; }
+  }
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a'); a.href=url; a.download=name; a.style.display='none'; document.body.appendChild(a);
+  a.click(); setTimeout(()=>{URL.revokeObjectURL(url);a.remove()},5000); return true;
+}
+async function exportPackage(){try{const preset=collectPreset();const pack={format:'vitasim-case-package',formatVersion:1,createdAt:new Date().toISOString(),appCompatibility:'2.8.3+',preset,images};if(await blobDownload(`${preset.id}.vitasim`,JSON.stringify(pack,null,2),'application/json'))setStatus('Fallpaket exportiert. Diese .vitasim-Datei später im Pi-Falleditor importieren.')}catch(e){setStatus('Fehler: '+e.message)}}
+async function downloadJson(){try{const preset=collectPreset();const {id:pid,...raw}=preset;if(await blobDownload(`${pid}.json`,JSON.stringify(raw,null,2)))setStatus('JSON exportiert (ohne eingebettete Bilder).')}catch(e){setStatus('Fehler: '+e.message)}}
+async function openPackage(file){if(!file)return;try{const data=JSON.parse(await file.text());const p=data.format==='vitasim-case-package'?data.preset:data;p.id=p.id||file.name.replace(/\.(vitasim|json)$/i,'');fillPreset(p);images=Array.isArray(data.images)?data.images:[];renderImages();setStatus('Fallpaket geladen. Du kannst es jetzt bearbeiten.')}catch(e){setStatus('Datei konnte nicht geladen werden: '+e.message)}els.packageOpen.value=''}
+function newCase(){if(!confirm('Editor leeren und neuen Fall beginnen?'))return;fillPreset({id:'',name:'',values:{hr:80,spo2:98,rr:14,systolic:120,diastolic:80,temp:36.8,etco2:4.7,glucose:100},rhythm:'sinus',developments:{}});images=[];renderImages();els.customDevs.innerHTML='';customCount=0;for(const [k] of std){fillDev('std_'+k,{duration:60,values:readVitals('base_')})}setStatus('Neuer Fall angelegt.')}
+initializeEditor();
+function initializeEditor(){fillPreset({id:'',name:'',values:{hr:80,spo2:98,rr:14,systolic:120,diastolic:80,temp:36.8,etco2:4.7,glucose:100},rhythm:'sinus',developments:{}});images=[];renderImages();els.customDevs.innerHTML='';customCount=0;for(const [k] of std){fillDev('std_'+k,{duration:60,values:readVitals('base_')})}els.status.classList.remove('show');}
+</script>
+
+<script>
+(function(){
+  if('serviceWorker' in navigator && location.protocol!=='file:'){
+    window.addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js').catch(()=>{}));
+  }
+  const isiOS=/iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform==='MacIntel' && navigator.maxTouchPoints>1);
+  const standalone=window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone===true;
+  const hint=document.getElementById('pwaHint'); if(hint && isiOS && !standalone) hint.style.display='block';
+})();
+</script>
+</body></html>
