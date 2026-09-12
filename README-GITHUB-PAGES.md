@@ -1,6 +1,7 @@
-# OST Andorf Offline-Falleditor V3.0.7
+# OST Andorf Offline-Falleditor V3.0.8
 
-Statische GitHub-Pages/PWA-Version. Exportiert `.vitasimexport` für VitaSim.
+Für GitHub Pages den gesamten Ordner veröffentlichen. `index.html`, `style.css`, `manifest.webmanifest` und `service-worker.js` müssen gemeinsam im selben Verzeichnis liegen.
 
-## Fix V3.0.7
-Beim Umschalten zwischen Ereignissen wird der aktuelle Datensatz zuerst gespeichert und anschließend das neu ausgewählte Ereignis geladen. Die Auswahl springt nicht mehr zurück.
+## V3.0.8
+
+Der Wechsel zwischen Fallereignissen wurde neu aufgebaut: Beim Wechsel wird der aktuelle Formularstand nur als Draft übernommen; Validierungsfehler blockieren die Auswahl eines anderen Ereignisses nicht mehr. Die strikte Prüfung erfolgt erst bei „Ereignis speichern“ bzw. beim Export. Der Export bleibt `.vitasimexport`-kompatibel.
