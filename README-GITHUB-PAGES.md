@@ -5,3 +5,8 @@ Für GitHub Pages den gesamten Ordner veröffentlichen. `index.html`, `style.css
 ## V3.0.8
 
 Der Wechsel zwischen Fallereignissen wurde neu aufgebaut: Beim Wechsel wird der aktuelle Formularstand nur als Draft übernommen; Validierungsfehler blockieren die Auswahl eines anderen Ereignisses nicht mehr. Die strikte Prüfung erfolgt erst bei „Ereignis speichern“ bzw. beim Export. Der Export bleibt `.vitasimexport`-kompatibel.
+
+
+## V3.0.9 HOTFIX
+- Ereigniswechsel im Dropdown neu implementiert.
+- Service-Worker-Cache-Version erneuert und Navigation auf Network-first gestellt, damit alte GitHub-Pages-Versionen nicht mehr hängen bleiben.
