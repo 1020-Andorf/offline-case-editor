@@ -2,6 +2,7 @@
   "name": "OST Andorf Offline-Falleditor",
   "short_name": "Falleditor",
   "start_url": "./",
+  "scope": "./",
   "display": "standalone",
   "background_color": "#edf6fb",
   "theme_color": "#0b2a42"
