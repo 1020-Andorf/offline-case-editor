@@ -243,18 +243,26 @@ button,label[for],.offline-toolbar label{touch-action:manipulation}
 }
 
 </style>
+
+<style>
+/* V3.2.3 – Lesbarkeit der farbigen Abschnittsüberschriften */
+.fall-editor-subtitle.fall-band,
+.fall-editor-subtitle.fall-band *,
+.fall-band,
+.fall-band *{
+  color:#fff !important;
+}
+</style>
 </head>
 <body>
 <div id="offlinePinGate" class="offline-pin-gate"><div class="offline-pin-box"><h2>Falleditor entsperren</h2><p>Bitte Ausbilder-PIN eingeben.</p><div class="offline-pin-row"><input id="offlinePin" type="password" inputmode="numeric" placeholder="••••"><button type="button" onclick="unlockOfflineEditor()">Entsperren</button></div><div id="offlinePinStatus" class="offline-pin-status"></div></div></div>
 <div class="offline-shell">
-<header class="offline-head"><div><h1>Trainingsapp OST Andorf – Falleditor</h1><p>Offline / GitHub Pages · gleiche Fallstruktur wie VitaSim am Pi</p></div><span class="offline-badge">V3.2.2 · OFFLINE BEREIT</span></header>
+<header class="offline-head"><div><h1>Trainingsapp OST Andorf – Falleditor</h1><p>Offline / GitHub Pages · gleiche Fallstruktur wie VitaSim am Pi</p></div><span class="offline-badge">V3.2.3 · OFFLINE BEREIT</span></header>
 <div class="offline-toolbar">
   <button type="button" onclick="newCase()">Neuer Fall</button>
   <label>Fall öffnen<input id="packageOpen" type="file" hidden></label>
-  <label>iPhone: JSON öffnen<input id="jsonOpen" type="file" accept="application/json,.json" hidden></label>
-  <button type="button" class="export-action" onclick="exportPackage()">Fall exportieren (.vitasimexport)</button>
+<button type="button" class="export-action" onclick="exportPackage()">Fall exportieren (.vitasimexport)</button>
   <button type="button" onclick="downloadJson()">Nur JSON exportieren</button>
-  <div class="helper" style="flex-basis:100%">iPhone/iPad: Wenn eine .vitasimexport-Datei im Dateidialog grau bleibt, dieselbe Falldatei als .json verwenden und „iPhone: JSON öffnen“ wählen. Inhalt und Fallstruktur sind identisch.</div>
 </div>
 <div id="status" class="offline-status" aria-live="polite"></div>
 
@@ -423,7 +431,7 @@ async function openPackage(file){
   }
 }
 $('packageOpen').addEventListener('change',e=>openPackage(e.target.files[0]));
-$('jsonOpen').addEventListener('change',e=>openPackage(e.target.files[0]));
+
 function newCase(){if($('presetName').value && !confirm('Editor leeren und neuen Fall beginnen?'))return;const v=defaultVitals();fillPreset({id:'',name:'',values:v,rhythm:'sinus',developments:{},customDevelopments:[],eventCards:[],variants:[]},[]);setStatus('Neuer Fall angelegt.')}
 newCase();
 if('serviceWorker' in navigator && location.protocol!=='file:')window.addEventListener('load',async()=>{try{const reg=await navigator.serviceWorker.register('./service-worker.js?v=3111',{updateViaCache:'none'});await reg.update();}catch(e){console.warn('Service Worker Update fehlgeschlagen',e)}});
