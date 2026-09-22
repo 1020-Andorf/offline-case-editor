@@ -46,3 +46,7 @@ Damit lassen sich `.vitasimexport`-Dateien aus der iOS-Dateien-App direkt auswä
 - `.vitasimexport` und `.json` enthalten dieselbe VitaSim-Paketstruktur; nur die Dateiendung unterscheidet sich
 - neuer Service Worker `v318` räumt alte Caches auf und lädt `index.html` network-first
 - sichtbare Versionsanzeige `V3.1.8` oben im Editor, damit sofort erkennbar ist, ob wirklich die neue Seite geladen wurde
+
+
+## V3.1.9 – Anamnese
+SAMPLE(R) und OPQRST werden im Offline-Falleditor erfasst und im .vitasimexport gespeichert.
