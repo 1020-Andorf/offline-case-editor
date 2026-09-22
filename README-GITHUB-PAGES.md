@@ -25,3 +25,14 @@ Danach die Seite einmal neu laden. Der Service Worker löscht ältere Cache-Vers
 ## PIN
 
 Die gleiche Offline-PIN-Logik wie im Pi-Falleditor bleibt enthalten.
+
+
+## V3.2.2 – Mobile/Pi-Design
+
+- `style.css` aus der aktuellen Pi-Oberfläche wird jetzt tatsächlich mit ausgeliefert.
+- Responsive Darstellung speziell für iPhone/Android überarbeitet.
+- Keine horizontalen Überbreiten bei SAMPLE(R), OPQRST, Ereignissen oder Varianten.
+- Eingabefelder auf Mobilgeräten mit 16 px Schrift, damit Safari beim Fokus nicht hineinzoomt.
+- Toolbar auf kleinen Displays als kompakte 2-spaltige bzw. 1-spaltige Bedienfläche.
+- Fallbereiche optisch näher an VitaSim am Pi: kompaktere Karten, Farbbänder und Abstände.
+- Vitalwerte und Ereigniswerte bleiben auf Mobilgeräten in einer übersichtlichen 2er-Matrix.

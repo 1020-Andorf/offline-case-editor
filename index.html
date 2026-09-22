@@ -14,11 +14,240 @@
 
 .fall-band-case{background:#294f70}.fall-band-anam{background:#526b7a}.fall-band-images{background:#168a72}.fall-band-start{background:#1479d5}.fall-band-events{background:#e88912}.fall-band-variants{background:#7651d6}.anam-editor-grid label{grid-template-columns:38px minmax(0,1fr)!important;gap:10px!important;padding:10px 0!important}.anam-editor-grid label>b{width:32px;height:32px;border-radius:9px;background:#eaf3fb;display:grid;place-items:center;padding:0!important;color:#1769aa!important;font-size:16px!important}.anam-editor-grid label>span{gap:6px!important}.anam-editor-grid label>span>strong{font-size:13px;color:#294f70}.anam-editor-grid label select{min-height:38px;background:#f4f8fb;border-color:#c9d9e5}.anam-editor-grid label input{min-height:42px}.fall-images-window,.fall-variants-window{border:1px solid #cddce7;border-top:0;border-radius:0 0 12px 12px;background:#f9fbfd;padding:14px}.offline-pin-gate{position:fixed;inset:0;z-index:9999;background:#0b2136;display:grid;place-items:center;padding:20px}.offline-pin-box{width:min(420px,100%);background:#fff;border-radius:16px;padding:22px;box-shadow:0 24px 70px #0007}.offline-pin-box h2{margin:0 0 8px}.offline-pin-box p{color:#60788d}.offline-pin-row{display:grid;grid-template-columns:1fr auto;gap:8px}.offline-pin-row input{min-height:46px;border:1px solid #b9cfde;border-radius:10px;padding:0 12px;font:inherit}.offline-pin-row button{border:0;border-radius:10px;background:#146ee5;color:#fff;font-weight:850;padding:0 16px}.offline-pin-status{min-height:22px;color:#b4233b;font-weight:750;margin-top:8px}
 </style>
+<style>
+
+/* V3.2.2 – GitHub Pages / Mobile UI, optisch an VitaSim Pi angelehnt */
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{min-width:0;overflow-x:hidden;background:#edf5fa}
+button,input,select,textarea{font-family:inherit}
+button,label[for],.offline-toolbar label{touch-action:manipulation}
+.offline-shell{width:min(1480px,100%);box-sizing:border-box}
+
+.offline-head{
+  border-radius:14px;
+  background:#0b2a42;
+  box-shadow:0 6px 18px rgba(11,42,66,.12);
+}
+.offline-head h1{font-weight:850;letter-spacing:-.02em}
+.offline-badge{background:#103a58}
+
+.editor-card{
+  overflow:hidden;
+  border-radius:14px;
+  box-shadow:none;
+  border-color:#c8dbe8;
+}
+.fall-band{
+  margin:0;
+  border-radius:10px 10px 0 0;
+  min-height:46px;
+  display:flex;
+  align-items:center;
+  padding:0 16px;
+  box-sizing:border-box;
+  letter-spacing:-.01em;
+}
+.fall-band-case{background:#2d5b83}
+.fall-band-anam{background:#536f7e}
+.fall-band-images{background:#24766e}
+.fall-band-start{background:#315f88}
+.fall-band-events{background:#6548b8}
+.fall-band-variants{background:#a86420}
+.editor-window,.fall-images-window,.fall-variants-window{
+  border:1px solid #cddde8;
+  border-top:0;
+  border-radius:0 0 12px 12px;
+  background:#f8fbfd;
+  padding:16px;
+}
+.fall-images-window,.fall-variants-window{box-sizing:border-box}
+.field label,.preset-values-grid label,.unified-event-editor label{
+  color:#0b2a42;
+}
+.field-hint,.helper{color:#60798d}
+.field input,.field textarea,.field select,
+.preset-values-grid input,.preset-values-grid select,
+.unified-event-editor input,.unified-event-editor textarea,.unified-event-editor select{
+  min-height:44px;
+  border-color:#b9cfde;
+  border-radius:9px;
+  background:#fff;
+}
+.field textarea{min-height:118px}
+.anam-editor-card{
+  box-shadow:none;
+  background:#fff;
+  border-color:#d2e0e9;
+}
+.anam-editor-card h3{
+  padding-bottom:8px;
+  border-bottom:1px solid #e0eaf0;
+}
+.anam-editor-grid label{
+  border-bottom:1px solid #e5edf2;
+}
+.anam-editor-grid label:last-child{border-bottom:0}
+.anam-editor-grid label>b{
+  width:28px;height:28px;border-radius:7px;
+  display:grid;place-items:center;
+  background:#eaf4fb;
+  color:#146fae!important;
+  padding:0!important;
+  margin-top:6px;
+}
+.anam-editor-grid label strong{font-size:14px}
+.anam-editor-grid label small{line-height:1.3}
+.variant-editor-row{background:#fff}
+.unified-event-editor{box-shadow:none}
+.image-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));align-items:start}
+.thumb{width:auto;box-sizing:border-box}
+
+@media (max-width:700px){
+  body{font-size:15px}
+  .offline-shell{padding:8px}
+  .offline-head{
+    padding:14px;
+    gap:10px;
+    border-radius:12px;
+  }
+  .offline-head h1{font-size:20px;line-height:1.16}
+  .offline-head p{font-size:13px;line-height:1.35;margin-top:4px}
+  .offline-badge{font-size:12px;padding:6px 9px}
+  .offline-toolbar{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+    margin:10px 0;
+  }
+  .offline-toolbar button,.offline-toolbar label{
+    min-width:0;
+    width:100%;
+    box-sizing:border-box;
+    min-height:44px;
+    padding:8px 9px;
+    border-radius:9px;
+    font-size:14px;
+    line-height:1.15;
+    text-align:center;
+  }
+  .offline-toolbar .export-action{grid-column:1/-1}
+  .offline-toolbar .helper{
+    grid-column:1/-1;
+    font-size:12px;
+    line-height:1.35;
+    padding:0 2px;
+  }
+  .offline-status{font-size:13px;min-height:18px;margin:4px 2px 8px}
+
+  .editor-card{
+    margin:10px 0;
+    padding:8px;
+    border-radius:12px;
+  }
+  .fall-editor-subtitle{font-size:17px}
+  .fall-band{
+    min-height:44px;
+    padding:0 12px;
+    border-radius:9px 9px 0 0;
+  }
+  .editor-window,.fall-images-window,.fall-variants-window{
+    padding:11px;
+    border-radius:0 0 9px 9px;
+  }
+  .editor-grid{grid-template-columns:1fr;gap:11px}
+  .field.full{grid-column:auto}
+  .field{gap:4px}
+  .field label,.preset-values-grid label,.unified-event-editor label{
+    font-size:13px;
+    font-weight:800;
+  }
+  .field input,.field textarea,.field select,
+  .preset-values-grid input,.preset-values-grid select,
+  .unified-event-editor input,.unified-event-editor textarea,.unified-event-editor select{
+    font-size:16px; /* verhindert Safari-Zoom beim Fokus */
+    min-height:44px;
+    padding:9px 10px;
+  }
+  .field textarea{min-height:100px}
+  #presetInstructorText{min-height:120px}
+  .field-hint{font-size:11.5px;line-height:1.25;margin-top:1px}
+
+  .anam-editor-columns{grid-template-columns:1fr;gap:9px}
+  .anam-editor-card{padding:9px;border-radius:10px}
+  .anam-editor-card h3{font-size:14px;margin-bottom:4px}
+  .anam-editor-grid label{
+    grid-template-columns:32px minmax(0,1fr)!important;
+    gap:8px;
+    padding:9px 0;
+  }
+  .anam-editor-grid label>b{font-size:15px!important}
+  .anam-editor-grid label>span{min-width:0;gap:5px}
+  .anam-editor-grid label strong{font-size:13px}
+  .anam-editor-grid label small{font-size:11px}
+  .anam-editor-grid select,.anam-editor-grid input{width:100%;min-width:0}
+
+  .preset-values-grid,.unified-vitals-grid{
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+  }
+  .preset-values-grid label,.unified-vitals-grid label{
+    min-width:0;
+  }
+  .rhythm-grid-field{grid-column:1/-1}
+
+  .unified-event-editor{padding:10px;border-radius:10px}
+  .unified-event-toolbar{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+  }
+  .unified-event-toolbar label{grid-column:1/-1}
+  .unified-event-toolbar button{min-height:42px;padding:0 8px;font-size:13px}
+  .unified-event-meta{grid-template-columns:1fr;gap:8px;margin-top:10px}
+  .ue-doc-toggle{padding:9px}
+  .ue-description{margin-top:9px}
+  .unified-event-transition{
+    grid-template-columns:1fr;
+    gap:8px;
+    margin-top:9px;
+  }
+  .unified-event-actions{
+    align-items:stretch;
+    flex-direction:column;
+    margin-top:10px;
+    padding-top:10px;
+  }
+  .unified-event-actions button{width:100%;min-height:44px}
+
+  .variant-quickbar{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:6px;
+  }
+  .variant-quickbar button{padding:8px 5px;font-size:12px}
+  .variant-editor-row{padding:9px;border-radius:10px}
+  .variant-editor-head{grid-template-columns:1fr}
+  .variant-values-mini{grid-template-columns:1fr 1fr;gap:7px}
+
+  .image-grid{grid-template-columns:1fr 1fr;gap:8px}
+  .thumb{padding:6px}
+  .thumb img{height:105px}
+  .offline-foot{font-size:11.5px;line-height:1.35;padding:12px 4px 24px}
+}
+@media (max-width:390px){
+  .offline-toolbar{grid-template-columns:1fr}
+  .offline-toolbar .export-action,.offline-toolbar .helper{grid-column:auto}
+  .preset-values-grid,.unified-vitals-grid{grid-template-columns:1fr 1fr}
+  .variant-quickbar{grid-template-columns:1fr}
+  .image-grid{grid-template-columns:1fr}
+}
+
+</style>
 </head>
 <body>
 <div id="offlinePinGate" class="offline-pin-gate"><div class="offline-pin-box"><h2>Falleditor entsperren</h2><p>Bitte Ausbilder-PIN eingeben.</p><div class="offline-pin-row"><input id="offlinePin" type="password" inputmode="numeric" placeholder="••••"><button type="button" onclick="unlockOfflineEditor()">Entsperren</button></div><div id="offlinePinStatus" class="offline-pin-status"></div></div></div>
 <div class="offline-shell">
-<header class="offline-head"><div><h1>Trainingsapp OST Andorf – Falleditor</h1><p>Offline / GitHub Pages · gleiche Fallstruktur wie VitaSim am Pi</p></div><span class="offline-badge">V3.1.12 · OFFLINE BEREIT</span></header>
+<header class="offline-head"><div><h1>Trainingsapp OST Andorf – Falleditor</h1><p>Offline / GitHub Pages · gleiche Fallstruktur wie VitaSim am Pi</p></div><span class="offline-badge">V3.2.2 · OFFLINE BEREIT</span></header>
 <div class="offline-toolbar">
   <button type="button" onclick="newCase()">Neuer Fall</button>
   <label>Fall öffnen<input id="packageOpen" type="file" hidden></label>

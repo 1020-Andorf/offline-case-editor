@@ -1,5 +1,6 @@
 const CACHE = 'ost-andorf-falleditor-v3-2-1-pi-sync';
-const CORE = ['./', './index.html', './manifest.webmanifest'];
+const CORE = ['./', './index.html',
+  './style.css', './manifest.webmanifest'];
 
 self.addEventListener('install', event => {
   event.waitUntil(

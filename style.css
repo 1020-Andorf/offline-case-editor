@@ -6145,3 +6145,266 @@ body.training-reduced #trainingChecklistHost .checklist-group:has(.checklist-gro
 .unified-event-editor{border:1px solid #cfe0ec;background:#f8fbfd;border-radius:14px;padding:14px;margin:8px 0 18px}.unified-event-toolbar{display:grid;grid-template-columns:minmax(260px,1fr) auto auto;gap:9px;align-items:end}.unified-event-toolbar label,.unified-event-meta label,.unified-event-transition label,.unified-vitals-grid label,.ue-description{font-weight:800;color:#173955;font-size:12px}.unified-event-toolbar select,.unified-event-meta input,.unified-event-meta select,.unified-event-transition input,.unified-event-transition select,.unified-vitals-grid input,.ue-description textarea{width:100%;box-sizing:border-box;margin-top:4px;border:1px solid #b9cfdf;border-radius:9px;padding:9px;background:#fff;font:inherit}.unified-event-meta{display:grid;grid-template-columns:1.5fr .8fr auto auto;gap:10px;align-items:end;margin-top:12px}.checkline{display:flex!important;align-items:center;gap:7px;padding:10px 11px;border:1px solid #d2e1ec;border-radius:9px;background:#fff;white-space:nowrap}.checkline input{width:auto!important;margin:0!important}.ue-description{display:block;margin-top:10px}.ue-description textarea{min-height:68px;resize:vertical}.unified-event-transition{display:grid;grid-template-columns:120px minmax(220px,1fr) minmax(200px,280px);gap:10px;align-items:end;margin-top:12px}.range-label input[type=range]{padding:0;height:34px;accent-color:#1f79d8}.unified-vitals-grid{display:grid;grid-template-columns:repeat(8,minmax(72px,1fr));gap:8px;margin-top:10px}.unified-event-actions{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:12px;padding-top:10px;border-top:1px solid #d9e6ef}.danger-soft{border:1px solid #e2b2b8!important;color:#b72e3d!important;background:#fff!important}.legacy-event-editor[hidden]{display:none!important}
 @media(max-width:900px){.training-cockpit-head{grid-template-columns:1fr auto!important}.training-head-actions{grid-column:1/-1;justify-content:flex-end}.unified-event-toolbar{grid-template-columns:1fr 1fr}.unified-event-toolbar label{grid-column:1/-1}.unified-event-meta{grid-template-columns:1fr 1fr}.unified-event-transition{grid-template-columns:1fr}.unified-vitals-grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
 @media(max-width:560px){.unified-event-meta{grid-template-columns:1fr}.unified-vitals-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.unified-event-toolbar{grid-template-columns:1fr}.training-head-actions{justify-content:stretch}.training-head-actions>*{flex:1}.checkline{white-space:normal}}
+
+
+/* V3.1.0 – Szenario-Checkliste wie freie Checklistenansicht + CRM */
+body.training-reduced #trainingChecklistHost .checklist-accordions{display:grid!important;gap:12px!important;margin-top:10px!important}
+body.training-reduced #trainingChecklistHost .checklist-group{border:1px solid #cbd9e5!important;border-radius:14px!important;overflow:hidden!important;background:#fff!important;box-shadow:0 4px 16px rgba(38,76,116,.07)!important}
+body.training-reduced #trainingChecklistHost .checklist-group-head{--cg:#35546f!important;min-height:70px!important;background:var(--cg)!important;color:#fff!important;border:0!important;border-radius:0!important;display:grid!important;grid-template-columns:62px minmax(0,1fr) 20px!important;gap:16px!important;align-items:center!important;padding:13px 18px!important;text-align:left!important}
+body.training-reduced #trainingChecklistHost .checklist-group-head:before{content:"";font-size:30px;font-weight:900;text-align:left;color:#fff}
+body.training-reduced #trainingChecklistHost .checklist-theme-3s .checklist-group-head{--cg:#2b557b!important} body.training-reduced #trainingChecklistHost .checklist-theme-3s .checklist-group-head:before{content:"3S"}
+body.training-reduced #trainingChecklistHost .checklist-theme-ee .checklist-group-head{--cg:#3b78a3!important} body.training-reduced #trainingChecklistHost .checklist-theme-ee .checklist-group-head:before{content:"EE"}
+body.training-reduced #trainingChecklistHost .checklist-theme-a .checklist-group-head{--cg:#f03238!important} body.training-reduced #trainingChecklistHost .checklist-theme-a .checklist-group-head:before{content:"A"}
+body.training-reduced #trainingChecklistHost .checklist-theme-b .checklist-group-head{--cg:#238ce1!important} body.training-reduced #trainingChecklistHost .checklist-theme-b .checklist-group-head:before{content:"B"}
+body.training-reduced #trainingChecklistHost .checklist-theme-c .checklist-group-head{--cg:#19ad62!important} body.training-reduced #trainingChecklistHost .checklist-theme-c .checklist-group-head:before{content:"C"}
+body.training-reduced #trainingChecklistHost .checklist-theme-d .checklist-group-head{--cg:#e8a822!important} body.training-reduced #trainingChecklistHost .checklist-theme-d .checklist-group-head:before{content:"D"}
+body.training-reduced #trainingChecklistHost .checklist-theme-e .checklist-group-head{--cg:#7651d6!important} body.training-reduced #trainingChecklistHost .checklist-theme-e .checklist-group-head:before{content:"E"}
+body.training-reduced #trainingChecklistHost .checklist-theme-nfs .checklist-group-head{--cg:#35546f!important} body.training-reduced #trainingChecklistHost .checklist-theme-nfs .checklist-group-head:before{content:"NFS";font-size:22px}
+body.training-reduced #trainingChecklistHost .checklist-group-head>span:first-of-type{display:flex!important;justify-content:space-between!important;align-items:center!important;gap:14px!important;min-width:0!important}
+body.training-reduced #trainingChecklistHost .checklist-group-head b{font-size:19px!important;color:#fff!important} body.training-reduced #trainingChecklistHost .checklist-section-icon{display:none!important}
+body.training-reduced #trainingChecklistHost .checklist-summary{color:#fff!important;font-size:13px!important;white-space:nowrap!important;margin:0!important}
+body.training-reduced #trainingChecklistHost .checklist-group-body{padding:10px 18px 14px!important;background:#fff!important}
+body.training-reduced #trainingChecklistHost .checklist-item{display:grid!important;grid-template-columns:minmax(220px,1fr) auto!important;gap:12px!important;align-items:center!important;padding:9px 0!important;border-bottom:1px solid #e7eef5!important;background:#fff!important}
+body.training-reduced #trainingChecklistHost .checklist-item-label{font-size:16px!important;font-weight:700!important}
+body.training-reduced #trainingChecklistHost .checklist-assessment{display:flex!important;gap:6px!important;align-items:center!important;flex-wrap:wrap!important;justify-content:flex-end!important}
+body.training-reduced #trainingChecklistHost .checklist-comment{order:3;flex-basis:100%;min-width:240px!important}
+body.training-reduced #trainingChecklistHost .rating-btn,body.training-reduced #trainingChecklistHost .checklist-role-btn{min-width:58px!important;padding:7px 9px!important;border:1px solid #9db4c9!important;background:#fff!important;color:#10263f!important;border-radius:8px!important;font-weight:800!important}
+body.training-reduced #trainingChecklistHost .rating-ok.active{background:#14955b!important;border-color:#14955b!important;color:#fff!important}.training-reduced #trainingChecklistHost .rating-nok.active{background:#d53a47!important;border-color:#d53a47!important;color:#fff!important}.training-reduced #trainingChecklistHost .checklist-role-btn.active{background:#1688e8!important;border-color:#1688e8!important;color:#fff!important}
+.training-crm-panel{margin-top:18px;border:1px solid #cbd9e5;border-radius:14px;background:#f8fbfe;overflow:hidden}.training-crm-head{padding:14px 16px;background:#173f64;color:#fff}.training-crm-head h2{margin:0;font-size:21px}.training-crm-head p{margin:3px 0 0;color:#d9e8f3}.training-crm-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;padding:16px}.training-crm-column{background:#fff;border:1px solid #d8e5ee;border-radius:12px;padding:12px}.training-crm-column h3{margin:0 0 8px;color:#173955}.training-crm-column textarea{width:100%;box-sizing:border-box;border:1px solid #b9ccdc;border-radius:8px;padding:9px;margin-top:10px}.crm-note-save{margin-top:8px;background:#173f64!important;color:#fff!important;border:1px solid #173f64!important}.trainer-state{display:inline-flex;align-items:center;padding:5px 10px;border-radius:999px;background:#edf2f6;color:#50677b;font-weight:800;font-size:12px}
+@media(max-width:800px){.training-crm-grid{grid-template-columns:1fr}.training-reduced #trainingChecklistHost .checklist-group-head{grid-template-columns:48px minmax(0,1fr) 18px!important;padding:11px 12px!important}.training-reduced #trainingChecklistHost .checklist-group-head:before{font-size:25px}.training-reduced #trainingChecklistHost .checklist-group-head>span:first-of-type{display:block!important}.training-reduced #trainingChecklistHost .checklist-summary{display:block!important;margin-top:3px!important;font-size:11px!important}.training-reduced #trainingChecklistHost .checklist-item{grid-template-columns:1fr!important}.training-reduced #trainingChecklistHost .checklist-assessment{justify-content:flex-start!important}}
+
+/* =========================================================
+   V3.1.1 – Szenario-Checkliste: farbige Titelzeile oben
+   und CRM-Bewertungen mit eindeutigem Status-Farbwechsel.
+   ========================================================= */
+body.training-reduced #trainingChecklistHost .checklist-group{
+  display:block!important;
+  border:1px solid #cbd9e5!important;
+  border-radius:14px!important;
+  overflow:hidden!important;
+  background:#fff!important;
+}
+body.training-reduced #trainingChecklistHost .checklist-group-head,
+body.training-reduced #trainingChecklistHost .checklist-group:has(.checklist-group-body[hidden]) .checklist-group-head{
+  width:100%!important;
+  min-height:62px!important;
+  height:auto!important;
+  display:grid!important;
+  grid-template-columns:66px minmax(0,1fr) 24px!important;
+  align-items:center!important;
+  gap:12px!important;
+  padding:11px 16px!important;
+  border:0!important;
+  border-radius:0!important;
+  background:var(--cg,var(--dash-accent,#35546f))!important;
+  color:#fff!important;
+  text-align:left!important;
+}
+body.training-reduced #trainingChecklistHost .checklist-group-head>span:first-of-type,
+body.training-reduced #trainingChecklistHost .checklist-group:has(.checklist-group-body[hidden]) .checklist-group-head>span:first-child{
+  display:block!important;
+  width:auto!important;
+}
+body.training-reduced #trainingChecklistHost .checklist-group-head b{
+  display:block!important;
+  color:#fff!important;
+  font-size:18px!important;
+  line-height:1.2!important;
+}
+body.training-reduced #trainingChecklistHost .checklist-summary{display:none!important}
+body.training-reduced #trainingChecklistHost .checklist-chevron{
+  position:static!important;
+  transform:none!important;
+  justify-self:end!important;
+}
+body.training-reduced #trainingChecklistHost .checklist-group-body{
+  display:block!important;
+  width:100%!important;
+  padding:8px 18px 14px!important;
+  background:#fff!important;
+}
+body.training-reduced #trainingChecklistHost .checklist-group-body[hidden]{display:none!important}
+body.training-reduced #trainingChecklistHost .checklist-item{
+  display:grid!important;
+  grid-template-columns:minmax(210px,1fr) auto!important;
+  gap:12px!important;
+  align-items:center!important;
+}
+body.training-reduced #trainingChecklistHost .checklist-assessment{justify-content:flex-end!important}
+body.training-reduced #trainingChecklistHost .checklist-comment{min-width:250px!important}
+
+.training-crm-panel .trainer-list-row{align-items:center!important}
+.training-crm-panel .trainer-list-row>div{align-items:center!important}
+.training-crm-panel .trainer-rating{
+  min-width:112px!important;
+  min-height:38px!important;
+  padding:8px 12px!important;
+  border:1px solid #aebfd0!important;
+  border-radius:9px!important;
+  background:#fff!important;
+  color:#173955!important;
+  font-weight:850!important;
+  cursor:pointer!important;
+}
+.training-crm-panel .trainer-rating.is-ok,
+.training-crm-panel .trainer-rating.is-ok.active{
+  background:#15965b!important;
+  border-color:#15965b!important;
+  color:#fff!important;
+  box-shadow:0 0 0 2px rgba(21,150,91,.12)!important;
+}
+.training-crm-panel .trainer-rating.is-nok,
+.training-crm-panel .trainer-rating.is-nok.active{
+  background:#d83f4d!important;
+  border-color:#d83f4d!important;
+  color:#fff!important;
+  box-shadow:0 0 0 2px rgba(216,63,77,.10)!important;
+}
+.training-crm-panel .trainer-rating:disabled{opacity:.55;cursor:wait!important}
+.training-crm-panel .trainer-state{min-width:92px;justify-content:center}
+
+@media(max-width:800px){
+  body.training-reduced #trainingChecklistHost .checklist-group-head{grid-template-columns:48px minmax(0,1fr) 20px!important;padding:10px 12px!important}
+  body.training-reduced #trainingChecklistHost .checklist-group-head b{font-size:15px!important}
+  body.training-reduced #trainingChecklistHost .checklist-item{grid-template-columns:1fr!important}
+  body.training-reduced #trainingChecklistHost .checklist-assessment{justify-content:flex-start!important}
+  body.training-reduced #trainingChecklistHost .checklist-comment{min-width:0!important;width:100%!important}
+}
+
+
+/* V3.1.2 – Checkliste im Szenariomodus: kompakte Titelzeilen, saubere Pfeile, Zebra-Zeilen */
+body.training-reduced #trainingChecklistHost .checklist-group-head{
+  grid-template-columns:minmax(0,1fr) 28px!important;
+  min-height:58px!important;padding:11px 16px!important;
+}
+body.training-reduced #trainingChecklistHost .checklist-group-head:before{display:none!important}
+body.training-reduced #trainingChecklistHost .checklist-group-head b{display:flex!important;align-items:center!important;gap:9px!important;min-height:34px!important}
+body.training-reduced #trainingChecklistHost .checklist-section-icon{display:inline-flex!important;width:28px;height:28px;align-items:center;justify-content:center;font-size:18px!important}
+body.training-reduced #trainingChecklistHost .checklist-chevron{width:14px!important;height:14px!important;border-right:2px solid currentColor!important;border-bottom:2px solid currentColor!important;transform:rotate(45deg)!important;transition:transform .18s ease!important;transform-origin:center!important;margin-right:4px!important}
+body.training-reduced #trainingChecklistHost .checklist-group-head[aria-expanded="true"] .checklist-chevron{transform:rotate(225deg)!important;margin-top:8px!important}
+body.training-reduced #trainingChecklistHost .checklist-group-body{padding:0 16px 10px!important}
+body.training-reduced #trainingChecklistHost .checklist-item{min-height:66px!important;padding:9px 8px!important;border:0!important;border-bottom:1px solid #e5ebf0!important;grid-template-columns:minmax(190px,1fr) minmax(420px,1.35fr)!important}
+body.training-reduced #trainingChecklistHost .checklist-item:nth-child(even){background:#f7f9fb!important}
+body.training-reduced #trainingChecklistHost .checklist-item-label{padding-left:5px!important}
+body.training-reduced #trainingChecklistHost .checklist-assessment{display:grid!important;grid-template-columns:minmax(180px,1fr) auto!important;gap:8px!important;align-items:center!important}
+body.training-reduced #trainingChecklistHost .checklist-comment{height:38px!important;min-height:38px!important;margin:0!important;padding:7px 10px!important}
+body.training-reduced #trainingChecklistHost .rating-btn,
+body.training-reduced #trainingChecklistHost .checklist-role-btn{height:38px!important;min-height:38px!important;min-width:66px!important;padding:7px 10px!important;display:inline-flex!important;align-items:center!important;justify-content:center!important}
+body.training-reduced #trainingChecklistHost .checklist-rating{display:flex!important;align-items:center!important;gap:6px!important;flex-wrap:nowrap!important}
+body.training-reduced #trainingChecklistHost .checklist-summary{display:none!important}
+body.training-reduced #trainingChecklistHost .checklist-theme-crm{--cg:#5b4aa8!important}
+body.training-reduced #trainingChecklistHost .checklist-theme-crm .checklist-group-head{background:#5b4aa8!important}
+@media(max-width:900px){body.training-reduced #trainingChecklistHost .checklist-item{grid-template-columns:1fr!important}body.training-reduced #trainingChecklistHost .checklist-assessment{grid-template-columns:1fr!important}body.training-reduced #trainingChecklistHost .checklist-rating{flex-wrap:wrap!important}}
+
+
+/* V3.1.3 – einheitliche Modulnavigation */
+.mode-switch-strip .mode-start{background:#fff!important;color:#17324f!important;border-color:#c8d5e2!important}
+.mode-switch-strip .mode-scenario{background:#e51d3b!important;color:#fff!important;border-color:#e51d3b!important}
+.mode-switch-strip .mode-skill{background:#1479d5!important;color:#fff!important;border-color:#1479d5!important}
+.mode-switch-strip .mode-abcde{background:#6541d8!important;color:#fff!important;border-color:#6541d8!important}
+.mode-switch-strip .mode-diff{background:#1290aa!important;color:#fff!important;border-color:#1290aa!important}
+.mode-switch-strip .mode-algo{background:#e88912!important;color:#fff!important;border-color:#e88912!important}
+.mode-switch-strip .mode-handover{background:#4269b3!important;color:#fff!important;border-color:#4269b3!important}
+.mode-switch-strip .mode-checklist{background:#168a72!important;color:#fff!important;border-color:#168a72!important}
+.mode-switch-strip .mode-devices{background:#16758a!important;color:#fff!important;border-color:#16758a!important}
+
+/* V3.1.3 – Szenario-Checkliste: nur Texttitel, ruhiger Pfeil, eine Dokumentationszeile */
+body.training-reduced #trainingChecklistHost .checklist-group-head{
+  grid-template-columns:minmax(0,1fr) 34px!important;
+  min-height:56px!important;padding:10px 16px!important;
+}
+body.training-reduced #trainingChecklistHost .checklist-section-icon{display:none!important}
+body.training-reduced #trainingChecklistHost .checklist-group-head b{display:block!important;min-height:0!important;font-size:18px!important;line-height:1.2!important}
+body.training-reduced #trainingChecklistHost .checklist-chevron{width:30px!important;height:30px!important;border:0!important;display:grid!important;place-items:center!important;transform:none!important;margin:0!important;color:#fff!important;transition:none!important}
+body.training-reduced #trainingChecklistHost .checklist-chevron::before{content:"⌄";display:block;font-size:24px;line-height:1;transform:rotate(0deg);transition:transform .18s ease,translate .18s ease;transform-origin:center}
+body.training-reduced #trainingChecklistHost .checklist-group-head[aria-expanded="true"] .checklist-chevron{transform:none!important;margin:0!important}
+body.training-reduced #trainingChecklistHost .checklist-group-head[aria-expanded="true"] .checklist-chevron::before{transform:rotate(180deg);translate:0 1px}
+body.training-reduced #trainingChecklistHost .checklist-group-body{padding:0 16px 10px!important}
+body.training-reduced #trainingChecklistHost .checklist-item{
+  min-height:56px!important;padding:8px 10px!important;border:0!important;border-bottom:1px solid #e6edf3!important;
+  grid-template-columns:minmax(190px,1.1fr) minmax(180px,1fr) auto auto!important;gap:8px!important;align-items:center!important;
+}
+body.training-reduced #trainingChecklistHost .checklist-item:nth-child(even){background:#f6f8fa!important}
+body.training-reduced #trainingChecklistHost .checklist-assessment{display:contents!important}
+body.training-reduced #trainingChecklistHost .checklist-comment{grid-column:2!important;min-width:0!important;width:100%!important;height:38px!important;margin:0!important}
+body.training-reduced #trainingChecklistHost .checklist-rating{grid-column:3!important;display:flex!important;gap:6px!important;flex-wrap:nowrap!important}
+body.training-reduced #trainingChecklistHost .checklist-role-buttons{grid-column:4!important;display:flex!important;gap:6px!important;flex-wrap:nowrap!important}
+body.training-reduced #trainingChecklistHost .rating-btn,
+body.training-reduced #trainingChecklistHost .checklist-role-btn{height:38px!important;min-height:38px!important;min-width:66px!important;padding:7px 10px!important;margin:0!important}
+body.training-reduced #trainingChecklistHost .checklist-summary{display:none!important}
+@media(max-width:980px){body.training-reduced #trainingChecklistHost .checklist-item{grid-template-columns:1fr auto auto!important}body.training-reduced #trainingChecklistHost .checklist-comment{grid-column:1/-1!important;grid-row:2!important}.checklist-item-label{grid-column:1!important}.checklist-rating{grid-column:2!important}.checklist-role-buttons{grid-column:3!important}}
+@media(max-width:620px){body.training-reduced #trainingChecklistHost .checklist-item{grid-template-columns:1fr!important}.checklist-item-label,body.training-reduced #trainingChecklistHost .checklist-comment,body.training-reduced #trainingChecklistHost .checklist-rating,body.training-reduced #trainingChecklistHost .checklist-role-buttons{grid-column:1!important;grid-row:auto!important;justify-content:flex-start!important}}
+
+/* V3.1.4 – finale Szenario-Checklistenzeile / genau ein Ausklapp-Pfeil */
+body.training-reduced #trainingChecklistHost .checklist-group-head{grid-template-columns:minmax(0,1fr) 30px!important;min-height:56px!important;padding:10px 16px!important}
+body.training-reduced #trainingChecklistHost .checklist-group-head>span:first-of-type{display:block!important;margin:0!important;padding:0!important}
+body.training-reduced #trainingChecklistHost .checklist-group-head b{display:block!important;margin:0!important;padding:0!important;font-size:18px!important;line-height:1.2!important;font-weight:800!important}
+body.training-reduced #trainingChecklistHost .checklist-section-icon,body.training-reduced #trainingChecklistHost .checklist-summary{display:none!important}
+body.training-reduced #trainingChecklistHost .checklist-chevron{position:relative!important;right:auto!important;top:auto!important;width:28px!important;height:28px!important;display:grid!important;place-items:center!important;border:0!important;transform:none!important;margin:0!important;font-size:0!important;color:transparent!important}
+body.training-reduced #trainingChecklistHost .checklist-chevron::before{content:""!important;position:static!important;width:9px!important;height:9px!important;border-right:2px solid #fff!important;border-bottom:2px solid #fff!important;border-left:0!important;border-top:0!important;transform:rotate(45deg)!important;transition:transform .18s ease!important;translate:none!important}
+body.training-reduced #trainingChecklistHost .checklist-chevron::after{content:none!important;display:none!important}
+body.training-reduced #trainingChecklistHost .checklist-group-head[aria-expanded="true"] .checklist-chevron,body.training-reduced #trainingChecklistHost .checklist-group-head[aria-expanded="false"] .checklist-chevron{transform:none!important;margin:0!important}
+body.training-reduced #trainingChecklistHost .checklist-group-head[aria-expanded="true"] .checklist-chevron::before{transform:rotate(225deg)!important;translate:none!important}
+
+/* V3.1.5 – globale Bereichsnavigation nach Checklisten-Standard */
+.mode-switch-strip,.control-mode-switch-strip,body.vs-sidebar-collapsed .control-mode-switch-strip{
+  display:flex!important;gap:10px!important;flex-wrap:wrap!important;align-items:center!important;
+  width:100%!important;margin:0!important;padding:12px clamp(12px,3vw,38px)!important;
+  background:#0c2035!important;border-bottom:1px solid #294a64!important;box-shadow:none!important;
+}
+.mode-switch-strip .mode-switch,.control-mode-switch-strip .mode-switch{
+  min-height:44px!important;padding:10px 15px!important;border-radius:8px!important;
+  font-size:15px!important;font-weight:800!important;line-height:1.2!important;text-decoration:none!important;
+  display:inline-flex!important;align-items:center!important;justify-content:center!important;white-space:nowrap!important;
+}
+.scenario-page-top{padding:24px clamp(16px,3vw,38px)!important;background:linear-gradient(110deg,#123b5d,#173f64)!important;border-bottom:0!important}
+.scenario-page-top strong{font-size:30px!important;line-height:1.08!important}
+.scenario-page-top span{display:none!important}
+body.admin-control-view .admin-page-top{display:flex!important}
+@media(max-width:720px){.mode-switch-strip,.control-mode-switch-strip,body.vs-sidebar-collapsed .control-mode-switch-strip{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;padding:10px 12px!important;gap:7px!important}.mode-switch-strip .mode-switch,.control-mode-switch-strip .mode-switch{width:100%!important;min-height:42px!important;font-size:12px!important;white-space:normal!important;text-align:center!important}.scenario-page-top{padding:20px 16px!important}.scenario-page-top strong{font-size:27px!important}}
+
+/* V3.1.7 – fallbezogene Anamnese SAMPLE(R) / OPQRST */
+.anam-editor-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:6px}.anam-editor-grid label{display:grid;grid-template-columns:28px 1fr;align-items:center;gap:7px}.anam-editor-grid input{min-width:0}.checklist-theme-anam{--cg:#526b7a!important}.anam-check-item .checklist-item-label{display:grid!important;gap:3px!important}.anam-check-item .checklist-item-label b{font-size:14px}.anam-answer{font-size:12px;color:#60788d;font-weight:500;line-height:1.3}.anam-check-item.rated-ok{background:#eefaf4!important}.anam-check-item .rating-ok.active{background:#15965c!important;color:#fff!important;border-color:#15965c!important}@media(max-width:760px){.anam-editor-grid{grid-template-columns:1fr}.anam-check-item .checklist-item-label{max-width:none!important}}
+
+
+/* V3.1.8 – Anamnese, Startansicht und Analyse-Verknüpfung */
+.checklist-theme-anam .checklist-group-head{background:#526b7a!important}.anam-subhead{padding:10px 8px 5px!important;font-size:11px!important;font-weight:900!important;letter-spacing:.09em!important;text-transform:uppercase!important;color:#526b7a!important;background:#edf3f6!important;border-bottom:1px solid #dce6ed!important}.anam-check-item .checklist-item-label b{font-size:17px!important;font-weight:850!important}.anam-check-item .anam-answer{font-size:13px!important}.case-review-briefing{background:#f7f9fb!important}.case-review-description,.case-review-instructor-text{background:#fff!important;border:1px solid #d5e0e8!important;border-left:5px solid #294f70!important;border-radius:10px!important;padding:10px 12px!important}.case-review-description>span,.case-review-instructor-text>span{color:#536b7f!important}.case-review-facts>div,.training-case-facts>div,.case-summary-facts>div{background:#f7f9fb!important;border-color:#d8e2ea!important}.case-review-briefing h2{font-size:1.18rem!important}.case-review-description>p,.case-review-instructor-text>p{font-size:.92rem!important;line-height:1.4!important}.analysis-chart{position:relative}.event-list>div{display:grid!important;grid-template-columns:24px 56px 1fr!important;gap:8px!important;align-items:start!important}.event-number{width:20px;height:20px;border-radius:50%;display:inline-grid;place-items:center;background:#167de2;color:#fff;font-size:11px;font-style:normal;font-weight:900}.analysis-events-chart{border-top:2px solid #dbe5ed!important}.analysis-label span{font-size:12px!important}.analysis-debrief-attribution{background:#f5f8fb!important;border-color:#cedce8!important}.analysis-debrief-attribution h3{font-size:17px!important}.training-case-overview,.case-summary-overview{background:#f7f9fb!important}
+/* Anamnese: Erheben/PO/GO direkt unter dem jeweiligen Informationspunkt */
+body.training-reduced #trainingChecklistHost .anam-check-item{grid-template-columns:1fr!important;align-items:start!important;gap:6px!important;padding-top:10px!important;padding-bottom:10px!important}
+body.training-reduced #trainingChecklistHost .anam-check-item .checklist-assessment{grid-column:1!important;display:flex!important;justify-content:flex-start!important;align-items:center!important;gap:7px!important;padding-left:5px!important}
+body.training-reduced #trainingChecklistHost .anam-check-item .checklist-rating{justify-content:flex-start!important}
+
+
+/* V3.1.9 – Fallübersicht, Falleditor und Anamnese */
+.case-anamnesis-overview{display:grid;grid-template-columns:1.05fr .95fr;gap:10px;margin-top:10px}.case-anam-card{border:1px solid #d6e2eb;background:#f8fbfd;border-radius:11px;padding:10px 12px}.case-anam-card h3{margin:0 0 7px;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:#345f80}.case-anam-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px 12px}.case-anam-grid>div{display:grid;grid-template-columns:24px minmax(0,1fr);gap:6px;align-items:start;padding:4px 0;border-bottom:1px solid #e9eff4}.case-anam-grid>div:last-child{border-bottom:0}.case-anam-grid b{color:#1474c8}.case-anam-grid span{font-size:13px;line-height:1.35;color:#233f55}.fall-band{margin:22px 0 0!important;padding:10px 13px!important;border-radius:10px 10px 0 0!important;color:#fff!important;background:#294f70!important}.fall-band-anam{background:#526b7a!important}.fall-band-start{background:#2b557b!important}.fall-band-events{background:#7048c8!important}.fall-editor-window{border:1px solid #cddce7;border-top:0;border-radius:0 0 12px 12px;background:#f9fbfd;padding:14px}.field-hint{display:block;color:#657d91;font-size:12px;line-height:1.3;margin-top:4px;font-weight:500}.anam-editor-window{border:1px solid #cddce7;border-top:0;border-radius:0 0 12px 12px;background:#f9fbfd;padding:14px}.anam-link-note{font-size:13px;color:#587086;margin-bottom:10px}.anam-meta-links{margin-bottom:12px}.anam-editor-columns{display:grid;grid-template-columns:1fr 1fr;gap:12px}.anam-editor-card{background:#fff;border:1px solid #d5e2ec;border-radius:12px;padding:12px}.anam-editor-card h3{margin:0 0 10px;font-size:15px;color:#294f70}.anam-editor-grid{grid-template-columns:1fr!important}.anam-editor-grid label{grid-template-columns:32px 1fr!important;align-items:start!important;border-bottom:1px solid #edf1f4;padding:7px 0}.anam-editor-grid label:last-child{border-bottom:0}.anam-editor-grid label>b{font-size:18px;color:#1474c8;padding-top:8px}.anam-editor-grid label>span{display:grid;gap:3px}.anam-editor-grid label small{font-size:11px;color:#6d8294;font-weight:500}.admin-training-actions.admin-training-stack{display:flex!important;flex-direction:row!important;gap:10px!important;flex-wrap:wrap!important}.admin-training-actions.admin-training-stack>button{width:auto!important;min-width:180px!important;flex:1 1 180px!important}.trainee-entry-grid>label{align-content:start}.trainee-label-line{display:flex;align-items:baseline;gap:6px}.trainee-label-line small{font-size:11px;color:#71869a;font-weight:600}.trainee-entry-grid input,.trainee-entry-grid select{height:42px!important;min-height:42px!important}.unified-event-transition{grid-template-columns:150px minmax(260px,1fr)!important}.analysis-card{display:none!important}
+/* Anamnese in einer Zeile: Buchstabe/Antwort + Erhoben + PO/GO */
+body.training-reduced #trainingChecklistHost .anam-check-item{grid-template-columns:minmax(260px,1fr) auto!important;align-items:center!important;gap:10px!important}.training-reduced #trainingChecklistHost .anam-check-item .checklist-assessment{grid-column:auto!important;display:flex!important;justify-content:flex-end!important;align-items:center!important;padding-left:0!important}.training-reduced #trainingChecklistHost .anam-check-item .checklist-rating{display:flex!important;justify-content:flex-end!important}.training-reduced #trainingChecklistHost .anam-check-item .checklist-role-buttons{display:flex!important;margin:0!important}.training-reduced #trainingChecklistHost .anam-check-item .checklist-comment{display:none!important}
+@media(max-width:900px){.case-anamnesis-overview,.anam-editor-columns{grid-template-columns:1fr}.case-anam-grid{grid-template-columns:1fr}.admin-training-actions.admin-training-stack>button{min-width:140px!important}.training-reduced #trainingChecklistHost .anam-check-item{grid-template-columns:1fr!important}.training-reduced #trainingChecklistHost .anam-check-item .checklist-assessment{justify-content:flex-start!important}}
+
+/* V3.1.9 – Kommentar rechts, Bewertung davor */
+body.training-reduced #trainingChecklistHost .checklist-item:not(.anam-check-item){
+  grid-template-columns:minmax(190px,1fr) auto auto minmax(210px,.9fr)!important;
+}
+body.training-reduced #trainingChecklistHost .checklist-item:not(.anam-check-item) .checklist-rating{grid-column:2!important}
+body.training-reduced #trainingChecklistHost .checklist-item:not(.anam-check-item) .checklist-role-buttons{grid-column:3!important}
+body.training-reduced #trainingChecklistHost .checklist-item:not(.anam-check-item) .checklist-comment{grid-column:4!important;grid-row:1!important}
+@media(max-width:980px){
+  body.training-reduced #trainingChecklistHost .checklist-item:not(.anam-check-item){grid-template-columns:1fr auto auto!important}
+  body.training-reduced #trainingChecklistHost .checklist-item:not(.anam-check-item) .checklist-comment{grid-column:1/-1!important;grid-row:2!important}
+}
+
+/* v3.2.0 – unified case/anamnesis UI */
+.fall-band-case{background:#294f70!important}.fall-band-anam{background:#526b7a!important}.fall-band-images{background:#168a72!important}.fall-band-start{background:#1479d5!important}.fall-band-events{background:#e88912!important}.fall-band-variants{background:#7651d6!important}
+.fall-images-window,.fall-variants-window{border:1px solid #cddce7;border-top:0;border-radius:0 0 12px 12px;background:#f9fbfd;padding:14px}
+.anam-editor-card{box-shadow:0 2px 8px rgba(16,48,72,.05)}
+.anam-editor-grid label{grid-template-columns:38px minmax(0,1fr)!important;gap:10px!important;padding:10px 0!important}
+.anam-editor-grid label>b{width:32px;height:32px;border-radius:9px;background:#eaf3fb;display:grid;place-items:center;padding:0!important;color:#1769aa!important;font-size:16px!important}
+.anam-editor-grid label>span{gap:6px!important}.anam-editor-grid label>span>strong{font-size:13px;color:#294f70}.anam-editor-grid label select{min-height:38px;background:#f4f8fb;border-color:#c9d9e5}.anam-editor-grid label input{min-height:42px}
+.anam-editor-grid label small{margin-top:0!important;padding-top:2px;color:#667f94!important}
+.case-anamnesis-overview{gap:12px!important}.case-anam-card{background:#fff!important;border:1px solid #cfdce6!important;box-shadow:0 2px 8px rgba(14,46,70,.04)}.case-anam-card h3{font-size:12px!important;color:#526b7a!important}.case-anam-grid>div{padding:6px 0!important}.case-anam-grid b{background:#eaf3fb;color:#1769aa!important;border-radius:6px;display:grid;place-items:center;width:22px;height:22px}.case-anam-grid span{font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif!important;color:#1c384e!important}
+.training-case-description,.case-review-description,.case-review-instructor-text,.case-instructor-highlight{font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif!important}.training-case-description p,.case-review-description p,.case-review-instructor-text p{font-family:inherit!important;font-weight:500!important}
+body.training-reduced #trainingChecklistHost .anam-check-item{grid-template-columns:minmax(240px,1fr) auto!important;align-items:center!important}.training-reduced #trainingChecklistHost .anam-check-item .checklist-assessment{display:flex!important;align-items:center!important;justify-content:flex-end!important;gap:6px!important}.training-reduced #trainingChecklistHost .anam-check-item .checklist-rating,.training-reduced #trainingChecklistHost .anam-check-item .checklist-role-buttons{display:flex!important;gap:6px!important;margin:0!important}
+@media(max-width:720px){body.training-reduced #trainingChecklistHost .anam-check-item{grid-template-columns:1fr!important}.training-reduced #trainingChecklistHost .anam-check-item .checklist-assessment{justify-content:flex-start!important;flex-wrap:nowrap!important}.case-anamnesis-overview{grid-template-columns:1fr!important}}
+/* v3.2.0 – consistent case summary cards */
+.case-summary-description,.training-case-description,.case-review-description,.case-review-instructor-text,.case-instructor-overview{background:#fff!important;border:1px solid #d5e0e8!important;border-left:5px solid #294f70!important;border-radius:10px!important;padding:10px 12px!important;margin-bottom:10px!important}.case-summary-description>span,.training-case-description>span,.case-review-description>span,.case-review-instructor-text>span,.case-instructor-overview>span{display:block!important;font-size:12px!important;font-weight:850!important;letter-spacing:.055em!important;text-transform:uppercase!important;color:#526b7a!important;margin-bottom:4px!important}.case-summary-description>p,.training-case-description>p,.case-review-description>p,.case-review-instructor-text>p,.case-instructor-overview>p{margin:0!important;font-size:15px!important;line-height:1.42!important;color:#173955!important;font-weight:500!important}.case-instructor-overview{background:#f7fafc!important}.fall-editor-actions{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:10px!important}.fall-editor-actions>button{width:100%!important;min-width:0!important}.variant-editor-row{border-left:5px solid #7651d6!important;background:#fbf9ff!important}.variant-quickbar button{border-color:#b9a9ed!important;background:#f7f4ff!important;color:#5130aa!important}
+@media(max-width:900px){.fall-editor-actions{grid-template-columns:repeat(2,minmax(0,1fr))!important}}@media(max-width:560px){.fall-editor-actions{grid-template-columns:1fr!important}}
