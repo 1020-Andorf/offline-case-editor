@@ -1,6 +1,6 @@
-# OST Andorf Offline-Falleditor V3.1.6
+# OST Andorf Offline-Falleditor V3.1.7
 
-Diese Version ist auf den Falleditor-Stand der VitaSim-Pi-Version V3.1.6 abgestimmt.
+Diese Version ist auf den Falleditor-Stand der VitaSim-Pi-Version V3.1.7 abgestimmt.
 
 ## Veröffentlichung auf GitHub Pages
 
@@ -25,3 +25,17 @@ Wichtig: Bei einem Update immer auch `service-worker.js` ersetzen. Der Cache ist
 ## Import am Pi
 
 Die erzeugte `.vitasimexport`-Datei im VitaSim-Falleditor über **„Offline-Fall importieren (.vitasimexport)“** laden und danach als Fallvorlage speichern.
+
+
+## V3.1.7 – iPhone/iPad Import-Hotfix
+
+Beim Button **Fall öffnen** wurde der HTML-Dateifilter (`accept`) entfernt.
+Safari/iOS blendet unbekannte Dateiendungen wie `.vitasimexport` sonst teilweise aus bzw. macht sie nicht auswählbar.
+
+Der Editor zeigt deshalb im Dateidialog jetzt **alle Dateien** an und prüft die Datei erst nach der Auswahl.
+Unterstützt bleiben:
+- `.vitasimexport`
+- `.vitasim`
+- `.json`
+
+Damit lassen sich `.vitasimexport`-Dateien aus der iOS-Dateien-App direkt auswählen.
