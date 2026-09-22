@@ -1,6 +1,6 @@
-# OST Andorf Offline-Falleditor V3.1.7
+# OST Andorf Offline-Falleditor V3.1.8
 
-Diese Version ist auf den Falleditor-Stand der VitaSim-Pi-Version V3.1.7 abgestimmt.
+Diese Version ist auf den Falleditor-Stand der VitaSim-Pi-Version V3.1.8 abgestimmt.
 
 ## Veröffentlichung auf GitHub Pages
 
@@ -27,7 +27,7 @@ Wichtig: Bei einem Update immer auch `service-worker.js` ersetzen. Der Cache ist
 Die erzeugte `.vitasimexport`-Datei im VitaSim-Falleditor über **„Offline-Fall importieren (.vitasimexport)“** laden und danach als Fallvorlage speichern.
 
 
-## V3.1.7 – iPhone/iPad Import-Hotfix
+## V3.1.8 – iPhone/iPad Import-Hotfix
 
 Beim Button **Fall öffnen** wurde der HTML-Dateifilter (`accept`) entfernt.
 Safari/iOS blendet unbekannte Dateiendungen wie `.vitasimexport` sonst teilweise aus bzw. macht sie nicht auswählbar.
@@ -39,3 +39,10 @@ Unterstützt bleiben:
 - `.json`
 
 Damit lassen sich `.vitasimexport`-Dateien aus der iOS-Dateien-App direkt auswählen.
+
+## V3.1.8 – iOS-Dateiimport endgültig robust
+
+- zusätzlicher Button **iPhone: JSON öffnen** mit standardisiertem JSON-Dateityp
+- `.vitasimexport` und `.json` enthalten dieselbe VitaSim-Paketstruktur; nur die Dateiendung unterscheidet sich
+- neuer Service Worker `v318` räumt alte Caches auf und lädt `index.html` network-first
+- sichtbare Versionsanzeige `V3.1.8` oben im Editor, damit sofort erkennbar ist, ob wirklich die neue Seite geladen wurde

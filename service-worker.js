@@ -1,19 +1,4 @@
-const CACHE='ost-andorf-falleditor-v3-1-6';
-const ASSETS=['./','./index.html','./style.css','./manifest.webmanifest'];
-self.addEventListener('install',e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(ASSETS)).then(()=>self.skipWaiting())));
-self.addEventListener('activate',e=>e.waitUntil((async()=>{
-  const keys=await caches.keys();
-  await Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k)));
-  await self.clients.claim();
-})()));
-self.addEventListener('fetch',e=>{
-  if(e.request.method!=='GET')return;
-  const isNavigation=e.request.mode==='navigate'||e.request.destination==='document';
-  if(isNavigation){
-    e.respondWith(fetch(e.request,{cache:'no-store'}).then(resp=>{
-      const copy=resp.clone();caches.open(CACHE).then(c=>c.put('./index.html',copy));return resp;
-    }).catch(()=>caches.match('./index.html')));
-    return;
-  }
-  e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request).then(resp=>{const copy=resp.clone();caches.open(CACHE).then(c=>c.put(e.request,copy));return resp;})));
-});
+const CACHE='vitasim-falleditor-v318';
+self.addEventListener('install',event=>{self.skipWaiting();event.waitUntil(caches.open(CACHE).then(c=>c.addAll(['./index.html'])))});
+self.addEventListener('activate',event=>{event.waitUntil((async()=>{for(const key of await caches.keys())if(key!==CACHE)await caches.delete(key);await self.clients.claim()})())});
+self.addEventListener('fetch',event=>{const req=event.request;if(req.method!=='GET')return;const url=new URL(req.url);if(req.mode==='navigate'||url.pathname.endsWith('/index.html')||url.pathname.endsWith('/')){event.respondWith(fetch(req,{cache:'no-store'}).then(r=>{const copy=r.clone();caches.open(CACHE).then(c=>c.put(req,copy));return r}).catch(()=>caches.match(req).then(r=>r||caches.match('./index.html'))));return;}event.respondWith(fetch(req).catch(()=>caches.match(req)));});

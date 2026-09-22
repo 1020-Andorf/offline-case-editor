@@ -13,12 +13,14 @@
 </head>
 <body>
 <div class="offline-shell">
-<header class="offline-head"><div><h1>Trainingsapp OST Andorf – Falleditor</h1><p>Offline / GitHub Pages · gleiche Fallstruktur wie VitaSim am Pi</p></div><span class="offline-badge">OFFLINE BEREIT</span></header>
+<header class="offline-head"><div><h1>Trainingsapp OST Andorf – Falleditor</h1><p>Offline / GitHub Pages · gleiche Fallstruktur wie VitaSim am Pi</p></div><span class="offline-badge">V3.1.8 · OFFLINE BEREIT</span></header>
 <div class="offline-toolbar">
   <button type="button" onclick="newCase()">Neuer Fall</button>
   <label>Fall öffnen<input id="packageOpen" type="file" hidden></label>
-  <button type="button" class="export-action" onclick="exportPackage()">Fall exportieren (.vitasimexport)</button><div class="helper" style="flex-basis:100%">„Fall öffnen“ zeigt auf iPhone/iPad jetzt alle Dateien an. Unterstützt: .vitasimexport, .vitasim und .json.</div>
+  <label>iPhone: JSON öffnen<input id="jsonOpen" type="file" accept="application/json,.json" hidden></label>
+  <button type="button" class="export-action" onclick="exportPackage()">Fall exportieren (.vitasimexport)</button>
   <button type="button" onclick="downloadJson()">Nur JSON exportieren</button>
+  <div class="helper" style="flex-basis:100%">iPhone/iPad: Wenn eine .vitasimexport-Datei im Dateidialog grau bleibt, dieselbe Falldatei als .json verwenden und „iPhone: JSON öffnen“ wählen. Inhalt und Fallstruktur sind identisch.</div>
 </div>
 <div id="status" class="offline-status" aria-live="polite"></div>
 
@@ -139,7 +141,7 @@ function renderImages(){$('images').innerHTML=images.map((x,i)=>`<div class="thu
 $('presetImageUpload').addEventListener('change',e=>addImages(e.target.files));
 function collectPreset(){saveEventIfPossible();const id=cleanId($('presetId').value),name=$('presetName').value.trim(),values=baseValues();if(!id||!name)throw new Error('Bitte ID und Name angeben.');if(!validVitals(values))throw new Error('Bitte alle Ausgangswerte vollständig eingeben.');for(const k of coreOrder){const d=developments[k];if(d&&!validVitals(d.values))throw new Error(`Bitte die Zielwerte für „${coreLabels[k]}“ vollständig eingeben.`)}for(let i=0;i<customDevelopments.length;i++){const d=customDevelopments[i];if(d&&!d.docOnly&&!validVitals(d.values))throw new Error(`Bitte die Zielwerte für „${d.name||('Ereignis '+(i+1))}“ vollständig eingeben.`)}rebuildCustomCardActions();variants=readVariants();return {id,name,description:$('presetDescriptionEdit').value.trim(),preExistingConditions:$('presetPreExistingConditions').value.trim(),medication:$('presetMedication').value.trim(),riskFactors:$('presetRiskFactors').value.trim(),instructorText:$('presetInstructorText').value.trim(),rhythm:$('presetRhythm').value,images:images.map(x=>x.name),values,developments:structuredClone(developments),customDevelopments:structuredClone(customDevelopments),eventCards:structuredClone(eventCards),variants:structuredClone(variants)}}
 async function blobDownload(name,data,type='application/json'){const blob=new Blob([data],{type});if(window.showSaveFilePicker){try{const handle=await window.showSaveFilePicker({suggestedName:name,types:[{description:'VitaSim Fallpaket',accept:{'application/json':['.vitasimexport','.json']}}]});const w=await handle.createWritable();await w.write(blob);await w.close();return true}catch(e){if(e?.name==='AbortError')return false}}const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(url);a.remove()},1500);return true}
-async function exportPackage(){try{const preset=collectPreset();const pack={format:'vitasim-case-package',formatVersion:2,createdAt:new Date().toISOString(),appCompatibility:'3.1.7+',preset,images};if(await blobDownload(`${preset.id}.vitasimexport`,JSON.stringify(pack,null,2)))setStatus('Fallpaket exportiert. Die .vitasimexport-Datei kann am Pi importiert werden.')}catch(e){setStatus('Export fehlgeschlagen: '+e.message)}}
+async function exportPackage(){try{const preset=collectPreset();const pack={format:'vitasim-case-package',formatVersion:2,createdAt:new Date().toISOString(),appCompatibility:'3.1.8+',preset,images};if(await blobDownload(`${preset.id}.vitasimexport`,JSON.stringify(pack,null,2)))setStatus('Fallpaket exportiert. Die .vitasimexport-Datei kann am Pi importiert werden.')}catch(e){setStatus('Export fehlgeschlagen: '+e.message)}}
 async function downloadJson(){try{const preset=collectPreset();const {id,...raw}=preset;if(await blobDownload(`${id}.json`,JSON.stringify(raw,null,2)))setStatus('JSON exportiert (ohne eingebettete Bilddateien).')}catch(e){setStatus('Export fehlgeschlagen: '+e.message)}}
 function setBase(v){for(const k of vitalKeys)$(baseIds[k]).value=v?.[k]??''}
 function fillPreset(p,loadedImages=[]){const v={...defaultVitals(),...(p.values||{})};$('presetId').value=p.id||'';$('presetName').value=p.name||'';$('presetDescriptionEdit').value=p.description||'';$('presetPreExistingConditions').value=p.preExistingConditions||'';$('presetMedication').value=p.medication||'';$('presetRiskFactors').value=p.riskFactors||'';$('presetInstructorText').value=p.instructorText||'';$('presetRhythm').value=p.rhythm||'sinus';setBase(v);developments={};for(const k of coreOrder)if(p.developments?.[k])developments[k]=normalizeDev(p.developments[k],v);customDevelopments=(p.customDevelopments||[]).map(d=>normalizeDev(d,v));eventCards=Array.isArray(p.eventCards)?structuredClone(p.eventCards):[];customDevelopments.forEach((d,i)=>{const c=cardForAction('custom:'+i,d.name);d.category=c?.category||d.category||'Patient';d.docOnly=!!d.docOnly || (!!c&&c.action==='none')});images=loadedImages;$('variantsEditor').innerHTML='';(p.variants||[]).forEach(vr=>addVariant(vr.name||'Variante',vr));renderImages();selectEventOptions()}
@@ -165,9 +167,10 @@ async function openPackage(file){
   }
 }
 $('packageOpen').addEventListener('change',e=>openPackage(e.target.files[0]));
+$('jsonOpen').addEventListener('change',e=>openPackage(e.target.files[0]));
 function newCase(){if($('presetName').value && !confirm('Editor leeren und neuen Fall beginnen?'))return;const v=defaultVitals();fillPreset({id:'',name:'',values:v,rhythm:'sinus',developments:{},customDevelopments:[],eventCards:[],variants:[]},[]);setStatus('Neuer Fall angelegt.')}
 newCase();
-if('serviceWorker' in navigator && location.protocol!=='file:')window.addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js').catch(()=>{}));
+if('serviceWorker' in navigator && location.protocol!=='file:')window.addEventListener('load',async()=>{try{const reg=await navigator.serviceWorker.register('./service-worker.js?v=318',{updateViaCache:'none'});await reg.update();}catch(e){console.warn('Service Worker Update fehlgeschlagen',e)}});
 </script>
 </body>
 </html>
