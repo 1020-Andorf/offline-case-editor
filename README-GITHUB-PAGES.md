@@ -1,12 +1,27 @@
-# OST Andorf Offline-Falleditor V3.0.8
+# OST Andorf Offline-Falleditor V3.1.6
 
-Für GitHub Pages den gesamten Ordner veröffentlichen. `index.html`, `style.css`, `manifest.webmanifest` und `service-worker.js` müssen gemeinsam im selben Verzeichnis liegen.
+Diese Version ist auf den Falleditor-Stand der VitaSim-Pi-Version V3.1.6 abgestimmt.
 
-## V3.0.8
+## Veröffentlichung auf GitHub Pages
 
-Der Wechsel zwischen Fallereignissen wurde neu aufgebaut: Beim Wechsel wird der aktuelle Formularstand nur als Draft übernommen; Validierungsfehler blockieren die Auswahl eines anderen Ereignisses nicht mehr. Die strikte Prüfung erfolgt erst bei „Ereignis speichern“ bzw. beim Export. Der Export bleibt `.vitasimexport`-kompatibel.
+Den gesamten Ordner gemeinsam veröffentlichen:
 
+- `index.html`
+- `style.css`
+- `manifest.webmanifest`
+- `service-worker.js`
 
-## V3.0.9 HOTFIX
-- Ereigniswechsel im Dropdown neu implementiert.
-- Service-Worker-Cache-Version erneuert und Navigation auf Network-first gestellt, damit alte GitHub-Pages-Versionen nicht mehr hängen bleiben.
+Wichtig: Bei einem Update immer auch `service-worker.js` ersetzen. Der Cache ist für diese Version neu auf `v3-1-6` gesetzt; die HTML-Navigation wird network-first geladen, damit keine alte Editorversion hängen bleibt.
+
+## Änderungen gegenüber dem alten GitHub-Falleditor
+
+- Lernziele und fallbezogene CRM-Felder entfernt – entsprechend dem aktuellen VitaSim-Falleditor.
+- Neue Fälle enthalten **keine automatisch angelegten Standardereignisse** wie Verschlechterung, Besserung, Kritisch oder Stabilisierung.
+- Es werden nur Ereignisse exportiert, die der Ausbilder tatsächlich anlegt bzw. die in einer importierten Falldatei bereits vorhanden sind.
+- Ereigniswechsel bleibt ohne blockierende Validierung möglich; der aktuelle Formularstand wird beim Wechsel als Entwurf behalten.
+- `.vitasimexport` bleibt mit dem Pi-Import kompatibel und kann Bilder eingebettet mitnehmen.
+- Vorhandene ältere Fälle mit Standardereignissen können weiterhin geöffnet, bearbeitet und wieder exportiert werden.
+
+## Import am Pi
+
+Die erzeugte `.vitasimexport`-Datei im VitaSim-Falleditor über **„Offline-Fall importieren (.vitasimexport)“** laden und danach als Fallvorlage speichern.
