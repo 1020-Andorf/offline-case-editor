@@ -14,254 +14,66 @@
 
 .fall-band-case{background:#294f70}.fall-band-anam{background:#526b7a}.fall-band-images{background:#168a72}.fall-band-start{background:#1479d5}.fall-band-events{background:#e88912}.fall-band-variants{background:#7651d6}.anam-editor-grid label{grid-template-columns:38px minmax(0,1fr)!important;gap:10px!important;padding:10px 0!important}.anam-editor-grid label>b{width:32px;height:32px;border-radius:9px;background:#eaf3fb;display:grid;place-items:center;padding:0!important;color:#1769aa!important;font-size:16px!important}.anam-editor-grid label>span{gap:6px!important}.anam-editor-grid label>span>strong{font-size:13px;color:#294f70}.anam-editor-grid label select{min-height:38px;background:#f4f8fb;border-color:#c9d9e5}.anam-editor-grid label input{min-height:42px}.fall-images-window,.fall-variants-window{border:1px solid #cddce7;border-top:0;border-radius:0 0 12px 12px;background:#f9fbfd;padding:14px}.offline-pin-gate{position:fixed;inset:0;z-index:9999;background:#0b2136;display:grid;place-items:center;padding:20px}.offline-pin-box{width:min(420px,100%);background:#fff;border-radius:16px;padding:22px;box-shadow:0 24px 70px #0007}.offline-pin-box h2{margin:0 0 8px}.offline-pin-box p{color:#60788d}.offline-pin-row{display:grid;grid-template-columns:1fr auto;gap:8px}.offline-pin-row input{min-height:46px;border:1px solid #b9cfde;border-radius:10px;padding:0 12px;font:inherit}.offline-pin-row button{border:0;border-radius:10px;background:#146ee5;color:#fff;font-weight:850;padding:0 16px}.offline-pin-status{min-height:22px;color:#b4233b;font-weight:750;margin-top:8px}
 </style>
-<style>
+<style>/* VitaSim 3.3.7 – einheitliche, kontrastreiche PIN-Dialoge */
+#pinDialog.dialog{align-items:center!important;justify-content:center!important;z-index:31000!important;background:rgba(8,27,46,.72)!important;backdrop-filter:blur(4px);padding:18px!important}
+#pinDialog .editor{width:min(430px,100%)!important;max-width:430px!important;background:#fff!important;border:1px solid #d0e0ee!important;border-radius:17px!important;box-shadow:0 24px 75px rgba(4,28,49,.3)!important;overflow:hidden!important}
+#pinDialog .editor-head{min-height:66px!important;padding:17px 21px!important;background:#173c5d!important;color:#fff!important;display:flex!important;align-items:center!important}
+#pinDialog .editor-head strong{font:800 21px/1.3 Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif!important;color:#fff!important;letter-spacing:0!important}
+#pinDialog .editor-head button{margin-left:auto!important;color:#fff!important;background:#345977!important;border:1px solid #7893a9!important;border-radius:9px!important;min-height:38px!important;padding:7px 12px!important}
+#pinDialog .editor-body{padding:22px!important;color:#213e58!important;font:500 15px/1.5 Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif!important}
+#pinDialog .editor-body p{font-size:14px!important;color:#526b80!important;margin:0 0 16px!important}
+#pinDialog .editor-body label{display:block!important;margin:0 0 7px!important;color:#183c5a!important;font-weight:800!important;font-size:15px!important}
+#pinDialog #pinInput{display:block!important;box-sizing:border-box!important;width:100%!important;max-width:none!important;min-height:52px!important;background:#fff!important;color:#102d45!important;border:2px solid #adc6da!important;border-radius:11px!important;padding:10px 14px!important;font:700 21px Inter,system-ui,sans-serif!important;letter-spacing:.18em!important;box-shadow:none!important}
+#pinDialog #pinInput::placeholder{color:#647c90!important;letter-spacing:normal!important;font-size:16px!important}
+#pinDialog #pinInput:focus{outline:3px solid rgba(25,119,198,.2)!important;border-color:#1977c6!important}
+#pinDialog .editor-foot{display:grid!important;grid-template-columns:1fr 1fr!important;gap:10px!important;padding:4px 22px 22px!important;background:#fff!important}
+#pinDialog .editor-foot button{min-height:46px!important;width:100%!important;border-radius:10px!important;font-size:15px!important;font-weight:800!important}
+#pinDialog .editor-foot .primary{background:#176fc3!important;color:#fff!important}
+#pinDialog #pinStatus{min-height:20px!important;color:#a52138!important;font-weight:700!important;margin-top:10px!important}
+/* Falleditor overlay in Verwaltung / Fallbibliothek */
+body.editor-pin-modal #fallEditorLocked{backdrop-filter:blur(4px)!important;background:rgba(8,27,46,.7)!important}
+#fallEditorLocked .fall-pin-card{box-sizing:border-box!important;width:min(430px,100%)!important;max-width:430px!important;border:1px solid #cedfea!important;border-radius:17px!important;background:#fff!important;padding:23px!important;box-shadow:0 25px 75px rgba(4,28,49,.3)!important;color:#173955!important}
+#fallEditorLocked .fall-pin-card h3,#fallEditorLocked .fall-pin-card h2{font:800 22px/1.25 Inter,system-ui,sans-serif!important;color:#173955!important}
+#fallEditorLocked .helper{color:#4d6c82!important;font-size:14px!important;line-height:1.5!important}
+#fallEditorLocked label{display:block!important;color:#173955!important;font-size:15px!important;font-weight:800!important;margin:10px 0 7px!important}
+#fallEditorLocked .fall-pin-row{display:flex!important;flex-wrap:wrap!important;gap:10px!important;align-items:stretch!important}
+#fallEditorPin{min-height:50px!important;min-width:0!important;width:100%!important;flex:1 1 100%!important;border:2px solid #adc6da!important;border-radius:10px!important;background:#fff!important;color:#102d45!important;font:700 21px Inter,system-ui,sans-serif!important;letter-spacing:.18em!important;padding:10px 14px!important;box-sizing:border-box!important}
+#fallEditorPin:focus{outline:3px solid rgba(25,119,198,.2)!important;border-color:#1977c6!important}
+#fallEditorLocked .fall-pin-row button{min-height:46px!important;flex:1 1 100%!important;width:100%!important;background:#176fc3!important;color:#fff!important;font-weight:800!important;border-radius:10px!important}
+#fallEditorPinStatus{color:#b4233c!important;font-weight:750!important;min-height:19px!important}
+/* Offline-Editor */
+.offline-pin-gate{backdrop-filter:blur(4px)!important;background:rgba(8,27,46,.7)!important}
+.offline-pin-box{width:min(430px,100%)!important;box-sizing:border-box!important;border-radius:17px!important;padding:23px!important;background:#fff!important;color:#173955!important;box-shadow:0 25px 75px rgba(4,28,49,.3)!important}
+.offline-pin-box h2{font:800 22px Inter,system-ui,sans-serif!important;color:#173955!important}
+.offline-pin-box p{font-size:15px!important;color:#4d6c82!important}
+.offline-pin-row{display:grid!important;grid-template-columns:1fr!important;gap:10px!important}
+#offlinePin{min-width:0!important;min-height:52px!important;color:#102d45!important;border:2px solid #adc6da!important;border-radius:10px!important;background:#fff!important;padding:11px 14px!important;font:700 21px Inter,system-ui,sans-serif!important;letter-spacing:.16em!important}
+#offlinePin:focus{outline:3px solid rgba(25,119,198,.2)!important;border-color:#1977c6!important}
+.offline-pin-row button{min-height:46px!important;background:#176fc3!important;color:#fff!important;border-radius:10px!important;font-weight:800!important}
+@media(max-width:470px){#pinDialog .editor-body{padding:17px!important}#pinDialog .editor-head{padding:15px 17px!important}#pinDialog .editor-foot{padding:3px 17px 17px!important}#pinDialog .editor-foot button{font-size:14px!important}}
+</style><link rel="stylesheet" href="./typography-unified.css"><style>
 
-/* V3.2.2 – GitHub Pages / Mobile UI, optisch an VitaSim Pi angelehnt */
-html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
-body{min-width:0;overflow-x:hidden;background:#edf5fa}
-button,input,select,textarea{font-family:inherit}
-button,label[for],.offline-toolbar label{touch-action:manipulation}
-.offline-shell{width:min(1480px,100%);box-sizing:border-box}
-
-.offline-head{
-  border-radius:14px;
-  background:#0b2a42;
-  box-shadow:0 6px 18px rgba(11,42,66,.12);
-}
-.offline-head h1{font-weight:850;letter-spacing:-.02em}
-.offline-badge{background:#103a58}
-
-.editor-card{
-  overflow:hidden;
-  border-radius:14px;
-  box-shadow:none;
-  border-color:#c8dbe8;
-}
-.fall-band{
-  margin:0;
-  border-radius:10px 10px 0 0;
-  min-height:46px;
-  display:flex;
-  align-items:center;
-  padding:0 16px;
-  box-sizing:border-box;
-  letter-spacing:-.01em;
-}
-.fall-band-case{background:#2d5b83}
-.fall-band-anam{background:#536f7e}
-.fall-band-images{background:#24766e}
-.fall-band-start{background:#315f88}
-.fall-band-events{background:#6548b8}
-.fall-band-variants{background:#a86420}
-.editor-window,.fall-images-window,.fall-variants-window{
-  border:1px solid #cddde8;
-  border-top:0;
-  border-radius:0 0 12px 12px;
-  background:#f8fbfd;
-  padding:16px;
-}
-.fall-images-window,.fall-variants-window{box-sizing:border-box}
-.field label,.preset-values-grid label,.unified-event-editor label{
-  color:#0b2a42;
-}
-.field-hint,.helper{color:#60798d}
-.field input,.field textarea,.field select,
-.preset-values-grid input,.preset-values-grid select,
-.unified-event-editor input,.unified-event-editor textarea,.unified-event-editor select{
-  min-height:44px;
-  border-color:#b9cfde;
-  border-radius:9px;
-  background:#fff;
-}
-.field textarea{min-height:118px}
-.anam-editor-card{
-  box-shadow:none;
-  background:#fff;
-  border-color:#d2e0e9;
-}
-.anam-editor-card h3{
-  padding-bottom:8px;
-  border-bottom:1px solid #e0eaf0;
-}
-.anam-editor-grid label{
-  border-bottom:1px solid #e5edf2;
-}
-.anam-editor-grid label:last-child{border-bottom:0}
-.anam-editor-grid label>b{
-  width:28px;height:28px;border-radius:7px;
-  display:grid;place-items:center;
-  background:#eaf4fb;
-  color:#146fae!important;
-  padding:0!important;
-  margin-top:6px;
-}
-.anam-editor-grid label strong{font-size:14px}
-.anam-editor-grid label small{line-height:1.3}
-.variant-editor-row{background:#fff}
-.unified-event-editor{box-shadow:none}
-.image-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));align-items:start}
-.thumb{width:auto;box-sizing:border-box}
-
-@media (max-width:700px){
-  body{font-size:15px}
-  .offline-shell{padding:8px}
-  .offline-head{
-    padding:14px;
-    gap:10px;
-    border-radius:12px;
-  }
-  .offline-head h1{font-size:20px;line-height:1.16}
-  .offline-head p{font-size:13px;line-height:1.35;margin-top:4px}
-  .offline-badge{font-size:12px;padding:6px 9px}
-  .offline-toolbar{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:8px;
-    margin:10px 0;
-  }
-  .offline-toolbar button,.offline-toolbar label{
-    min-width:0;
-    width:100%;
-    box-sizing:border-box;
-    min-height:44px;
-    padding:8px 9px;
-    border-radius:9px;
-    font-size:14px;
-    line-height:1.15;
-    text-align:center;
-  }
-  .offline-toolbar .export-action{grid-column:1/-1}
-  .offline-toolbar .helper{
-    grid-column:1/-1;
-    font-size:12px;
-    line-height:1.35;
-    padding:0 2px;
-  }
-  .offline-status{font-size:13px;min-height:18px;margin:4px 2px 8px}
-
-  .editor-card{
-    margin:10px 0;
-    padding:8px;
-    border-radius:12px;
-  }
-  .fall-editor-subtitle{font-size:17px}
-  .fall-band{
-    min-height:44px;
-    padding:0 12px;
-    border-radius:9px 9px 0 0;
-  }
-  .editor-window,.fall-images-window,.fall-variants-window{
-    padding:11px;
-    border-radius:0 0 9px 9px;
-  }
-  .editor-grid{grid-template-columns:1fr;gap:11px}
-  .field.full{grid-column:auto}
-  .field{gap:4px}
-  .field label,.preset-values-grid label,.unified-event-editor label{
-    font-size:13px;
-    font-weight:800;
-  }
-  .field input,.field textarea,.field select,
-  .preset-values-grid input,.preset-values-grid select,
-  .unified-event-editor input,.unified-event-editor textarea,.unified-event-editor select{
-    font-size:16px; /* verhindert Safari-Zoom beim Fokus */
-    min-height:44px;
-    padding:9px 10px;
-  }
-  .field textarea{min-height:100px}
-  #presetInstructorText{min-height:120px}
-  .field-hint{font-size:11.5px;line-height:1.25;margin-top:1px}
-
-  .anam-editor-columns{grid-template-columns:1fr;gap:9px}
-  .anam-editor-card{padding:9px;border-radius:10px}
-  .anam-editor-card h3{font-size:14px;margin-bottom:4px}
-  .anam-editor-grid label{
-    grid-template-columns:32px minmax(0,1fr)!important;
-    gap:8px;
-    padding:9px 0;
-  }
-  .anam-editor-grid label>b{font-size:15px!important}
-  .anam-editor-grid label>span{min-width:0;gap:5px}
-  .anam-editor-grid label strong{font-size:13px}
-  .anam-editor-grid label small{font-size:11px}
-  .anam-editor-grid select,.anam-editor-grid input{width:100%;min-width:0}
-
-  .preset-values-grid,.unified-vitals-grid{
-    grid-template-columns:1fr 1fr;
-    gap:8px;
-  }
-  .preset-values-grid label,.unified-vitals-grid label{
-    min-width:0;
-  }
-  .rhythm-grid-field{grid-column:1/-1}
-
-  .unified-event-editor{padding:10px;border-radius:10px}
-  .unified-event-toolbar{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:8px;
-  }
-  .unified-event-toolbar label{grid-column:1/-1}
-  .unified-event-toolbar button{min-height:42px;padding:0 8px;font-size:13px}
-  .unified-event-meta{grid-template-columns:1fr;gap:8px;margin-top:10px}
-  .ue-doc-toggle{padding:9px}
-  .ue-description{margin-top:9px}
-  .unified-event-transition{
-    grid-template-columns:1fr;
-    gap:8px;
-    margin-top:9px;
-  }
-  .unified-event-actions{
-    align-items:stretch;
-    flex-direction:column;
-    margin-top:10px;
-    padding-top:10px;
-  }
-  .unified-event-actions button{width:100%;min-height:44px}
-
-  .variant-quickbar{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:6px;
-  }
-  .variant-quickbar button{padding:8px 5px;font-size:12px}
-  .variant-editor-row{padding:9px;border-radius:10px}
-  .variant-editor-head{grid-template-columns:1fr}
-  .variant-values-mini{grid-template-columns:1fr 1fr;gap:7px}
-
-  .image-grid{grid-template-columns:1fr 1fr;gap:8px}
-  .thumb{padding:6px}
-  .thumb img{height:105px}
-  .offline-foot{font-size:11.5px;line-height:1.35;padding:12px 4px 24px}
-}
-@media (max-width:390px){
-  .offline-toolbar{grid-template-columns:1fr}
-  .offline-toolbar .export-action,.offline-toolbar .helper{grid-column:auto}
-  .preset-values-grid,.unified-vitals-grid{grid-template-columns:1fr 1fr}
-  .variant-quickbar{grid-template-columns:1fr}
-  .image-grid{grid-template-columns:1fr}
-}
-
-</style>
-
-<style>
-/* V3.2.3 – Lesbarkeit der farbigen Abschnittsüberschriften */
-.fall-editor-subtitle.fall-band,
-.fall-editor-subtitle.fall-band *,
-.fall-band,
-.fall-band *{
-  color:#fff !important;
-}
+/* GitHub Pages parity: VitaSim V3.3.12, mobile and touch layout */
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}*,*:before,*:after{box-sizing:border-box}body{min-width:0;overflow-x:hidden}
+.offline-shell{width:min(1480px,100%);margin:auto}.offline-head{border-radius:14px}.fall-band,.fall-band *{color:#fff!important}.fall-band-triggers{background:#426e9b}
+.field input,.field select,.field textarea,.anam-editor-card input,.anam-editor-card select,.variant-editor-row input,.vs-config-card input{font-family:inherit;font-size:15px}
+.field textarea{font-family:inherit;font-weight:400;line-height:1.5;letter-spacing:normal}.offline-toolbar label{position:relative}
+.offline-toolbar button,.offline-toolbar label{touch-action:manipulation;text-align:center}
+.image-grid{margin:12px 0}.phase-editor-list{margin-top:12px;display:grid;gap:8px}.image-phase-row{display:grid;grid-template-columns:minmax(175px,1.1fr) minmax(150px,.7fr) minmax(170px,.8fr);gap:9px;align-items:center;border:1px solid #cbdae6;background:#fff;padding:10px;border-radius:11px}.image-phase-meta{display:grid;gap:5px;min-width:0;overflow-wrap:anywhere}.image-phase-title{width:100%;min-height:42px;border:1px solid #bed2e2;border-radius:9px;padding:8px 10px}.phase-check{display:flex;align-items:center;gap:8px;padding:9px;border:1px solid #c7d9e7;border-radius:9px;min-height:44px;cursor:pointer}.phase-check input{position:absolute;opacity:0;pointer-events:none}.phase-check-ui{width:23px;height:23px;flex:0 0 23px;border:2px solid #8eabc0;border-radius:6px;background:#fff;display:grid;place-items:center}.phase-check input:checked+.phase-check-ui{background:#1675c9;border-color:#1675c9}.phase-check input:checked+.phase-check-ui:after{content:'✓';color:#fff;font-weight:900}.phase-check:focus-within{outline:2px solid #146ee5}
+.trigger-add-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:end}.trigger-add-row label{display:grid;gap:6px;font-size:14px;font-weight:750}.trigger-add-row select{min-height:43px;padding:9px;border:1px solid #c1d3e1;border-radius:9px;background:#fff}.trigger-add-row button{min-height:43px;padding:8px 14px;border:0;border-radius:9px}.vs-config-card{border:1px solid #c7dae8;background:#fff;border-radius:11px;margin:12px 0;overflow:hidden}.vs-config-card summary{display:flex;justify-content:space-between;align-items:center;gap:12px;background:#eaf4fb;padding:12px;cursor:pointer;color:#173955}.vs-config-card summary label{display:flex;gap:9px;align-items:center;cursor:pointer}.vs-config-card summary input{width:20px;height:20px;accent-color:#1879c9}.vs-config-card .trigger-actions{display:flex;flex-wrap:wrap;gap:8px;padding:10px 12px}.trigger-actions button,.trigger-outcome-head button{min-height:38px;padding:8px 10px;border:1px solid #b8cfdf;border-radius:8px;background:#f7fbfe;color:#173955;font-weight:700;cursor:pointer}.vs-config-outcomes{display:grid;gap:10px;padding:12px}.vs-config-outcomes>section{padding:12px;border:1px solid #d4e3ee;border-radius:10px}.vs-config-outcomes>section>label{display:grid;gap:4px;max-width:220px}.trigger-outcome-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:9px}.vs-config-values{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-top:10px}.vs-config-values label{display:grid;gap:3px}.vs-config-values input,.vs-config-outcomes>section>label input{width:100%;padding:9px;min-height:40px;border:1px solid #c1d3e1;border-radius:8px}
+@media(max-width:900px){.image-phase-row{grid-template-columns:1fr 1fr}.image-phase-meta{grid-column:1/-1}.offline-toolbar{display:grid;grid-template-columns:1fr 1fr}.offline-toolbar>*{width:100%;min-width:0;padding:10px!important;min-height:46px}.offline-toolbar .export-action{grid-column:1/-1}}
+@media(max-width:700px){body{font-size:15px}.offline-shell{padding:8px}.offline-head{padding:15px;gap:10px}.offline-head h1{font-size:21px;line-height:1.2}.offline-head p{font-size:13px}.editor-card{padding:10px;margin:10px 0}.fall-band{margin-top:10px;padding:11px;font-size:17px}.editor-window,.fall-images-window,.fall-variants-window{padding:10px}.anam-editor-columns,.editor-grid,.unified-event-meta,.unified-event-toolbar,.unified-event-transition,.variant-editor-head{grid-template-columns:1fr!important}.anam-editor-grid{grid-template-columns:1fr!important}.preset-values-grid,.unified-vitals-grid,.variant-values-mini{grid-template-columns:repeat(2,minmax(0,1fr))!important}.field input,.field select,.field textarea,.anam-editor-card input,.anam-editor-card select,.variant-editor-row input,.vs-config-card input{font-size:16px;min-height:44px}.trigger-add-row{grid-template-columns:1fr}.vs-config-values{grid-template-columns:repeat(2,minmax(0,1fr))}.image-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.thumb{width:100%}.thumb img{object-fit:contain}.image-phase-row{grid-template-columns:1fr}.image-phase-meta{grid-column:auto}.offline-pin-box{padding:18px}.offline-pin-row{grid-template-columns:1fr}.offline-pin-row button{min-height:44px}}
+@media(max-width:380px){.offline-toolbar{grid-template-columns:1fr}.offline-toolbar .export-action{grid-column:auto}.image-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 <div id="offlinePinGate" class="offline-pin-gate"><div class="offline-pin-box"><h2>Falleditor entsperren</h2><p>Bitte Ausbilder-PIN eingeben.</p><div class="offline-pin-row"><input id="offlinePin" type="password" inputmode="numeric" placeholder="••••"><button type="button" onclick="unlockOfflineEditor()">Entsperren</button></div><div id="offlinePinStatus" class="offline-pin-status"></div></div></div>
 <div class="offline-shell">
-<header class="offline-head"><div><h1>Trainingsapp OST Andorf – Falleditor</h1><p>Offline / GitHub Pages · gleiche Fallstruktur wie VitaSim am Pi</p></div><span class="offline-badge">V3.2.3 · OFFLINE BEREIT</span></header>
+<header class="offline-head"><div><h1>Trainingsapp OST Andorf – Falleditor</h1><p>Offline / GitHub Pages · gleiche Fallstruktur wie VitaSim am Pi</p></div><span class="offline-badge">V3.3.12 · OFFLINE BEREIT</span></header>
 <div class="offline-toolbar">
   <button type="button" onclick="newCase()">Neuer Fall</button>
-  <label>Fall öffnen<input id="packageOpen" type="file" hidden></label>
-<button type="button" class="export-action" onclick="exportPackage()">Fall exportieren (.vitasimexport)</button>
+  <label>Fall öffnen<input id="packageOpen" type="file" accept=".vitasimexport,.vitasim,.json,application/json,application/octet-stream" hidden></label>
+  <button type="button" class="export-action" onclick="exportPackage()">Fall exportieren (.vitasimexport)</button>
   <button type="button" onclick="downloadJson()">Nur JSON exportieren</button>
 </div>
 <div id="status" class="offline-status" aria-live="polite"></div>
@@ -270,7 +82,7 @@ button,label[for],.offline-toolbar label{touch-action:manipulation}
   <div class="fall-editor-subtitle fall-band fall-band-case">Fallbeschreibung</div>
   <div class="editor-grid editor-window">
     <div class="field"><label for="presetId">ID / Dateiname</label><input id="presetId" type="text" placeholder="z. B. anaphylaxie"><small class="field-hint">Technischer Dateiname.</small></div>
-    <div class="field"><label for="presetName">Falltitel</label><input id="presetName" type="text"><small class="field-hint">Kurzer Titel für Cockpit und Fallauswahl.</small></div>
+    <div class="field"><label for="presetName">Falltitel</label><input id="presetName" type="text"><small class="field-hint">Kurzer Titel für Cockpit und Fallauswahl.</small></div><div class="field"><label for="presetCategory">Kategorie</label><select id="presetCategory"><option>Internistisch</option><option>Trauma</option><option>Pädiatrisch</option><option>Neurologie</option><option>Atemweg</option><option>Kreislauf</option><option>Reanimation</option><option>Gynäkologie</option><option>Toxikologie</option><option>Sonstiges</option></select><small class="field-hint">Wird für den Filter in der Fallbibliothek verwendet.</small></div>
     <div class="field full"><label for="presetDescriptionEdit">Beschreibung</label><input id="presetDescriptionEdit" type="text"><small class="field-hint">Kurze Fallinformation.</small></div>
     <div class="field full"><label for="presetInstructorText">Situationsbeschreibung</label><textarea id="presetInstructorText" rows="5"></textarea><small class="field-hint">Nur für Ausbilder sichtbar.</small></div>
   </div>
@@ -297,7 +109,7 @@ button,label[for],.offline-toolbar label{touch-action:manipulation}
     </div>
   </div>
   <div class="fall-editor-subtitle fall-band fall-band-images">Fallbilder</div>
-  <div class="fall-images-window"><div class="field full"><label>Bilder des Falls</label><input id="presetImageUpload" type="file" accept="image/jpeg,image/png,image/webp" multiple><div class="helper">Bilder werden direkt in die .vitasimexport-Datei eingebettet und beim Import am Pi hochgeladen.</div><div id="images" class="image-grid"></div></div></div>
+  <div class="fall-images-window"><div class="field full"><label>Bilder des Falls</label><input id="presetImageUpload" type="file" accept="image/jpeg,image/png,image/webp" multiple><div id="images" class="image-grid"></div><div id="imagePhaseEditor" class="phase-editor-list"></div></div></div>
 </section>
 
 <section class="editor-card">
@@ -332,6 +144,12 @@ button,label[for],.offline-toolbar label{touch-action:manipulation}
 </section>
 
 <section class="editor-card">
+<div class="fall-editor-subtitle fall-band fall-band-triggers">Checklistenreaktionen · Gradienten</div>
+<div class="editor-window">
+  <div class="trigger-add-row"><label>Maßnahme aus der Checkliste<select id="triggerMeasureSelect"><option value="">Maßnahme wählen …</option></select></label><button type="button" class="primary-action" onclick="addChecklistTrigger()">+ Maßnahme hinzufügen</button></div>
+  <div id="checklistTriggerEditor"></div>
+</div></section>
+<section class="editor-card">
   <div class="fall-editor-subtitle fall-band fall-band-variants">Fallvarianten</div><div class="fall-variants-window">
   <p class="helper">Varianten speichern eigene Werte. Sie werden vom Pi-Falleditor beim Import unverändert übernommen.</p>
   <div class="variant-quickbar"><button type="button" onclick="addVariant('Leicht')">+ Leicht</button><button type="button" onclick="addVariant('Schwer')">+ Schwer</button><button type="button" onclick="addVariant('Pädiatrisch')">+ Pädiatrisch</button></div>
@@ -349,7 +167,7 @@ const coreLabels={worse:'Verschlechterung',better:'Besserung',critical:'Kritisch
 const vitalKeys=['hr','spo2','rr','systolic','diastolic','temp','etco2','glucose'];
 const baseIds={hr:'presetHr',spo2:'presetSpo2',rr:'presetRr',systolic:'presetSys',diastolic:'presetDia',temp:'presetTemp',etco2:'presetEtco2',glucose:'presetGlucose'};
 const ueIds={hr:'ueHr',spo2:'ueSpo2',rr:'ueRr',systolic:'ueSys',diastolic:'ueDia',temp:'ueTemp',etco2:'ueEtco2',glucose:'ueGlucose'};
-let images=[];
+let images=[];let phaseImageSelections={introImages:[],monitorImages:[]};let editedImageTitles={};let editedChecklistTriggers={};let hiddenCoreEvents=[];
 let developments={};
 let customDevelopments=[];
 let eventCards=[];
@@ -370,7 +188,7 @@ function normalizeDev(d={},fallback=defaultVitals()){return {name:d.name||'',des
 function cardForAction(action,name){let c=eventCards.find(x=>x.action===action);if(!c&&name)c=eventCards.find(x=>x.action==='none'&&String(x.name||'').toLowerCase()===String(name).toLowerCase());return c||null}
 function selectEventOptions(preferred=currentEventKey){const sel=$('unifiedEventSelect');let html=coreOrder.filter(k=>developments[k]).map(k=>`<option value="core:${k}">${coreLabels[k]}</option>`).join('');customDevelopments.forEach((d,i)=>html+=`<option value="custom:${i}">${esc(d.name||('Eigenes Ereignis '+(i+1)))}</option>`);sel.innerHTML=html;currentEventKey=[...sel.options].some(o=>o.value===preferred)?preferred:(sel.options[0]?.value||'');sel.value=currentEventKey;if(currentEventKey)loadEvent();else clearEventForm()}
 function clearEventForm(){$('ueName').value='';$('ueName').disabled=false;$('ueCategory').value='Patient';$('ueDescription').value='';$('ueDuration').value=60;$('ueRhythm').value='';for(const k of vitalKeys)$(ueIds[k]).value=baseValues()[k]??'';$('ueDocOnly').checked=false;$('deleteEventBtn').hidden=true;toggleVitals();$('ueStatus').textContent='Noch kein Ereignis angelegt. Mit „+ Neues Ereignis“ beginnen.'}
-function loadEvent(){const key=$('unifiedEventSelect').value;currentEventKey=key;let d,core=false,action='none';if(key.startsWith('core:')){core=true;action=key.slice(5);d=normalizeDev(developments[action],baseValues());d.name=coreLabels[action]}else{const i=Number(key.split(':')[1]);d=normalizeDev(customDevelopments[i],baseValues());action='custom:'+i}const card=cardForAction(action,d.name);$('ueName').value=d.name||'';$('ueName').disabled=core;$('ueCategory').value=card?.category||d.category||'Patient';$('ueDescription').value=d.description||card?.description||'';$('ueDuration').value=d.duration||60;$('ueRhythm').value=d.rhythm||'';for(const k of vitalKeys)$(ueIds[k]).value=d.values?.[k]??'';const docOnly=!core&&!!d.docOnly;$('ueDocOnly').checked=docOnly;$('deleteEventBtn').hidden=core;toggleVitals();$('ueStatus').textContent=docOnly?'Dieses Ereignis wird nur dokumentiert.':''}
+function loadEvent(){const key=$('unifiedEventSelect').value;currentEventKey=key;let d,core=false,action='none';if(key.startsWith('core:')){core=true;action=key.slice(5);d=normalizeDev(developments[action],baseValues());d.name=coreLabels[action]}else{const i=Number(key.split(':')[1]);d=normalizeDev(customDevelopments[i],baseValues());action='custom:'+i}const card=cardForAction(action,d.name);$('ueName').value=d.name||'';$('ueName').disabled=core;$('ueCategory').value=card?.category||d.category||'Patient';$('ueDescription').value=d.description||card?.description||'';$('ueDuration').value=d.duration||60;$('ueRhythm').value=d.rhythm||'';for(const k of vitalKeys)$(ueIds[k]).value=d.values?.[k]??'';const docOnly=!core&&!!d.docOnly;$('ueDocOnly').checked=docOnly;$('deleteEventBtn').hidden=false;$('deleteEventBtn').textContent=core?(hiddenCoreEvents.includes(action)?'Ereignis aktivieren':'Ereignis deaktivieren'):'Entfernen';toggleVitals();$('ueStatus').textContent=docOnly?'Dieses Ereignis wird nur dokumentiert.':''}
 function readEventForm(){const values={};for(const k of vitalKeys)values[k]=Number($(ueIds[k]).value);return {name:$('ueName').value.trim(),category:$('ueCategory').value,description:$('ueDescription').value.trim(),duration:Math.max(1,Number($('ueDuration').value)||60),rhythm:$('ueRhythm').value,docOnly:$('ueDocOnly').checked,values}}
 function rebuildCustomCardActions(){eventCards=eventCards.filter(c=>!/^custom:\d+$/.test(String(c.action||'')));customDevelopments.forEach((d,i)=>{const existing=eventCards.find(c=>c.action==='none'&&String(c.name||'').toLowerCase()===String(d.name||'').toLowerCase());if(existing&&d.docOnly){existing.category=d.category||existing.category||'Patient';existing.description=d.description||existing.description||'';return}if(!d.docOnly)eventCards.push({name:d.name,category:d.category||'Patient',action:'custom:'+i,description:d.description||''});else if(!existing)eventCards.push({name:d.name,category:d.category||'Patient',action:'none',description:d.description||''})})}
 function persistEvent(key=currentEventKey){const d=readEventForm();if(!d.name){$('ueStatus').textContent='Bitte einen Namen eingeben.';return false}if(!d.docOnly&&!validVitals(d.values)){$('ueStatus').textContent='Bitte alle Vitalwerte vollständig eingeben.';return false}if(key.startsWith('core:')){const k=key.slice(5);developments[k]={description:d.description,duration:d.duration,rhythm:d.rhythm,values:d.values};eventCards=eventCards.filter(c=>c.action!==k)}else{const i=Number(key.split(':')[1]);const previous=customDevelopments[i]||{};const previousName=String(previous.name||'').trim().toLowerCase();customDevelopments[i]={name:d.name,description:d.description,duration:d.duration,rhythm:d.rhythm,docOnly:d.docOnly,category:d.category,values:d.values};eventCards=eventCards.filter(c=>!(c.action==='custom:'+i || (c.action==='none'&&previousName&&String(c.name||'').trim().toLowerCase()===previousName)));eventCards.push({name:d.name,category:d.category,action:d.docOnly?'none':'custom:'+i,description:d.description})}return true}
@@ -395,20 +213,42 @@ function storeEventDraft(key=currentEventKey){
     customDevelopments[i]={...previous,name:d.name||previous.name||('Eigenes Ereignis '+(i+1)),description:d.description,duration:d.duration,rhythm:d.rhythm,docOnly:d.docOnly,category:d.category,values:{...d.values}};
   }
 }
-function deleteEvent(){if(!currentEventKey.startsWith('custom:'))return;const i=Number(currentEventKey.split(':')[1]);if(!confirm('Eigenes Ereignis entfernen?'))return;customDevelopments.splice(i,1);eventCards=eventCards.filter(c=>c.action!=='custom:'+i).map(c=>{const m=String(c.action||'').match(/^custom:(\d+)$/);if(m&&Number(m[1])>i)c.action='custom:'+(Number(m[1])-1);return c});selectEventOptions();$('ueStatus').textContent='Ereignis entfernt.'}
+function deleteEvent(){
+ if(currentEventKey.startsWith('core:')){const k=currentEventKey.slice(5);hiddenCoreEvents=hiddenCoreEvents.includes(k)?hiddenCoreEvents.filter(x=>x!==k):[...hiddenCoreEvents,k];$('deleteEventBtn').textContent=hiddenCoreEvents.includes(k)?'Ereignis aktivieren':'Ereignis deaktivieren';$('ueStatus').textContent=hiddenCoreEvents.includes(k)?'Standardereignis für diesen Fall deaktiviert.':'Standardereignis wieder aktiviert.';return;}
+ if(!currentEventKey.startsWith('custom:'))return;const i=Number(currentEventKey.split(':')[1]);if(!confirm('Eigenes Ereignis entfernen?'))return;const oldName=customDevelopments[i]?.name||'';customDevelopments.splice(i,1);eventCards=eventCards.filter(c=>c.action!=='custom:'+i&&!(c.action==='none'&&c.name===oldName)).map(c=>{const m=String(c.action||'').match(/^custom:(\d+)$/);if(m&&Number(m[1])>i)c.action='custom:'+(Number(m[1])-1);return c});selectEventOptions();$('ueStatus').textContent='Ereignis entfernt.';}
 function toggleVitals(){$('ueVitalsPanel').hidden=$('ueDocOnly').checked}
 $('unifiedEventSelect').addEventListener('change',e=>{const next=e.target.value;const previous=currentEventKey;storeEventDraft(previous);currentEventKey=next;e.target.value=next;loadEvent();$('ueStatus').textContent=''});$('newEventBtn').addEventListener('click',newEvent);$('deleteEventBtn').addEventListener('click',deleteEvent);$('saveEventBtn').addEventListener('click',saveEvent);$('ueDocOnly').addEventListener('change',toggleVitals);
 function addVariant(name='Variante',data=null){const v=data||{name,description:'',values:{...baseValues()},rhythm:''};const row=document.createElement('div');row.className='variant-editor-row';row.innerHTML=`<div class="variant-editor-head"><input class="var-name" value="${esc(v.name||name)}" placeholder="Variante"><input class="var-desc" value="${esc(v.description||'')}" placeholder="Beschreibung"><button type="button">Entfernen</button></div><div class="variant-values-mini">${vitalKeys.map(k=>`<label>${({hr:'HF',spo2:'SpO₂',rr:'AF',systolic:'SYS',diastolic:'DIA',temp:'Temp',etco2:'EtCO₂',glucose:'BZ'})[k]}<input data-v="${k}" type="number" step="${k==='temp'||k==='etco2'?'0.1':'1'}" value="${v.values?.[k]??''}"></label>`).join('')}<label>Rhythmus<select class="var-rhythm"><option value="">wie Basis</option>${rhythmHtml(false)}</select></label></div>`;row.querySelector('.var-rhythm').value=v.rhythm||'';row.querySelector('button').onclick=()=>row.remove();$('variantsEditor').appendChild(row)}
 function readVariants(){return [...$('variantsEditor').querySelectorAll('.variant-editor-row')].map(row=>{const values={};for(const k of vitalKeys)values[k]=Number(row.querySelector(`[data-v="${k}"]`).value);return {name:row.querySelector('.var-name').value.trim(),description:row.querySelector('.var-desc').value.trim(),values,rhythm:row.querySelector('.var-rhythm').value}}).filter(v=>v.name)}
-async function addImages(files){for(const f of [...files]){if(f.size>8*1024*1024){setStatus(`${f.name}: größer als 8 MB – übersprungen.`);continue}const data=await new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(String(r.result));r.onerror=()=>rej(r.error);r.readAsDataURL(f)});images=images.filter(x=>x.name!==f.name);images.push({name:f.name,type:f.type||'',data})}renderImages();$('presetImageUpload').value=''}
-function renderImages(){$('images').innerHTML=images.map((x,i)=>`<div class="thumb"><img src="${x.data}" alt=""><small>${esc(x.name)}</small><button type="button" data-img="${i}">Entfernen</button></div>`).join('');$('images').querySelectorAll('[data-img]').forEach(b=>b.onclick=()=>{images.splice(Number(b.dataset.img),1);renderImages()})}
+async function addImages(files){for(const f of [...files]){if(f.size>8*1024*1024){setStatus(`${f.name}: größer als 8 MB – übersprungen.`);continue}const data=await new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(String(r.result));r.onerror=()=>rej(r.error);r.readAsDataURL(f)});images=images.filter(x=>x.name!==f.name);images.push({name:f.name,type:f.type||'',data});if(!phaseImageSelections.introImages.includes(f.name))phaseImageSelections.introImages.push(f.name)}renderImages();$('presetImageUpload').value=''}
+function renderImages(){
+ $('images').innerHTML=images.map((x,i)=>`<div class="thumb"><img src="${x.data||''}" alt="${esc(x.name)}"><small>${esc(x.name)}</small><button type="button" data-img="${i}">Entfernen</button></div>`).join('');
+ $('images').querySelectorAll('[data-img]').forEach(b=>b.onclick=()=>{const name=images[Number(b.dataset.img)].name;images.splice(Number(b.dataset.img),1);phaseImageSelections.introImages=phaseImageSelections.introImages.filter(x=>x!==name);phaseImageSelections.monitorImages=phaseImageSelections.monitorImages.filter(x=>x!==name);delete editedImageTitles[name];renderImages()});renderImagePhaseEditor();
+} 
+function renderImagePhaseEditor(){const host=$('imagePhaseEditor');if(!host)return;host.innerHTML=images.map(x=>`<div class="image-phase-row" data-image="${esc(x.name)}"><div class="image-phase-meta"><strong>${esc(x.name)}</strong><input class="image-phase-title" type="text" maxlength="90" placeholder="Anzeigename, z. B. Schnittwunde" aria-label="Anzeigename für ${esc(x.name)}" value="${esc(editedImageTitles[x.name]||'')}"></div><label class="phase-check"><input type="checkbox" data-phase="intro" data-img="${esc(x.name)}" ${phaseImageSelections.introImages.includes(x.name)?'checked':''}><span class="phase-check-ui"></span><span>Fallvorschau</span></label><label class="phase-check"><input type="checkbox" data-phase="monitor" data-img="${esc(x.name)}" ${phaseImageSelections.monitorImages.includes(x.name)?'checked':''}><span class="phase-check-ui"></span><span>Während des Trainings</span></label></div>`).join('');host.querySelectorAll('input').forEach(el=>el.addEventListener('input',()=>{if(el.classList.contains('image-phase-title'))editedImageTitles[el.closest('[data-image]').dataset.image]=el.value;else{const key=el.dataset.phase==='intro'?'introImages':'monitorImages';phaseImageSelections[key]=[...host.querySelectorAll(`input[data-phase="${el.dataset.phase}"]:checked`)].map(e=>e.dataset.img)}}));}
+function readImagePhases(){return {introImages:[...$('imagePhaseEditor').querySelectorAll('input[data-phase="intro"]:checked')].map(x=>x.dataset.img),monitorImages:[...$('imagePhaseEditor').querySelectorAll('input[data-phase="monitor"]:checked')].map(x=>x.dataset.img),imageTitles:Object.fromEntries(images.map(x=>[x.name,editedImageTitles[x.name]||'']))}}
+
 $('presetImageUpload').addEventListener('change',e=>addImages(e.target.files));if(sessionStorage.getItem('vitasimOfflineEditorUnlocked')==='1')$('offlinePinGate').style.display='none';$('offlinePin')?.addEventListener('keydown',e=>{if(e.key==='Enter')unlockOfflineEditor()});
-function collectPreset(){saveEventIfPossible();const id=cleanId($('presetId').value),name=$('presetName').value.trim(),values=baseValues();if(!id||!name)throw new Error('Bitte ID und Name angeben.');if(!validVitals(values))throw new Error('Bitte alle Ausgangswerte vollständig eingeben.');for(const k of coreOrder){const d=developments[k];if(d&&!validVitals(d.values))throw new Error(`Bitte die Zielwerte für „${coreLabels[k]}“ vollständig eingeben.`)}for(let i=0;i<customDevelopments.length;i++){const d=customDevelopments[i];if(d&&!d.docOnly&&!validVitals(d.values))throw new Error(`Bitte die Zielwerte für „${d.name||('Ereignis '+(i+1))}“ vollständig eingeben.`)}rebuildCustomCardActions();variants=readVariants();return {id,name,description:$('presetDescriptionEdit').value.trim(),instructorText:$('presetInstructorText').value.trim(),sample:Object.fromEntries(['S','A','M','P','L','E','R'].map(k=>[k,$('presetSample'+k).value.trim()])),opqrst:Object.fromEntries(['O','P','Q','R','S','T'].map(k=>[k,$('presetOpqrst'+k).value.trim()])),rhythm:$('presetRhythm').value,images:images.map(x=>x.name),values,developments:structuredClone(developments),customDevelopments:structuredClone(customDevelopments),eventCards:structuredClone(eventCards),variants:structuredClone(variants)}}
+
+const CHECKLIST_TARGET_FIELDS=[['hr','HF'],['spo2','SpO₂'],['rr','AF'],['systolic','SYS'],['diastolic','DIA'],['temp','Temp'],['etco2','EtCO₂'],['glucose','BZ']];
+const OUTCOME_NAMES={better:'Besserung',same:'Gleichbleibend',worse:'Verschlechterung'};
+const TRIGGERABLE_MEASURES=['Absaugen','Adrenalin','Atemwege freimachen','Atemwegssicherung','Beutel-Maskenbeatmung','Blutstillung','Bronchodilatatorgabe','CPAP','Defibrillation','Dekontamination','Druckverband','Glukosegabe','Immobilisation','Infusion','Inhalation','Lagerung','Medikamentengabe','NIV','Reanimation','Sauerstoffgabe','Schienung','Spülung','Thoraxkompressionen','Tourniquet','Volumengabe'];
+function refreshTriggerMeasureChoices(){const el=$('triggerMeasureSelect');if(!el)return;const current=el.value;el.innerHTML='<option value="">Maßnahme wählen …</option>'+TRIGGERABLE_MEASURES.filter(x=>!editedChecklistTriggers[x]).map(x=>`<option value="${esc(x)}">${esc(x)}</option>`).join('');if([...el.options].some(o=>o.value===current))el.value=current;}
+function loadChecklistTriggers(raw){editedChecklistTriggers={};if(raw&&typeof raw==='object')for(const[k,v]of Object.entries(raw))editedChecklistTriggers[k]=structuredClone(v);renderChecklistTriggerEditor();}
+function addChecklistTrigger(){const label=$('triggerMeasureSelect').value;if(!label)return;editedChecklistTriggers[label]={enabled:true};renderChecklistTriggerEditor(label);}
+function addTriggerOutcome(label,key){if(!editedChecklistTriggers[label]||!OUTCOME_NAMES[key])return;captureTriggerInputs();editedChecklistTriggers[label][key]={duration:key==='same'?1:60,values:{}};renderChecklistTriggerEditor(label);}
+function removeTriggerOutcome(label,key){captureTriggerInputs();delete editedChecklistTriggers[label]?.[key];renderChecklistTriggerEditor(label);}
+function removeChecklistTrigger(label){captureTriggerInputs();delete editedChecklistTriggers[label];renderChecklistTriggerEditor();}
+function captureTriggerInputs(){const host=$('checklistTriggerEditor');if(!host)return;for(const box of host.querySelectorAll('[data-trigger]')){const label=box.dataset.trigger,cfg=editedChecklistTriggers[label];if(!cfg)continue;cfg.enabled=!!box.querySelector('[data-enable]')?.checked;for(const key of Object.keys(OUTCOME_NAMES)){const s=box.querySelector(`[data-outcome-section="${key}"]`);if(!s)continue;const values={};s.querySelectorAll('[data-field]').forEach(el=>{if(el.value.trim()!=='')values[el.dataset.field]=Number(el.value)});cfg[key]={duration:Number(s.querySelector('[data-duration]')?.value)||60,values}}}}
+function renderChecklistTriggerEditor(expandLabel=''){const host=$('checklistTriggerEditor');if(!host)return;host.innerHTML=Object.entries(editedChecklistTriggers).map(([label,cfg],i)=>`<details class="vs-config-card" data-trigger="${esc(label)}" ${label===expandLabel?'open':''}><summary><label onclick="event.stopPropagation()"><input type="checkbox" data-enable="${i}" ${cfg.enabled!==false?'checked':''}><strong>${esc(label)}</strong></label><span>Gradienten ▾</span></summary><div class="trigger-actions">${Object.entries(OUTCOME_NAMES).filter(([key])=>!cfg[key]).map(([key,name])=>`<button type="button" data-add-outcome="${key}">+ ${name}</button>`).join('')}<button type="button" class="danger-soft" data-remove-trigger>Maßnahme entfernen</button></div><div class="vs-config-outcomes">${Object.entries(OUTCOME_NAMES).filter(([key])=>cfg[key]).map(([key,title])=>{const co=cfg[key];return `<section data-outcome-section="${key}"><div class="trigger-outcome-head"><strong>${title}</strong><button type="button" data-remove-outcome="${key}">× Entfernen</button></div><label>Übergang (Sekunden) <input type="number" min="1" max="3600" data-duration value="${co.duration||60}"></label><div class="vs-config-values">${CHECKLIST_TARGET_FIELDS.map(([field,n])=>`<label>${n}<input type="number" step="any" placeholder="Standard" data-field="${field}" value="${co.values?.[field]??''}"></label>`).join('')}</div></section>`}).join('')}</div></details>`).join('');host.querySelectorAll('[data-add-outcome]').forEach(b=>b.addEventListener('click',()=>{captureTriggerInputs();addTriggerOutcome(b.closest('[data-trigger]').dataset.trigger,b.dataset.addOutcome)}));host.querySelectorAll('[data-remove-outcome]').forEach(b=>b.addEventListener('click',()=>removeTriggerOutcome(b.closest('[data-trigger]').dataset.trigger,b.dataset.removeOutcome)));host.querySelectorAll('[data-remove-trigger]').forEach(b=>b.addEventListener('click',()=>removeChecklistTrigger(b.closest('[data-trigger]').dataset.trigger)));refreshTriggerMeasureChoices();}
+function readChecklistTriggers(){captureTriggerInputs();return structuredClone(editedChecklistTriggers)}
+
+function collectPreset(){saveEventIfPossible();const id=cleanId($('presetId').value),name=$('presetName').value.trim(),values=baseValues();if(!id||!name)throw new Error('Bitte ID und Name angeben.');if(!validVitals(values))throw new Error('Bitte alle Ausgangswerte vollständig eingeben.');for(const k of coreOrder){const d=developments[k];if(d&&!validVitals(d.values))throw new Error(`Bitte die Zielwerte für „${coreLabels[k]}“ vollständig eingeben.`)}for(let i=0;i<customDevelopments.length;i++){const d=customDevelopments[i];if(d&&!d.docOnly&&!validVitals(d.values))throw new Error(`Bitte die Zielwerte für „${d.name||('Ereignis '+(i+1))}“ vollständig eingeben.`)}rebuildCustomCardActions();variants=readVariants();return {id,name,description:$('presetDescriptionEdit').value.trim(),instructorText:$('presetInstructorText').value.trim(),sample:Object.fromEntries(['S','A','M','P','L','E','R'].map(k=>[k,$('presetSample'+k).value.trim()])),opqrst:Object.fromEntries(['O','P','Q','R','S','T'].map(k=>[k,$('presetOpqrst'+k).value.trim()])),rhythm:$('presetRhythm').value,category:$('presetCategory').value,images:images.map(x=>x.name),...readImagePhases(),checklistTriggers:readChecklistTriggers(),hiddenCoreEvents:structuredClone(hiddenCoreEvents),values,developments:structuredClone(developments),customDevelopments:structuredClone(customDevelopments),eventCards:structuredClone(eventCards),variants:structuredClone(variants)}}
 async function blobDownload(name,data,type='application/json'){const blob=new Blob([data],{type});if(window.showSaveFilePicker){try{const handle=await window.showSaveFilePicker({suggestedName:name,types:[{description:'VitaSim Fallpaket',accept:{'application/json':['.vitasimexport','.json']}}]});const w=await handle.createWritable();await w.write(blob);await w.close();return true}catch(e){if(e?.name==='AbortError')return false}}const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(url);a.remove()},1500);return true}
-async function exportPackage(){try{const preset=collectPreset();const pack={format:'vitasim-case-package',formatVersion:2,createdAt:new Date().toISOString(),appCompatibility:'3.2.1+',preset,images};if(await blobDownload(`${preset.id}.vitasimexport`,JSON.stringify(pack,null,2)))setStatus('Fallpaket exportiert. Die .vitasimexport-Datei kann am Pi importiert werden.')}catch(e){setStatus('Export fehlgeschlagen: '+e.message)}}
+async function exportPackage(){try{const preset=collectPreset();const pack={format:'vitasim-case-package',formatVersion:2,createdAt:new Date().toISOString(),appCompatibility:'3.3.12+',preset,images};if(await blobDownload(`${preset.id}.vitasimexport`,JSON.stringify(pack,null,2)))setStatus('Fallpaket exportiert. Die .vitasimexport-Datei kann am Pi importiert werden.')}catch(e){setStatus('Export fehlgeschlagen: '+e.message)}}
 async function downloadJson(){try{const preset=collectPreset();const {id,...raw}=preset;if(await blobDownload(`${id}.json`,JSON.stringify(raw,null,2)))setStatus('JSON exportiert (ohne eingebettete Bilddateien).')}catch(e){setStatus('Export fehlgeschlagen: '+e.message)}}
 function setBase(v){for(const k of vitalKeys)$(baseIds[k]).value=v?.[k]??''}
-function fillPreset(p,loadedImages=[]){const v={...defaultVitals(),...(p.values||{})};$('presetId').value=p.id||'';$('presetName').value=p.name||'';$('presetDescriptionEdit').value=p.description||'';$('presetInstructorText').value=p.instructorText||'';const migratedSample={...(p.sample||{})};if(!migratedSample.M)migratedSample.M=p.medication||'';if(!migratedSample.P)migratedSample.P=p.preExistingConditions||'';if(!migratedSample.R)migratedSample.R=p.riskFactors||'';for(const k of ['S','A','M','P','L','E','R'])$('presetSample'+k).value=migratedSample[k]||'';for(const k of ['O','P','Q','R','S','T'])$('presetOpqrst'+k).value=p.opqrst?.[k]||'';$('presetRhythm').value=p.rhythm||'sinus';setBase(v);developments={};for(const k of coreOrder)if(p.developments?.[k])developments[k]=normalizeDev(p.developments[k],v);customDevelopments=(p.customDevelopments||[]).map(d=>normalizeDev(d,v));eventCards=Array.isArray(p.eventCards)?structuredClone(p.eventCards):[];customDevelopments.forEach((d,i)=>{const c=cardForAction('custom:'+i,d.name);d.category=c?.category||d.category||'Patient';d.docOnly=!!d.docOnly || (!!c&&c.action==='none')});images=loadedImages;$('variantsEditor').innerHTML='';(p.variants||[]).forEach(vr=>addVariant(vr.name||'Variante',vr));renderImages();selectEventOptions()}
+function fillPreset(p,loadedImages=[]){const v={...defaultVitals(),...(p.values||{})};$('presetId').value=p.id||'';$('presetName').value=p.name||'';$('presetCategory').value=p.category||'Internistisch';$('presetDescriptionEdit').value=p.description||'';$('presetInstructorText').value=p.instructorText||'';const migratedSample={...(p.sample||{})};if(!migratedSample.M)migratedSample.M=p.medication||'';if(!migratedSample.P)migratedSample.P=p.preExistingConditions||'';if(!migratedSample.R)migratedSample.R=p.riskFactors||'';for(const k of ['S','A','M','P','L','E','R'])$('presetSample'+k).value=migratedSample[k]||'';for(const k of ['O','P','Q','R','S','T'])$('presetOpqrst'+k).value=p.opqrst?.[k]||'';$('presetRhythm').value=p.rhythm||'sinus';setBase(v);developments={};for(const k of coreOrder)if(p.developments?.[k])developments[k]=normalizeDev(p.developments[k],v);customDevelopments=(p.customDevelopments||[]).map(d=>normalizeDev(d,v));eventCards=Array.isArray(p.eventCards)?structuredClone(p.eventCards):[];customDevelopments.forEach((d,i)=>{const c=cardForAction('custom:'+i,d.name);d.category=c?.category||d.category||'Patient';d.docOnly=!!d.docOnly || (!!c&&c.action==='none')});images=loadedImages;hiddenCoreEvents=Array.isArray(p.hiddenCoreEvents)?p.hiddenCoreEvents.slice():[];editedImageTitles={...(p.imageTitles||{})};phaseImageSelections={introImages:Array.isArray(p.introImages)?p.introImages:(p.images||[]),monitorImages:Array.isArray(p.monitorImages)?p.monitorImages:(p.images||[])};loadChecklistTriggers(p.checklistTriggers||{});$('variantsEditor').innerHTML='';(p.variants||[]).forEach(vr=>addVariant(vr.name||'Variante',vr));renderImages();selectEventOptions()}
 async function openPackage(file){
   if(!file)return;
   try{
@@ -422,7 +262,7 @@ async function openPackage(file){
     const p=parsed?.format==='vitasim-case-package'?parsed.preset:parsed;
     if(!p||typeof p!=='object')throw new Error('Kein gültiger VitaSim-Fall.');
     p.id=p.id||filename.replace(/\.(vitasimexport|vitasim|json)$/i,'');
-    fillPreset(p,Array.isArray(parsed.images)?parsed.images:[]);
+    fillPreset(p,Array.isArray(parsed.images)&&parsed.images.length?parsed.images:(p.images||[]).map(name=>({name,type:'',data:''})));
     setStatus('Fall geladen. Du kannst ihn jetzt bearbeiten und erneut exportieren.');
   }catch(e){
     setStatus('Datei konnte nicht geladen werden: '+e.message);
@@ -434,7 +274,7 @@ $('packageOpen').addEventListener('change',e=>openPackage(e.target.files[0]));
 
 function newCase(){if($('presetName').value && !confirm('Editor leeren und neuen Fall beginnen?'))return;const v=defaultVitals();fillPreset({id:'',name:'',values:v,rhythm:'sinus',developments:{},customDevelopments:[],eventCards:[],variants:[]},[]);setStatus('Neuer Fall angelegt.')}
 newCase();
-if('serviceWorker' in navigator && location.protocol!=='file:')window.addEventListener('load',async()=>{try{const reg=await navigator.serviceWorker.register('./service-worker.js?v=3111',{updateViaCache:'none'});await reg.update();}catch(e){console.warn('Service Worker Update fehlgeschlagen',e)}});
+if('serviceWorker' in navigator && location.protocol!=='file:')window.addEventListener('load',async()=>{try{const reg=await navigator.serviceWorker.register('./service-worker.js?v=3312',{updateViaCache:'none'});await reg.update();}catch(e){console.warn('Service Worker Update fehlgeschlagen',e)}});
 </script>
 </body>
 </html>

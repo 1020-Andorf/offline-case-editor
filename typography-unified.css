@@ -1,0 +1,45 @@
+/* VitaSim 3.3.9 – gemeinsame Typografie (alle Ansichten). */
+:root{--vt-font:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;--vt-body:15px;--vt-small:12px;--vt-label:13px;--vt-module:30px;--vt-section:21px;--vt-subsection:17px;--vt-ink:#173955;--vt-muted:#536b7f}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{font-family:var(--vt-font)!important;font-size:var(--vt-body);line-height:1.5}
+button,input,textarea,select,option{font-family:var(--vt-font)!important}
+/* Preserve monitor's numeric visual hierarchy and ECG/pleth graphs. */
+body:not(.display-page) h1,body:not(.display-page) .title-row h1,body:not(.display-page) .intro h1{font-family:var(--vt-font)!important;font-size:var(--vt-module)!important;font-weight:800!important;line-height:1.18!important;letter-spacing:-.015em!important}
+body:not(.display-page) h2,body:not(.display-page) .card>h2,body:not(.display-page) .section-title h2,body:not(.display-page) .remote-section>h2{font-family:var(--vt-font)!important;font-size:var(--vt-section)!important;font-weight:750!important;line-height:1.28!important;letter-spacing:-.01em!important}
+body:not(.display-page) h3,body:not(.display-page) .case-tile h3,body:not(.display-page) .case-lib-card h3{font-family:var(--vt-font)!important;font-size:var(--vt-subsection)!important;font-weight:750!important;line-height:1.3!important}
+body:not(.display-page) .academy-brand,body:not(.display-page) .offline-head h1{font-family:var(--vt-font)!important;font-size:var(--vt-module)!important;line-height:1.18!important;font-weight:800!important;letter-spacing:-.015em!important}
+body:not(.display-page) p,body:not(.display-page) .info-text,body:not(.display-page) .case-description,body:not(.display-page) .case-summary-description p,body:not(.display-page) .vitasim-info-block p,body:not(.display-page) .case-highlight strong,body:not(.display-page) .case-highlight p{font-family:var(--vt-font)!important;font-size:var(--vt-body)!important;line-height:1.5!important;font-weight:400!important;letter-spacing:normal!important}
+body:not(.display-page) .case-summary-description>span,body:not(.display-page) .vitasim-info-block>span,body:not(.display-page) .case-highlight small,body:not(.display-page) .field label,body:not(.display-page) .exercise-purpose-row>label{font-family:var(--vt-font)!important;font-size:var(--vt-label)!important;line-height:1.35!important;font-weight:700!important;letter-spacing:.025em!important}
+body:not(.display-page) small,body:not(.display-page) .helper,body:not(.display-page) .field-hint,body:not(.display-page) .card-note{font-family:var(--vt-font)!important;font-size:var(--vt-small)!important;line-height:1.45!important;font-weight:400!important}
+body:not(.display-page) .switchbar a,body:not(.display-page) .mode-switch-strip a,body:not(.display-page) .case-tile-actions a{font-family:var(--vt-font)!important;font-size:14px!important;line-height:1.2!important;font-weight:750!important}
+body:not(.display-page) button,body:not(.display-page) .btn{font-family:var(--vt-font)!important;font-size:14px;font-weight:700;line-height:1.25}
+body:not(.display-page) .fall-band,body:not(.display-page) .fall-editor-subtitle,body:not(.display-page) .case-section-head{font-family:var(--vt-font)!important;font-size:var(--vt-section)!important;font-weight:750!important;line-height:1.25!important}
+body:not(.display-page) .trainee-entry-title b,body:not(.display-page) .remote-trainees h3{font-size:var(--vt-subsection)!important;font-weight:750!important}
+body:not(.display-page) textarea{font-weight:400!important;line-height:1.5!important}
+/* Exercise selector matches existing participant fields. */
+.exercise-purpose-row{display:grid;grid-template-columns:minmax(125px,auto) minmax(190px,370px);align-items:center;gap:12px;padding:12px 14px;margin:11px 0;background:#f5f9fc;border:1px solid #cbdde9;border-radius:12px}
+.exercise-purpose-row>label{color:var(--vt-ink);font-weight:700}
+.exercise-purpose-row select{width:100%;min-height:44px;border:1px solid #b8d0e2;border-radius:9px;background:#fff;color:#173955;padding:9px 12px;font-size:15px;font-weight:500}
+.exercise-purpose-row select:focus-visible{outline:2px solid #176fc3;outline-offset:2px}
+@media(max-width:680px){:root{--vt-module:25px;--vt-section:19px;--vt-subsection:17px;--vt-body:15px}.exercise-purpose-row{grid-template-columns:1fr;gap:6px;padding:11px}.exercise-purpose-row select{max-width:none;font-size:16px}}
+@media print{body{font-family:var(--vt-font)!important;font-size:10pt!important}body:not(.display-page) h1{font-size:18pt!important}body:not(.display-page) h2{font-size:13pt!important}body:not(.display-page) h3{font-size:11pt!important}body:not(.display-page) p,body:not(.display-page) .case-highlight strong{font-size:10pt!important}}
+
+/* V3.3.10 – Einheitliche Modultitel, Kartentitel, Eingabefelder und Fließtext */
+:root{--vt-module:30px;--vt-section:21px;--vt-subsection:17px;--vt-body:15px;--vt-label:13px}
+body:not(.display-page) .top>strong,body:not(.display-page) .top>h1,body:not(.display-page) .academy-brand,body:not(.display-page) .title-row>div>h1,body:not(.display-page) .library-title,body:not(.display-page) .remote-title{font-family:var(--vt-font)!important;font-size:var(--vt-module)!important;font-weight:800!important;line-height:1.18!important;letter-spacing:-.015em!important}
+body:not(.display-page) .section-title>h2,body:not(.display-page) .training-card>.section-title h2,body:not(.display-page) .training-panel-head h2,body:not(.display-page) .training-events-panel h2,body:not(.display-page) .card>h2,body:not(.display-page) .fall-band,body:not(.display-page) .fall-editor-subtitle,body:not(.display-page) .fall-editor-subtitle.fall-band{font-family:var(--vt-font)!important;font-size:var(--vt-section)!important;line-height:1.25!important;font-weight:750!important;letter-spacing:-.01em!important}
+body:not(.display-page) .unified-event-editor label,body:not(.display-page) .unified-event-toolbar label,body:not(.display-page) .unified-event-meta label,body:not(.display-page) .unified-event-transition label,body:not(.display-page) .unified-vitals-grid label,body:not(.display-page) .ue-description,body:not(.display-page) .field>label{font-family:var(--vt-font)!important;font-weight:700!important;font-size:var(--vt-label)!important;line-height:1.35!important;color:#173955!important}
+body:not(.display-page) .unified-event-editor input:not([type=range]),body:not(.display-page) .unified-event-editor textarea,body:not(.display-page) .unified-event-editor select{font-family:var(--vt-font)!important;font-weight:400!important;font-size:var(--vt-body)!important;line-height:1.4!important}
+body:not(.display-page) .unified-event-editor select,body:not(.display-page) .unified-event-editor button{font-weight:700!important}
+body:not(.display-page) .field-hint,body:not(.display-page) .unified-event-editor .helper{font-size:var(--vt-small)!important;font-weight:400!important}
+/* Exercise purpose follows the training-participant card, not a wide label/select toolbar. */
+.exercise-purpose-row{grid-template-columns:1fr!important;gap:7px!important;align-items:stretch!important;margin:12px 0!important;padding:14px!important;background:#f8fbfe!important;border:1px solid #cbdde9!important;border-radius:12px!important}
+.exercise-purpose-row>label{font-size:var(--vt-label)!important;color:#173955!important;font-weight:750!important}
+.exercise-purpose-row select{width:100%!important;max-width:none!important;min-height:44px!important;font-size:var(--vt-body)!important;font-weight:500!important;border-radius:9px!important;background:#fff!important;border-color:#b8d0e2!important}
+@media(min-width:780px){.exercise-purpose-row select{max-width:480px!important}}
+@media(max-width:680px){:root{--vt-module:25px;--vt-section:19px}}
+
+/* V3.3.11 – Übungszweck gleich groß wie Auszubildenden-Eingaben */
+#caseSection .exercise-purpose-row{display:grid!important;grid-template-columns:1fr!important;gap:8px!important;padding:14px!important}
+#caseSection .exercise-purpose-row>label{display:block!important;font-size:15px!important;font-weight:750!important;line-height:1.35!important;color:#173955!important}
+#caseSection .exercise-purpose-row>select{font-family:var(--vt-font,Inter,system-ui,sans-serif)!important;font-size:16px!important;line-height:1.35!important;font-weight:500!important;width:100%!important;max-width:none!important;min-height:44px!important;padding:9px 12px!important;border:1px solid #b8d0e2!important;border-radius:9px!important;background:#fff!important;color:#173955!important}
