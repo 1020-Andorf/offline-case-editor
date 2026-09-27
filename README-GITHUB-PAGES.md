@@ -34,3 +34,8 @@ Nach dem Upload die Seite einmal vollständig neu laden. Der Service Worker verw
 ## Kompatibilität
 
 Exportierte `.vitasimexport`-Dateien können am Pi importiert werden. Bilder und Sounds werden direkt im Fallpaket gespeichert, sodass GitHub Pages keinen Server-Upload benötigt.
+
+
+## Zugriff
+
+Der GitHub-Pages-Falleditor ist ohne PIN-Abfrage direkt zugänglich.

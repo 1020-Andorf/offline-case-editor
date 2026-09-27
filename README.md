@@ -5,3 +5,8 @@ GitHub-Pages-Ausgabe des VitaSim Offline-Falleditors, synchron zum **VitaSim V3.
 Öffne `index.html` über GitHub Pages. Fälle können als `.vitasimexport` geladen und gespeichert werden. Die Pakete sind für den Import in VitaSim am Raspberry Pi vorgesehen.
 
 Details zur Synchronität und zum Deployment stehen in `README-GITHUB-PAGES.md`.
+
+
+## Zugriff
+
+Der GitHub-Pages-Falleditor ist ohne PIN-Abfrage direkt zugänglich.
