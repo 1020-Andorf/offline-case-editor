@@ -1,13 +1,9 @@
-# Trainingsapp OST Andorf – Falleditor PWA V2.8.3
+# PWA / Offline-Nutzung
 
-## iPhone / iPad
-1. Den Ordner über HTTPS bereitstellen.
-2. `index.html` in Safari öffnen.
-3. Teilen → Zum Home-Bildschirm.
-4. Danach kann die App offline gestartet werden.
+Der GitHub-Pages-Falleditor ist als PWA nutzbar. Beim ersten Online-Aufruf werden Editor, Styles, Manifest und Icons im Browsercache abgelegt.
 
-## Export
-Auf iOS öffnet `Fallpaket exportieren` das Teilen-Menü. Dort `In Dateien sichern` wählen.
+Stand: **VitaSim V3.4.11 kompatibel**.
 
-## Wichtig
-Eine installierbare PWA braucht für Service Worker HTTPS (oder localhost). Direkt per `file://` lässt sie sich nicht vollständig als Offline-PWA installieren.
+Bei einem Update sollte der Cache-Name in `service-worker.js` erhöht werden. Die aktuelle Version nutzt:
+
+`ost-falleditor-v3-4-11-github-1`

@@ -6519,3 +6519,209 @@ body.scenario-control-view:not(.training-reduced) #recordingSection{display:none
   margin:10px 0 0!important;width:100%!important;box-sizing:border-box!important;
 }
 @media(max-width:700px){#caseSection .setup-briefing-card{padding:10px!important;gap:9px!important}}
+
+/* =========================================================
+   V3.3.15 – lesbare Anamnese + mobile Cockpit-Korrekturen
+   ========================================================= */
+.case-anamnesis-overview{
+  display:grid!important;
+  grid-template-columns:1fr!important;
+  gap:10px!important;
+  width:100%!important;
+  margin-top:10px!important;
+}
+.case-anamnesis-overview[hidden]{display:none!important}
+.case-anam-card{
+  width:100%!important;
+  background:#fff!important;
+  border:1px solid #cfdce6!important;
+  border-radius:11px!important;
+  padding:0!important;
+  overflow:hidden!important;
+  box-shadow:0 2px 8px rgba(14,46,70,.04)!important;
+}
+.case-anam-card h3{
+  margin:0!important;
+  padding:10px 13px!important;
+  background:#eef5fa!important;
+  border-bottom:1px solid #d5e2eb!important;
+  color:#31536d!important;
+  font-size:13px!important;
+  letter-spacing:.045em!important;
+  text-transform:uppercase!important;
+  font-weight:850!important;
+}
+.case-anam-list{display:grid!important}
+.case-anam-row{
+  display:grid!important;
+  grid-template-columns:34px minmax(150px,210px) minmax(0,1fr)!important;
+  align-items:start!important;
+  gap:9px!important;
+  padding:9px 13px!important;
+  border-bottom:1px solid #e7eef3!important;
+}
+.case-anam-row:last-child{border-bottom:0!important}
+.case-anam-row:nth-child(even){background:#fafcfd!important}
+.case-anam-row>b{
+  width:26px!important;height:26px!important;display:grid!important;place-items:center!important;
+  border-radius:7px!important;background:#e7f2fb!important;color:#1268aa!important;
+  font-size:14px!important;font-weight:900!important;
+}
+.case-anam-label{font-size:13px!important;font-weight:800!important;color:#526b7a!important;line-height:1.35!important;padding-top:3px!important}
+.case-anam-value{font-size:14px!important;font-weight:500!important;color:#18384f!important;line-height:1.45!important;padding-top:2px!important;white-space:normal!important;overflow-wrap:anywhere!important}
+#trainingCaseAnamnesis{margin-top:10px!important}
+#trainingAnamnesisToggle[aria-expanded="true"]{background:#e7f2fb!important;border-color:#8bb8d8!important;color:#164c72!important}
+@media(max-width:700px){
+  .case-anam-row{grid-template-columns:32px minmax(0,1fr)!important;gap:4px 8px!important;padding:9px 10px!important}
+  .case-anam-label{padding-top:3px!important}
+  .case-anam-value{grid-column:2!important;padding-top:0!important;font-size:13.5px!important}
+  body.control.training-reduced .control-grid{padding-bottom:calc(78px + env(safe-area-inset-bottom,0px))!important;min-height:0!important}
+  body.control:not(.training-reduced){min-height:100dvh!important}
+}
+
+
+/* =========================================================
+   V3.3.16 – SAMPLE(R) / OPQRST klare Kartenstruktur
+   ========================================================= */
+.case-anamnesis-overview{
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  align-items:start!important;
+  gap:12px!important;
+}
+.case-anam-row{
+  grid-template-columns:36px minmax(0,1fr)!important;
+  gap:9px!important;
+  padding:9px 12px!important;
+}
+.case-anam-copy{min-width:0!important;display:grid!important;gap:2px!important}
+.case-anam-label{display:block!important;padding:0!important;font-size:12px!important;line-height:1.25!important}
+.case-anam-value{display:block!important;padding:0!important;font-size:13.5px!important;line-height:1.42!important;word-break:normal!important;overflow-wrap:break-word!important;hyphens:auto!important}
+@media(max-width:900px){.case-anamnesis-overview{grid-template-columns:1fr!important}}
+@media(max-width:700px){
+  .case-anam-row{grid-template-columns:32px minmax(0,1fr)!important;gap:7px!important;padding:8px 10px!important}
+  .case-anam-value{grid-column:auto!important;font-size:13px!important}
+}
+
+/* VitaSim V3.3.19 – Cockpit UX: Maßnahmen + Ereignisse als Bedienzentrum */
+body.training-reduced .training-cockpit{background:#edf4f9!important;border:0!important;box-shadow:none!important;padding:10px!important}
+.training-header-card{overflow:hidden!important}
+.training-cockpit-head{background:#0b2941!important;color:#fff!important;border:0!important;border-radius:14px 14px 0 0!important;margin:0!important}
+.training-cockpit-head b,.training-cockpit-clock{color:#fff!important}.training-cockpit-head small{color:#c9dcea!important}
+.training-cockpit-head .secondary-action{background:#123b59!important;color:#fff!important;border:1px solid #35617f!important}
+.training-case-overview{display:grid!important;grid-template-columns:1fr 1fr!important;gap:10px!important;background:#fff!important;padding:12px!important}
+.training-case-description{border:1px solid #d7e3ec!important;border-left:4px solid #2b78b4!important;border-radius:10px!important;padding:10px 12px!important;background:#f8fbfd!important}
+.training-case-instructor{border-left-color:#6c51c8!important}
+.training-case-overview .case-anamnesis-overview{grid-column:1/-1!important;margin:0!important;display:grid!important;grid-template-columns:1fr 1fr!important;gap:10px!important}
+.training-case-overview .case-anam-card{padding:9px 10px!important;background:#fbfdff!important;max-height:250px;overflow:auto}
+.training-case-overview .case-anam-row{grid-template-columns:28px minmax(0,1fr)!important;padding:5px 0!important}
+.training-action-center{padding:12px!important;border:1px solid #cbdce9!important;background:#fff!important}
+.training-action-center-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}.training-action-center-head h2{margin:0;font-size:21px;color:#102b43}.training-action-center-head p{margin:3px 0 0;color:#61788c;font-size:13px}
+.training-action-center-grid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(300px,.8fr);gap:12px;align-items:start}
+.training-action-pane{min-width:0;border:1px solid #d3e0e9;border-radius:13px;padding:10px;background:#f8fbfd}
+.training-action-pane .training-subhead{margin:0 0 8px}.training-action-pane .training-subhead b{font-size:16px!important}.training-action-pane .training-subhead span{font-size:12px!important}
+.training-action-center .measure-dock{position:static!important;bottom:auto!important;z-index:auto!important;background:#0d2f49!important;border:0!important;border-radius:12px!important;box-shadow:none!important;overflow:hidden!important}
+.training-action-center .measure-group-strip{padding:6px!important;gap:5px!important}
+.training-action-center .measure-group-btn{min-height:58px!important;flex:1 0 78px!important;border:0!important;border-radius:9px!important;transition:transform .12s ease,box-shadow .12s ease!important;touch-action:manipulation}
+.training-action-center .measure-group-btn:hover{transform:translateY(-1px)}
+.measure-group-btn.gee{background:#3b78a3!important}.measure-group-btn.ga{background:#e9353d!important}.measure-group-btn.gb{background:#238ce1!important}.measure-group-btn.gc{background:#19a963!important}.measure-group-btn.ge{background:#7651d6!important}.measure-group-btn.gnfs{background:#64748b!important}
+.training-action-center .measure-group-btn.active{outline:3px solid #f3b629!important;box-shadow:0 0 0 2px #fff inset!important}
+.training-action-center .measure-sheet{border:0!important;border-bottom:1px solid #d4e0e8!important;border-radius:0!important;padding:9px!important;background:#fff!important}
+.training-action-center .measure-grid{grid-template-columns:repeat(auto-fit,minmax(135px,1fr))!important}
+.training-action-center .measure-choice{min-height:54px!important;background:#fff!important;border:1px solid #c8d7e2!important;box-shadow:0 1px 5px rgba(25,64,94,.05)!important}
+.training-action-center .measure-choice.selected{border:2px solid #238ce1!important;background:#eef7ff!important}
+.training-action-center .measure-action-panel{display:grid;grid-template-columns:minmax(180px,.8fr) minmax(220px,1fr);gap:8px;align-items:center;background:#f5f9fc!important}
+.training-action-center .measure-action-title,.training-action-center .measure-note{grid-column:1/-1}.training-action-center .measure-comment{margin:0!important}
+.training-development-buttons{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important}
+.training-development-buttons .training-dev-btn{min-height:76px!important;border:1px solid #cbd9e4!important;border-left:5px solid #2b78b4!important;border-radius:11px!important;background:#fff!important;color:#18354c!important;text-align:left!important;padding:10px!important;box-shadow:0 2px 7px rgba(24,55,79,.05)!important}
+.training-development-buttons .training-dev-worse{border-left-color:#e33d50!important}.training-development-buttons .training-dev-better{border-left-color:#16a463!important}.training-development-buttons .event-warn{border-left-color:#efaa24!important}.training-development-buttons .event-tech{border-left-color:#7560c5!important}
+.training-development-buttons .training-dev-title{display:flex!important;gap:7px!important;align-items:center!important}.training-development-buttons small{display:block!important;margin-top:5px!important;color:#60788c!important;line-height:1.3!important}
+.training-vitals-grid>label,.training-ecg-tile{border-top:4px solid #2b78b4!important}.training-vitals-grid>label:nth-child(1){border-top-color:#20ae68!important}.training-vitals-grid>label:nth-child(2){border-top-color:#2498e5!important}.training-vitals-grid>label:nth-child(3){border-top-color:#7557c7!important}.training-vitals-grid>label:nth-child(4){border-top-color:#e44052!important}.training-vitals-grid>label:nth-child(5){border-top-color:#e9a927!important}.training-vitals-grid>label:nth-child(6){border-top-color:#ef7c35!important}.training-vitals-grid>label:nth-child(7){border-top-color:#20a6a5!important}
+.training-work-grid{display:block!important}.training-events-panel{width:100%!important}.training-recent-events{grid-template-columns:repeat(auto-fit,minmax(230px,1fr))!important}
+@media(max-width:1000px){.training-action-center-grid{grid-template-columns:1fr}.training-case-overview{grid-template-columns:1fr!important}.training-case-overview .case-anamnesis-overview{grid-template-columns:1fr!important}.training-development-buttons{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+@media(max-width:650px){.training-development-buttons{grid-template-columns:1fr!important}.training-action-center .measure-action-panel{grid-template-columns:1fr}.training-case-overview .case-anam-card{max-height:none}.training-head-actions{overflow-x:auto;justify-content:flex-start!important;flex-wrap:nowrap!important}}
+.measure-vital-hints{display:flex;gap:5px;align-items:center;flex-wrap:wrap}.measure-vital-hints span{font-size:11px;color:#6a7f91;font-weight:700}.measure-vital-hints b{font-size:11px!important;background:#eaf3fb;color:#1f628f!important;border-radius:999px;padding:3px 7px}
+
+/* ===== VitaSim V3.3.21 – Cockpit usability pass ===== */
+body.training-reduced #trainingCockpit{display:flex!important;flex-direction:column!important;gap:12px!important}
+body.training-reduced .training-header-card{order:1!important}
+body.training-reduced .cockpit-monitor-image-grid{order:2!important;display:grid!important;grid-template-columns:minmax(0,2fr) minmax(280px,1fr)!important;gap:12px!important;align-items:stretch!important}
+body.training-reduced .training-action-center{order:3!important}
+body.training-reduced .training-work-grid{order:4!important}
+body.training-reduced .training-case-images{margin:0!important;display:block!important;height:100%}
+body.training-reduced .training-case-images .monitor-tools-grid{grid-template-columns:1fr!important}
+body.training-reduced .training-case-images .monitor-tools-grid button{min-height:48px!important;white-space:normal!important;overflow-wrap:anywhere!important}
+body.training-reduced .training-vitals-grid{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:8px!important}
+body.training-reduced .training-case-overview .case-anam-card{max-height:none!important;overflow:visible!important}
+body.training-reduced .training-case-overview .case-anam-grid{grid-template-columns:1fr!important}
+body.training-reduced .training-case-overview .case-anam-row{padding:4px 0!important}
+body.training-reduced .training-action-center-grid{grid-template-columns:minmax(0,1.3fr) minmax(300px,.7fr)!important;gap:12px!important}
+body.training-reduced .measure-group-strip{align-items:stretch!important}
+body.training-reduced .measure-group-btn{color:#fff!important;overflow:hidden!important;white-space:normal!important;text-align:center!important;padding:8px 6px!important}
+body.training-reduced .measure-group-btn b,body.training-reduced .measure-group-btn small{color:#fff!important;white-space:normal!important;overflow-wrap:anywhere!important}
+body.training-reduced .measure-group-btn.gee{background:#3f7fa8!important}body.training-reduced .measure-group-btn.ga{background:#ef3947!important}body.training-reduced .measure-group-btn.gb{background:#278fdf!important}body.training-reduced .measure-group-btn.gc{background:#18a85f!important}body.training-reduced .measure-group-btn.ge{background:#7352cf!important}body.training-reduced .measure-group-btn.gnfs{background:#64748b!important}
+body.training-reduced .training-development-buttons button{min-width:0!important;white-space:normal!important;overflow:hidden!important;text-align:left!important;cursor:pointer!important;pointer-events:auto!important;touch-action:manipulation!important}
+body.training-reduced .training-dev-label,body.training-reduced .training-development-buttons small{overflow-wrap:anywhere!important;white-space:normal!important}
+.measure-reaction-config{margin-top:12px;border:1px solid #cbdce7;border-radius:14px;background:#f8fbfd;padding:12px}.measure-reaction-config h3{margin:0 0 4px;color:#173955;font-size:16px}.measure-reaction-config>p{margin:0 0 10px;color:#61798d;font-size:12px}.measure-reaction-row{display:grid;grid-template-columns:minmax(180px,1fr) repeat(3,minmax(110px,.35fr));gap:8px;align-items:center;padding:8px 0;border-top:1px solid #e2eaf0}.measure-reaction-row:first-of-type{border-top:0}.measure-reaction-row strong{color:#173955}.measure-reaction-row label{display:flex;align-items:center;gap:6px;border:1px solid #d2e0e9;border-radius:9px;background:#fff;padding:8px;font-weight:750}.measure-reaction-row input{width:auto!important}
+@media(max-width:1000px){body.training-reduced .cockpit-monitor-image-grid{grid-template-columns:1fr!important}body.training-reduced .training-action-center-grid{grid-template-columns:1fr!important}}
+@media(max-width:700px){body.training-reduced .training-vitals-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}.measure-reaction-row{grid-template-columns:1fr 1fr}.measure-reaction-row strong{grid-column:1/-1}}
+
+body.training-reduced .cockpit-monitor-image-grid:has(.training-case-images[hidden]){grid-template-columns:1fr!important}
+
+/* ===== VitaSim V3.3.21 – Cockpit Bedienoptimierung ===== */
+body.training-reduced .training-case-overview{display:grid!important;grid-template-columns:1fr 1fr!important;gap:10px!important;align-items:start!important}
+body.training-reduced .training-case-overview .case-anamnesis-overview{grid-column:1/-1!important;display:grid!important;grid-template-columns:1fr 1fr!important;gap:10px!important;max-height:none!important;overflow:visible!important}
+body.training-reduced .training-case-overview .case-anam-card{max-height:none!important;overflow:visible!important;min-width:0!important}
+body.training-reduced .training-case-overview .case-anam-list{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:0 14px!important}
+body.training-reduced .training-case-overview .case-anam-row{min-width:0!important;grid-template-columns:28px minmax(0,1fr)!important}
+body.training-reduced .training-case-overview .case-anam-value{white-space:normal!important;overflow-wrap:anywhere!important;word-break:normal!important}
+body.training-reduced .training-action-center{padding:10px!important}
+body.training-reduced .training-action-center-head{margin-bottom:7px!important}
+body.training-reduced .training-action-center-grid{grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr)!important;gap:10px!important}
+body.training-reduced .training-action-pane{padding:8px!important}
+body.training-reduced .training-action-center .measure-group-strip{padding:5px!important;gap:5px!important}
+body.training-reduced .training-action-center .measure-group-btn{min-height:48px!important;flex:1 1 130px!important;padding:7px 8px!important}
+body.training-reduced .training-action-center .measure-group-btn b{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:8px!important;font-size:13px!important;line-height:1.1!important;color:#fff!important}
+body.training-reduced .training-action-center .measure-count{margin-left:auto!important;background:#ffffff2b!important;color:#fff!important;min-width:18px!important;height:18px!important;font-size:10px!important}
+body.training-reduced .training-action-center .measure-sheet{padding:8px!important}
+body.training-reduced .training-action-center .measure-grid{grid-template-columns:repeat(auto-fit,minmax(150px,1fr))!important;gap:6px!important}
+body.training-reduced .training-action-center .measure-choice{min-height:46px!important;padding:8px!important}
+body.training-reduced .training-action-center .measure-action-panel{padding:8px!important;grid-template-columns:minmax(150px,.75fr) minmax(190px,1fr)!important}
+body.training-reduced .training-development-buttons{grid-template-columns:1fr!important;gap:7px!important}
+body.training-reduced .training-development-buttons .training-dev-btn{min-height:64px!important;padding:9px 11px!important;width:100%!important;display:block!important}
+body.training-reduced .training-development-buttons .training-dev-title{display:flex!important;align-items:center!important;gap:7px!important;min-width:0!important}
+body.training-reduced .training-development-buttons .training-dev-label{font-size:14px!important;line-height:1.2!important;min-width:0!important;overflow-wrap:anywhere!important}
+body.training-reduced .training-development-buttons small{font-size:12px!important;line-height:1.35!important;overflow-wrap:anywhere!important}
+body.training-reduced .cockpit-monitor-image-grid{grid-template-columns:minmax(0,2fr) minmax(260px,1fr)!important}
+body.training-reduced .training-vitals-grid{grid-template-columns:repeat(4,minmax(0,1fr))!important}
+.measure-reaction-config .measure-reaction-row{grid-template-columns:minmax(190px,1fr) repeat(3,minmax(175px,.7fr))!important;align-items:stretch!important}
+.measure-reaction-outcome{display:grid;grid-template-columns:1fr;gap:5px}.measure-reaction-outcome label{margin:0!important}.measure-reaction-outcome select{width:100%;min-height:38px;border:1px solid #cbd9e4;border-radius:8px;background:#fff;padding:6px 8px;font:inherit}.measure-reaction-outcome select:disabled{opacity:.45;background:#eef3f6}
+.ue-hidden-label{display:flex;align-items:center;gap:6px;font-size:12px}
+@media(max-width:1100px){body.training-reduced .training-action-center-grid{grid-template-columns:1fr!important}.measure-reaction-config .measure-reaction-row{grid-template-columns:1fr 1fr!important}.measure-reaction-config .measure-reaction-row>strong{grid-column:1/-1}}
+@media(max-width:800px){body.training-reduced .training-case-overview{grid-template-columns:1fr!important}body.training-reduced .training-case-overview .case-anamnesis-overview{grid-template-columns:1fr!important}body.training-reduced .training-case-overview .case-anam-list{grid-template-columns:1fr!important}}
+
+
+/* ===== VitaSim V3.3.22 UX refinements ===== */
+body.training-reduced .training-case-overview{grid-template-columns:1fr!important}
+body.training-reduced .training-case-combined{grid-column:1/-1!important}
+body.training-reduced .training-case-overview .case-anamnesis-overview{grid-template-columns:1fr 1fr!important}
+.case-anam-columns{display:grid;grid-template-columns:1fr 1fr;gap:0 14px}
+.case-anam-col{min-width:0}
+body.training-reduced .training-case-overview .case-anam-list{display:block!important}
+body.training-reduced .training-case-overview .case-anam-row{display:grid!important;grid-template-columns:28px minmax(0,1fr)!important}
+.training-action-center .measure-dock{position:relative!important;bottom:auto!important;background:#f7fafc!important;border:1px solid #cbdce7!important;box-shadow:none!important;padding:10px!important}
+.training-action-center .measure-group-strip{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:9px!important;padding:0!important;overflow:visible!important}
+.measure-always-group{border:1px solid #d2e0e9;border-radius:12px;background:#fff;overflow:hidden;min-width:0}
+.measure-always-head{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:9px 11px;background:#173f5e;color:#fff}.measure-always-head b{font-size:13px;color:#fff}.measure-always-head .measure-count{margin-left:auto;background:#ffffff2c;color:#fff}
+.measure-always-items{display:grid;grid-template-columns:1fr;gap:6px;padding:8px}.measure-always-items .measure-choice{min-height:42px!important;padding:8px 9px!important;font-size:12px!important}
+.training-action-center .measure-sheet{display:block!important;border:0!important;padding:10px 0 0!important;background:transparent!important;min-height:150px}.measure-action-placeholder{height:140px;display:grid;place-items:center;border:1px dashed #c5d4df;border-radius:12px;background:#fbfdff;color:#6a8092;font-weight:700}.training-action-center .measure-action-panel{min-height:140px!important}
+.training-action-center-grid{grid-template-columns:minmax(0,1.45fr) minmax(320px,.55fr)!important}
+.training-development-buttons{grid-template-columns:repeat(2,minmax(0,1fr))!important}.training-development-buttons button{min-width:0!important;white-space:normal!important}.training-development-buttons small{white-space:normal!important;overflow-wrap:anywhere!important}
+@media(max-width:1100px){.training-action-center .measure-group-strip{grid-template-columns:repeat(2,minmax(0,1fr))!important}.training-action-center-grid{grid-template-columns:1fr!important}}
+@media(max-width:760px){.case-anam-columns{grid-template-columns:1fr!important}.training-action-center .measure-group-strip{grid-template-columns:1fr!important}.training-action-center .measure-sheet{min-height:auto}.measure-action-placeholder{height:80px}}
+
+/* V3.4.6 Falleditor: kompakte Reaktionen, saubere Ereignis-Toggles */
+.unified-event-meta{grid-template-columns:minmax(0,1.4fr) minmax(180px,.75fr)!important;align-items:start!important}.ue-toggle-stack{grid-column:1/-1!important;display:grid!important;grid-template-columns:1fr!important;gap:8px!important;min-width:0!important}.ue-toggle-stack .checkline{white-space:normal!important;min-width:0!important;align-items:flex-start!important}.ue-toggle-stack .checkline span{min-width:0!important;display:block!important}.ue-toggle-stack .checkline small{display:block!important;white-space:normal!important;overflow-wrap:anywhere!important;word-break:normal!important;line-height:1.35!important;margin-top:2px!important}.measure-reaction-config{padding:12px!important}.measure-reaction-config>p{margin-bottom:8px!important}#measureReactionConfigRows{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important}.measure-reaction-config .measure-reaction-row{display:grid!important;grid-template-columns:1fr!important;gap:7px!important;align-items:stretch!important;border:1px solid #d8e4ec!important;border-radius:10px!important;padding:9px!important;background:#fff!important}.measure-reaction-config .measure-reaction-row>strong{font-size:13px!important;padding-bottom:3px!important}.measure-reaction-outcome{display:grid!important;grid-template-columns:minmax(115px,.8fr) minmax(0,1.3fr)!important;gap:6px!important;align-items:center!important}.measure-reaction-row label{padding:6px 8px!important;font-size:12px!important;min-height:34px!important;box-sizing:border-box!important}.measure-reaction-outcome select{min-height:34px!important;padding:5px 7px!important;font-size:12px!important;width:100%!important}.measure-reaction-row{border-top:0!important}@media(max-width:1100px){#measureReactionConfigRows{grid-template-columns:1fr!important}}@media(max-width:700px){.unified-event-meta{grid-template-columns:1fr!important}.measure-reaction-outcome{grid-template-columns:1fr!important}}
+
+/* V3.4.6 einheitliche Hauptnavigation */
+.mode-switch-strip .mode-monitor,.control-mode-switch-strip .mode-monitor,.nav .monitor,.switchbar .monitor,.device-nav .monitor{background:#185477!important;color:#fff!important;border-color:#185477!important}
+.mode-switch-strip .mode-admin,.control-mode-switch-strip .mode-admin,.nav .admin,.switchbar .admin,.device-nav .admin{background:#526575!important;color:#fff!important;border-color:#6d8292!important}
