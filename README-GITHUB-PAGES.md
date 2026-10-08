@@ -1,41 +1,56 @@
-# OST Andorf Offline-Falleditor – VitaSim V3.4.11 kompatibel
+# VitaSim Offline-Falleditor – VitaSim V3.18.6 kompatibel
 
-Diese GitHub-Pages-Version verwendet **denselben Offline-Falleditor wie VitaSim V3.4.11 am Pi**. `index.html` ist direkt aus `app/public/offline-falleditor.html` übernommen; auch `style.css` und `typography-unified.css` stammen aus demselben Stand.
+Diese GitHub-Pages-Version basiert auf dem **Offline-Falleditor aus VitaSim V3.18.6** und verwendet dessen Fallstruktur.
 
 ## Enthaltene Funktionen
 
-- Falltyp **Szenario mit Vitalparametern & Maßnahmen** oder **Algorithmus-Training**
-- Text für Fallbibliothek und 5-zeilige Situationsbeschreibung
-- SAMPLE(R) und OPQRST
-- Ausgangsvitalwerte, Rhythmus, Ereignisse und Fallvarianten
-- kombinierte Maßnahmenanzeige / Maßnahmenreaktionen
-- fallbezogene Auswahl sichtbarer Maßnahmen
+- Szenariofälle und Algorithmus-Training
+- Fallbeschreibung sowie SAMPLE(R) / OPQRST
+- Ausgangsvitalwerte und EKG-Rhythmus
+- Ereignisse / Entwicklungen und freie Ereignisse
+- Fallvarianten
+- Maßnahmenanzeige und fallbezogene Maßnahmen-Sichtbarkeit
+- Maßnahmenreaktionen / Ereignisverknüpfungen
 - Fallbilder mit eingebetteter Speicherung
-- **Sounds** (MP3, WAV, OGG, M4A, AAC) mit eingebetteter Speicherung
-- Algorithmusauswahl bei Algorithmusfällen
-- Import/Export als `.vitasimexport`
-- kompatible Paketfelder für VitaSim V3.4.11
-- Offline-PWA mit Service Worker
+- Sounds mit eingebetteter Speicherung
+- Import vorhandener `.vitasimexport`, `.vitasim` und `.json`
+- Export als `.vitasimexport` für den Raspberry Pi
+- zusätzlicher JSON-Download
+- Offline-PWA / GitHub Pages
 
-## Deployment auf GitHub Pages
+## Auf GitHub Pages aktualisieren
 
-Den kompletten Inhalt dieses Ordners in das GitHub-Pages-Repository übernehmen. Mindestens diese Dateien müssen ersetzt werden:
+Den **Inhalt dieses Ordners** in das GitHub-Pages-Repository kopieren bzw. die vorhandenen Dateien damit ersetzen:
 
 - `index.html`
 - `style.css`
 - `typography-unified.css`
 - `manifest.webmanifest`
 - `service-worker.js`
+- Ordner `icons/`
 
-Den Ordner `icons/` ebenfalls beibehalten.
+Danach committen und pushen. GitHub Pages kann weiterhin direkt aus dem Repository-Root ausgeliefert werden.
 
-Nach dem Upload die Seite einmal vollständig neu laden. Der Service Worker verwendet den Cache-Namen `ost-falleditor-v3-4-11-github-1` und entfernt beim Aktivieren ältere Cache-Versionen.
+Der Service Worker verwendet den Cache-Namen:
 
-## Kompatibilität
+`vitasim-falleditor-v3-18-6-github-1`
 
-Exportierte `.vitasimexport`-Dateien können am Pi importiert werden. Bilder und Sounds werden direkt im Fallpaket gespeichert, sodass GitHub Pages keinen Server-Upload benötigt.
+Nach dem Update die Seite einmal hart neu laden. Auf iPhone/iPad kann es bei einer installierten PWA nötig sein, sie vollständig zu schließen und neu zu öffnen.
 
+## Fall auf den Pi übertragen
 
-## Zugriff
+1. Im GitHub-Falleditor **Fall exportieren (.vitasimexport)** wählen.
+2. Die heruntergeladene Datei auf das Gerät übertragen, mit dem der Pi bedient wird, oder direkt dort herunterladen.
+3. In VitaSim V3.18.6 die **Fallbibliothek** öffnen.
+4. Unten **Import / Massenimport** wählen.
+5. `.vitasimexport` auswählen und importieren.
 
-Der GitHub-Pages-Falleditor ist ohne PIN-Abfrage direkt zugänglich.
+Bilder und Sounds aus dem Editor werden im `.vitasimexport` eingebettet und beim Pi-Import automatisch übernommen.
+
+## JSON-Export
+
+**Nur JSON exportieren** ist für reine Falldaten gedacht. Eingebettete Medien sind darin nicht enthalten. Für den vollständigen Transfer zum Pi sollte daher `.vitasimexport` verwendet werden.
+
+## Zugriff / PIN
+
+Die GitHub-Pages-Version hat bewusst keine PIN-Abfrage. Eine im JavaScript hinterlegte PIN wäre öffentlich einsehbar und daher keine echte Absicherung. Die PIN-Sperre des Pi-Falleditors bleibt davon unberührt.

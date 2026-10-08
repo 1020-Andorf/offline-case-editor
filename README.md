@@ -1,12 +1,15 @@
-# Offline Case Editor – GitHub Pages
+# VitaSim Offline-Falleditor – GitHub Pages
 
-GitHub-Pages-Ausgabe des VitaSim Offline-Falleditors, synchron zum **VitaSim V3.4.11**-Stand.
+GitHub-Pages-Ausgabe des Offline-Falleditors, synchron zum **VitaSim V3.18.6**-Stand.
 
-Öffne `index.html` über GitHub Pages. Fälle können als `.vitasimexport` geladen und gespeichert werden. Die Pakete sind für den Import in VitaSim am Raspberry Pi vorgesehen.
+Der Editor läuft vollständig im Browser. Fälle können als `.vitasimexport` geöffnet, bearbeitet und wieder heruntergeladen werden. Diese Pakete sind für den Import in VitaSim V3.18.6 am Raspberry Pi vorgesehen.
 
-Details zur Synchronität und zum Deployment stehen in `README-GITHUB-PAGES.md`.
+## Wichtig
 
+- GitHub Pages benötigt keinen Servercode.
+- Die GitHub-Version ist bewusst **ohne PIN-Abfrage**, da ein im Browser ausgelieferter PIN keine echte Zugriffssperre wäre.
+- Bilder und Sounds werden beim `.vitasimexport` direkt in das Fallpaket eingebettet.
+- Der Export **Nur JSON** enthält keine eingebetteten Bild-/Sounddateien.
+- Die Seite ist als PWA/offline nutzbar, nachdem sie mindestens einmal online geladen wurde.
 
-## Zugriff
-
-Der GitHub-Pages-Falleditor ist ohne PIN-Abfrage direkt zugänglich.
+Siehe `README-GITHUB-PAGES.md` für Deployment und Pi-Import.
