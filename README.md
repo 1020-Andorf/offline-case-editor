@@ -1,3 +1,7 @@
+# VitaSim Offline-Falleditor V3.18.6 – GitHub Pages
+
+Fix 1: Fallereignisse lassen sich zuverlässig speichern, alle klinischen Maßnahmen aus EE/A/B/C/E/NFS werden angezeigt und das Layout ist für iPhone-Hochformat optimiert.
+
 # VitaSim Offline-Falleditor – GitHub Pages
 
 GitHub-Pages-Ausgabe des Offline-Falleditors, synchron zum **VitaSim V3.18.6**-Stand.
