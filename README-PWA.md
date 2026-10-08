@@ -1,11 +1,9 @@
 # PWA / Offline-Nutzung
 
-Der VitaSim Offline-Falleditor V3.18.6 ist als GitHub-Pages-PWA nutzbar.
+Der GitHub-Pages-Falleditor ist als PWA nutzbar. Beim ersten Online-Aufruf werden Editor, Styles, Manifest und Icons im Browsercache abgelegt.
 
-Beim ersten Online-Aufruf werden Editor, Styles, Manifest und Icons lokal im Browsercache gespeichert. Danach kann der Editor auch ohne Verbindung zu GitHub weiter geöffnet werden, solange der Browser den Cache nicht löscht.
+Stand: **VitaSim V3.4.11 kompatibel**.
 
-Aktueller Cache:
+Bei einem Update sollte der Cache-Name in `service-worker.js` erhöht werden. Die aktuelle Version nutzt:
 
-`vitasim-falleditor-v3-18-6-github-1`
-
-Bei einer späteren Editor-Version muss der Cache-Name erhöht werden, damit ältere Dateien zuverlässig ersetzt werden.
+`ost-falleditor-v3-4-11-github-1`

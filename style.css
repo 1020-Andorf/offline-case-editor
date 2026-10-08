@@ -1473,7 +1473,7 @@ main.vital-monitor-v390 > .standalone-row > #moduleNibp:not(.module-hidden){
 .event-development-grid small{font-weight:400;text-align:left}
 @media(max-width:700px){.debrief-checklist,.event-development-grid,.timestamp-note-row{grid-template-columns:1fr}}
 
-/* V3.16.4 – kompakte Dokumentation */
+/* V3.13.1 – kompakte Dokumentation */
 .documentation-card .documentation-free-notes{margin-top:18px;padding-top:18px;border-top:1px solid #dbe3ec}
 .documentation-card .documentation-free-notes label{display:block;margin-bottom:8px}
 .documentation-card .instructor-notes{width:100%;box-sizing:border-box;min-height:115px;resize:vertical;padding:14px 16px;border:1px solid #cbd5e1;border-radius:12px;font-size:16px;line-height:1.6;background:#fff}
@@ -1495,7 +1495,7 @@ main.vital-monitor-v390 > .standalone-row > #moduleNibp:not(.module-hidden){
 .custom-dev-name{flex:1;display:flex;align-items:center;gap:8px}
 .custom-dev-name input{width:min(340px,60vw)!important}
 
-/* V3.16.4 – Rhythmuswechsel bei Ereignissen */
+/* V3.14.1 – Rhythmuswechsel bei Ereignissen */
 .development-editor-head select{min-height:40px;padding:6px 9px;border:1px solid #cbd5e1;border-radius:9px;background:#fff;font-size:15px}
 
 /* V3.14.2 – Werte halten + EKG-Auswertung */
@@ -1504,16 +1504,16 @@ main.vital-monitor-v390 > .standalone-row > #moduleNibp:not(.module-hidden){
 .analysis-rhythm-chart canvas{min-height:92px}
 @media(max-width:700px){.development-hold-row{align-items:stretch;flex-direction:column}}
 
-/* V3.16.4 – Update-/Sync-Diagnose */
+/* V3.14.5 – Update-/Sync-Diagnose */
 .build-version{position:fixed;right:8px;bottom:5px;font-size:10px;opacity:.38;z-index:9999;pointer-events:none}
 .display-build-version{color:#64748b}
 
-/* V3.16.4 – Finalisierung Fallsteuerung */
+/* V3.14.7 – Finalisierung Fallsteuerung */
 .event-development-grid button.development-running{outline:3px solid #f59e0b;outline-offset:1px;background:#fff7ed}
 .event-development-grid button.development-running b{display:block}
 .development-hold-row button:disabled{opacity:.45;cursor:not-allowed}
 
-/* V3.16.4 – Stabilisierung */
+/* V3.14.8 – Stabilisierung */
 .system-status-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:12px 0}
 .system-status-grid>div{border:1px solid #dbe3ec;border-radius:10px;padding:10px 12px;background:#f8fafc}
 .system-status-grid span{display:block;font-size:12px;color:#64748b;margin-bottom:3px}
