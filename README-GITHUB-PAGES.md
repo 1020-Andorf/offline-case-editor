@@ -1,45 +1,22 @@
-# OST Andorf Offline-Falleditor – VitaSim V3.4.11 kompatibel
+# VitaSim Offline-Falleditor – Raspberry Pi V3.19.29
 
-Diese GitHub-Pages-Version verwendet **denselben Offline-Falleditor wie VitaSim V3.4.11 am Pi**. `index.html` ist direkt aus `app/public/offline-falleditor.html` übernommen; auch `style.css` und `typography-unified.css` stammen aus demselben Stand.
+Für statisches Hosting auf GitHub Pages. Kein Build-System und kein Backend nötig.
 
-## Enthaltene Funktionen
+## Veröffentlichung
+1. ZIP entpacken.
+2. Den Inhalt von `offline-case-editor-main` in das GitHub-Pages-Repository kopieren, vorhandene Dateien ersetzen.
+3. Commit und Push, Seite neu laden. Bei einer alten Ansicht den Service-Worker-/Website-Cache aktualisieren.
 
-- Falltyp **Szenario mit Vitalparametern & Maßnahmen** oder **Algorithmus-Training**
-- Text für Fallbibliothek und 5-zeilige Situationsbeschreibung
-- SAMPLE(R) und OPQRST
-- Ausgangsvitalwerte, Rhythmus, Ereignisse und Fallvarianten
-- kombinierte Maßnahmenanzeige / Maßnahmenreaktionen
-- fallbezogene Auswahl sichtbarer Maßnahmen
-- Fallbilder mit eingebetteter Speicherung
-- **Sounds** (MP3, WAV, OGG, M4A, AAC) mit eingebetteter Speicherung
-- Algorithmusauswahl bei Algorithmusfällen
-- Import/Export als `.vitasimexport`
-- kompatible Paketfelder für VitaSim V3.4.11
-- Offline-PWA mit Service Worker
-
-## Deployment auf GitHub Pages
-
-Den kompletten Inhalt dieses Ordners in das GitHub-Pages-Repository übernehmen. Mindestens diese Dateien müssen ersetzt werden:
-
-- `index.html`
-- `style.css`
-- `typography-unified.css`
-- `manifest.webmanifest`
-- `service-worker.js`
-
-Den Ordner `icons/` ebenfalls beibehalten.
-
-Nach dem Upload die Seite einmal vollständig neu laden. Der Service Worker verwendet den Cache-Namen `ost-falleditor-v3-4-11-github-1` und entfernt beim Aktivieren ältere Cache-Versionen.
+## Fall auf Pi übertragen
+1. GitHub-Pages-Editor öffnen, Fall erstellen oder `.vitasimexport` importieren.
+2. Kategorie, Schlagwörter, Lernziel, Vitalwerte, Varianten, Fallereignisse und Bildphasen bearbeiten.
+3. `Fall exportieren (.vitasimexport)` wählen.
+4. Am Pi in VitaSim den Falleditor öffnen, `Offline-Fall importieren` und die Datei auswählen.
+5. Die Daten kontrollieren und `Vorlage speichern` bestätigen. Standard und Varianten in der Fallvorschau testen.
 
 ## Kompatibilität
+Exportformat `vitasim-case-package` mit `formatVersion: 2`, passend zum Pi-Import von VitaSim V3.19.29. Fallbilder sind eingebettet und können beim Import hochgeladen werden. Bildphasen und Bildtitel werden übergeben.
 
-Exportierte `.vitasimexport`-Dateien können am Pi importiert werden. Bilder und Sounds werden direkt im Fallpaket gespeichert, sodass GitHub Pages keinen Server-Upload benötigt.
+**Bekannte Einschränkung:** Der Pi-Import in VitaSim V3.19.29 lädt eingebettete Sounddateien **nicht automatisch hoch**. Sounds müssen zusätzlich über die Soundverwaltung des Pi bereitgestellt werden. Ein Fallpaket allein genügt für Sounds nicht.
 
-
-## Zugriff
-
-Der GitHub-Pages-Falleditor ist ohne PIN-Abfrage direkt zugänglich.
-
-
-## VitaSim V3.18.6 Fix 2
-Diese Version enthält den aktuellen Maßnahmenkatalog, explizite Fallereignis-Speicherung ohne Vorauswahl sowie die vier mit V3.18.6 ausgelieferten Algorithmuspfade.
+Ein vollständiger End-to-End-Test am realen Raspberry Pi und unter GitHub Pages war hier nicht möglich. Der Pi normalisiert und prüft Fallfelder beim Speichern.
