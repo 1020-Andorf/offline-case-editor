@@ -68,16 +68,55 @@ html,body{max-width:100%;overflow-x:hidden}*,*::before,*::after{box-sizing:borde
 @media(max-width:700px){body{padding:0!important}.offline-shell{margin:0!important;border-radius:0!important}.offline-head,.offline-toolbar,.editor-card{padding-left:12px!important;padding-right:12px!important}.offline-toolbar{display:grid!important;grid-template-columns:1fr!important}.offline-toolbar button,.export-action{width:100%!important}.editor-grid,.unified-event-grid,.unified-event-meta,.unified-event-transition,.case-ui-grid,.case-measure-visibility,.measure-reaction-config #measureReactionConfigRows,.variant-editor-head{grid-template-columns:1fr!important}.measure-reaction-outcome{grid-template-columns:1fr!important}.unified-event-actions{display:grid!important;grid-template-columns:1fr!important}.unified-event-actions .helper{grid-column:1}.unified-event-actions button{width:100%}.case-measure-head{align-items:flex-start;flex-direction:column}.case-measure-head span{width:100%}.case-measure-head button{flex:1}.sound-offline-row{grid-template-columns:1fr!important}.fall-editor-subtitle,.helper,label,strong,b,small{overflow-wrap:anywhere}.offline-head h1{font-size:clamp(20px,7vw,28px)!important}}
 @media(max-width:420px){.editor-card{padding-left:9px!important;padding-right:9px!important}.fall-band{padding-left:10px!important;padding-right:10px!important}.editor-window,.fall-images-window,.fall-variants-window{padding:10px!important}.anam-editor-card{padding:9px!important}}
 </style>
+
+<style id="vitasim-pi-falleditor-design-v31929">
+/* Unified Pi design: visual parity while preserving fully offline export/import. */
+:root{--pi-navy:#0b2a42;--pi-blue:#176fa8;--pi-blue-dark:#294f70;--pi-border:#cddce7;--pi-bg:#edf4f8;--pi-text:#163955}
+html{background:var(--pi-bg)}
+body{background:var(--pi-bg)!important;color:var(--pi-text)!important;font-family:Inter,Arial,system-ui,sans-serif!important}
+.offline-shell{max-width:1320px!important;margin:0 auto!important;padding:12px 16px 36px!important}
+.offline-head{background:#0b2a42!important;color:#fff!important;border-radius:14px!important;padding:16px 20px!important;box-shadow:0 6px 18px #0b2a4224!important}
+.pi-app-brand{font-size:13px;letter-spacing:.045em;font-weight:900;color:#6ac9ff;margin-bottom:5px}
+.pi-app-brand span{color:#d7e8f4;font-weight:750}
+.offline-head h1{font-size:24px!important;font-weight:900!important;letter-spacing:-.025em!important}
+.offline-head p{font-size:13px!important;color:#d2e7f6!important}
+.offline-badge{border:1px solid #ffffff55!important;border-radius:9px!important;padding:8px 11px!important;font-size:12px!important;color:#fff!important}
+.offline-toolbar{display:flex!important;gap:8px!important;align-items:center!important;background:#fff!important;border:1px solid var(--pi-border)!important;border-radius:13px!important;padding:12px!important;box-shadow:0 3px 12px #0b2a420e!important;margin:12px 0!important}
+.offline-toolbar button,.offline-toolbar label{min-height:42px!important;border-radius:9px!important;font-size:13px!important;color:#173955!important;border:1px solid #b9cbda!important;background:#f7fbfd!important;padding:8px 13px!important;box-shadow:none!important;font-weight:850!important}
+.offline-toolbar .export-action{background:#1679cf!important;color:#fff!important;border-color:#1679cf!important}
+.offline-toolbar button:hover,.offline-toolbar label:hover{filter:brightness(.975)}
+.offline-toolbar .helper{color:#58768d!important;font-size:12px!important;margin-top:3px!important}
+.offline-status{background:#edf6fc!important;border:1px solid #d8e7f1!important;border-radius:9px!important;padding:8px 12px!important;min-height:38px!important;display:flex;align-items:center;font-size:12px!important;color:#345a73!important}
+.editor-card{background:#fff!important;border:1px solid var(--pi-border)!important;box-shadow:0 4px 16px #0b2a4210!important;border-radius:14px!important;padding:14px!important;margin:12px 0!important;overflow:hidden}
+.fall-editor-subtitle.fall-band{border-radius:10px 10px 0 0!important;color:#fff!important;font-size:16px!important;font-weight:900!important;letter-spacing:0!important;line-height:1.35!important;padding:11px 14px!important;margin:10px 0 0!important}
+.fall-band-case{background:#294f70!important}.fall-band-anam{background:#526b7a!important}.fall-band-start{background:#1479d5!important}.fall-band-events{background:#e88912!important}.fall-band-images{background:#168a72!important}.fall-band-variants{background:#7651d6!important}
+.editor-window,.fall-images-window,.fall-variants-window{background:#f8fbfd!important;border:1px solid var(--pi-border)!important;border-top:0!important;border-radius:0 0 12px 12px!important;padding:14px!important}
+.editor-grid{gap:12px!important}
+.field label,.preset-values-grid label,.unified-event-editor label{font-weight:800!important;color:#244d6d!important;font-size:13px!important}
+.field input,.field textarea,.field select,.preset-values-grid input,.preset-values-grid select,.unified-event-editor input,.unified-event-editor select,.unified-event-editor textarea{font-size:16px!important;min-height:43px!important;border:1px solid #bfcfdb!important;border-radius:9px!important;color:#163955!important;background:#fff!important;padding:9px 11px!important}
+.field textarea,.unified-event-editor textarea{line-height:1.45!important}
+.field input:focus,.field select:focus,.field textarea:focus,.unified-event-editor input:focus,.unified-event-editor select:focus,.unified-event-editor textarea:focus{outline:2px solid #87bee6!important;outline-offset:1px!important}
+.field-hint,.helper{font-size:12px!important;line-height:1.4!important;color:#687f92!important}
+.anam-editor-card,.mini-editor-card,.variant-editor-row{border:1px solid #d6e2eb!important;border-radius:12px!important;background:#fff!important;box-shadow:none!important}
+.anam-editor-card h3{color:#294f70!important;font-size:15px!important}
+.anam-editor-grid label>b{background:#eaf3fb!important;color:#1769aa!important}
+.unified-event-editor{background:linear-gradient(180deg,#f8fbfe,#eef6fb)!important;border:1px solid #bdd3e3!important;border-radius:14px!important;box-shadow:0 4px 16px #0b2a4210!important}
+.primary-action{background:#1679cf!important;border-color:#1679cf!important;color:#fff!important}
+.variant-quickbar button,.mini-editor-head button{border-radius:9px!important;min-height:39px!important}
+.thumb{border-color:#d0e0ea!important;border-radius:12px!important}
+.offline-foot{color:#60798e!important}
+@media(max-width:760px){.offline-shell{padding:8px 9px 24px!important}.offline-head{padding:14px!important}.offline-head h1{font-size:21px!important}.editor-card{padding:10px!important}.offline-toolbar{padding:9px!important}.offline-toolbar button,.offline-toolbar label{flex:1 1 auto!important}.editor-window,.fall-images-window,.fall-variants-window{padding:10px!important}.preset-values-grid,.unified-vitals-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+</style>
 </head>
 <body>
 </div>
 <div class="offline-shell">
-<header class="offline-head"><div><h1>Trainingsapp OST Andorf – Falleditor</h1><p>Offline / GitHub Pages · gleiche Fallstruktur wie VitaSim am Pi</p></div><span class="offline-badge">V3.18.6 · GITHUB OFFLINE</span></header>
-<div class="offline-toolbar">
-  <button type="button" onclick="newCase()">Neuer Fall</button>
+<header class="offline-head"><div><div class="pi-app-brand">VitaSim <span>· Falleditor</span></div><h1>Falleditor</h1><p>Fälle erstellen und für den Raspberry Pi exportieren</p></div><span class="offline-badge">V3.19.29 · OFFLINE</span></header>
+<div class="offline-toolbar" aria-label="Fallaktionen">
+  <button type="button" onclick="newCase()">＋ Neuer Fall</button>
   <label>Fall öffnen<input id="packageOpen" type="file" hidden></label>
   <label>iPhone: JSON öffnen<input id="jsonOpen" type="file" accept="application/json,.json" hidden></label>
-  <button type="button" class="export-action" onclick="exportPackage()">Fall exportieren (.vitasimexport)</button>
+  <button type="button" class="export-action" onclick="exportPackage()">↓ Fall für Raspberry Pi exportieren</button>
   <button type="button" onclick="downloadJson()">Nur JSON exportieren</button>
   <div class="helper" style="flex-basis:100%">iPhone/iPad: Wenn eine .vitasimexport-Datei im Dateidialog grau bleibt, dieselbe Falldatei als .json verwenden und „iPhone: JSON öffnen“ wählen. Inhalt und Fallstruktur sind identisch.</div>
 </div>
@@ -161,7 +200,7 @@ html,body{max-width:100%;overflow-x:hidden}*,*::before,*::after{box-sizing:borde
   <div id="variantsEditor"></div></div>
 </section>
 
-<div class="offline-toolbar"><button type="button" class="export-action" onclick="exportPackage()">Fall exportieren (.vitasimexport)</button></div>
+<div class="offline-toolbar"><button type="button" class="export-action" onclick="exportPackage()">↓ Fall für Raspberry Pi exportieren</button></div>
 <div class="offline-foot">GitHub-Pages-fähiger Offline-Falleditor. Neue Fälle starten ohne automatisch angelegte Standardereignisse. Der Export erzeugt eine .vitasimexport-Datei mit eingebetteten Bildern für den Import am Pi.</div>
 </div>
 <script>
@@ -277,7 +316,7 @@ $('jsonOpen').addEventListener('change',e=>openPackage(e.target.files[0]));
 function newCase(){if($('presetName').value && !confirm('Editor leeren und neuen Fall beginnen?'))return;const v=defaultVitals();fillPreset({id:'',name:'',caseMode:'scenario',algorithmId:'',values:v,rhythm:'sinus',developments:{},customDevelopments:[],eventCards:[],measureVisibility:[],measureReactions:{},variants:[]},[],[]);if($('presetAlgorithmId'))$('presetAlgorithmId').value='';selectEventOptions('');renderOfflineAlgorithmPreview();setStatus('Neuer Fall angelegt – keine Fallereignisse oder Algorithmen vorausgewählt.')}
 initOfflineAlgorithms();
 newCase();
-if('serviceWorker' in navigator && location.protocol!=='file:')window.addEventListener('load',async()=>{try{const reg=await navigator.serviceWorker.register('./service-worker.js?v=31929-github-compat',{updateViaCache:'none'});await reg.update();}catch(e){console.warn('Service Worker Update fehlgeschlagen',e)}});
+if('serviceWorker' in navigator && location.protocol!=='file:')window.addEventListener('load',async()=>{try{const reg=await navigator.serviceWorker.register('./service-worker.js?v=31929-pi-design-2',{updateViaCache:'none'});await reg.update();}catch(e){console.warn('Service Worker Update fehlgeschlagen',e)}});
 </script>
 </body>
 </html>
