@@ -1,0 +1,1 @@
+GitHub-Falleditor: Automatische Trigger für VitaSim V3.20.0 bearbeitbar. Zusätzlich volle Breite der Maßnahmenliste. Der Raspberry Pi bleibt unverändert.
