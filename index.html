@@ -136,6 +136,11 @@ body{background:var(--pi-bg)!important;color:var(--pi-text)!important;font-famil
 .offline-head{justify-content:flex-start!important}
 .offline-head h1{margin:0!important}
 .offline-toolbar{position:static!important;bottom:auto!important;z-index:auto!important}
+</style><style id="vita-word-trial-style">
+#wordExtrasCard .editor-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+#wordExtrasCard .field{min-width:0}#wordExtrasCard .field textarea{min-height:80px!important}
+.word-helper{font-size:13px;color:#59758a;margin:0 0 12px}
+@media(max-width:760px){#wordExtrasCard .editor-grid{grid-template-columns:1fr!important}}
 </style></head>
 <body>
 </div>
@@ -230,10 +235,48 @@ body{background:var(--pi-bg)!important;color:var(--pi-text)!important;font-famil
   <div id="variantsEditor"></div></div>
 </section>
 
+<section class="editor-card" id="wordExtrasCard">
+  <div class="fall-editor-subtitle">Ausbilderunterlage &amp; Einsatzmeldung</div>
+  <p class="word-helper">Nur für Word, PDF und Einsatzmeldungsbild. Diese Angaben verändern den Raspberry-Pi-Fallexport nicht.</p>
+  <div class="editor-grid" id="wordExtrasFields">
+    <div class="field"><label for="wDate">Datum / Uhrzeit</label><input id="wDate" type="text"></div>
+    <div class="field"><label for="wKeyword">Einsatzstichwort</label><input id="wKeyword" type="text"></div>
+    <div class="field"><label for="wEO">EO</label><input id="wEO" type="text"></div>
+    <div class="field"><label for="wDia">Dia</label><input id="wDia" type="text"></div>
+    <div class="field"><label for="wPat">Pat</label><input id="wPat" type="text"></div>
+    <div class="field"><label for="wInfo">Info</label><input id="wInfo" type="text"></div>
+    <div class="field full"><label for="wTravel">Unterwegs zum EO</label><textarea id="wTravel" rows="2"></textarea></div>
+    <div class="field full"><label for="wFlow">Detaillierter Ablauf</label><textarea id="wFlow" rows="4"></textarea></div>
+    <div class="field full"><label for="wExpected">Erwartete Maßnahmen</label><textarea id="wExpected" rows="3"></textarea></div>
+    <div class="field"><label for="wFirst">Erster Eindruck</label><textarea id="wFirst" rows="2"></textarea></div>
+    <div class="field"><label for="wAVPU">AVPU</label><input id="wAVPU"></div>
+    <div class="field"><label for="wBleed">Äußere Blutung</label><input id="wBleed"></div>
+    <div class="field"><label for="wRekap">Rekapzeit (s)</label><input id="wRekap"></div>
+    <div class="field"><label for="wOxygen">SpO₂ unter O₂ (%)</label><input id="wOxygen"></div>
+    <div class="field full"><label for="wA">A – Airway</label><textarea id="wA" rows="2"></textarea></div>
+    <div class="field full"><label for="wB">B – Breathing</label><textarea id="wB" rows="2"></textarea></div>
+    <div class="field full"><label for="wC">C – Circulation</label><textarea id="wC" rows="2"></textarea></div>
+    <div class="field full"><label for="wD">D – Disability</label><textarea id="wD" rows="2"></textarea></div>
+    <div class="field full"><label for="wE">E – Exposure</label><textarea id="wE" rows="2"></textarea></div>
+    <div class="field"><label for="wDx">Verdachtsdiagnose</label><input id="wDx"></div>
+    <div class="field"><label for="wCondition">Patientenzustand</label><input id="wCondition"></div>
+    <div class="field full"><label for="wCourse">Szenarioverlauf (Ausbildertext)</label><textarea id="wCourse" rows="3"></textarea></div>
+    <div class="field full"><label for="wActor">Patientendarsteller</label><textarea id="wActor" rows="3"></textarea></div>
+    <div class="field full"><label for="wMaterial">Übungsmaterial</label><textarea id="wMaterial" rows="3"></textarea></div>
+    <div class="field full"><label for="wFeedback">Nachbesprechung / Feedback</label><textarea id="wFeedback" rows="3"></textarea></div>
+    <div class="field full"><label for="wMoreVitals">Weitere Werte</label><textarea id="wMoreVitals" rows="2"></textarea></div>
+  </div>
+</section>
+
 <div class="offline-toolbar" aria-label="Fallaktionen">
   <button type="button" onclick="newCase()">Neuer Fall</button>
   <label>Fall öffnen<input id="packageOpen" type="file" accept=".vitasimexport,.json,application/json" hidden></label>
   <button type="button" class="export-action" onclick="exportPackage()">Fall für Raspberry Pi exportieren</button>
+  <button type="button" onclick="vitaExportWord()">Word exportieren (.docx)</button>
+  <button type="button" onclick="vitaPrintReport()">PDF / Drucken</button>
+  <button type="button" onclick="vitaExportDispatch()">Einsatzmeldung (.png)</button>
+  <button type="button" onclick="vitaExportProject()">Editor-Projekt speichern</button>
+  <label>Editor-Projekt öffnen<input id="vitaProjectOpen" type="file" accept=".vitasimprojekt,application/json" onchange="vitaImportProject(this.files[0])" hidden></label>
   <button type="button" onclick="downloadJson()">JSON exportieren</button>
 </div>
 <div class="offline-foot">GitHub-Pages-fähiger Offline-Falleditor. Neue Fälle starten ohne automatisch angelegte Standardereignisse. Der Export erzeugt eine .vitasimexport-Datei mit eingebetteten Bildern für den Import am Pi.</div>
@@ -351,7 +394,7 @@ $('packageOpen').addEventListener('change',e=>openPackage(e.target.files[0]));
 function newCase(){if($('presetName').value && !confirm('Editor leeren und neuen Fall beginnen?'))return;const v=defaultVitals();fillPreset({id:'',name:'',caseMode:'scenario',algorithmId:'',values:v,rhythm:'sinus',developments:{},customDevelopments:[],eventCards:[],measureVisibility:[],measureReactions:{},variants:[]},[],[]);if($('presetAlgorithmId'))$('presetAlgorithmId').value='';selectEventOptions('');renderOfflineAlgorithmPreview();setStatus('Neuer Fall angelegt – keine Fallereignisse oder Algorithmen vorausgewählt.')}
 initOfflineAlgorithms();
 newCase();
-if('serviceWorker' in navigator && location.protocol!=='file:')window.addEventListener('load',async()=>{try{const reg=await navigator.serviceWorker.register('./service-worker.js?v=3200-cleanui-2',{updateViaCache:'none'});await reg.update();}catch(e){console.warn('Service Worker Update fehlgeschlagen',e)}});
+if('serviceWorker' in navigator && location.protocol!=='file:')window.addEventListener('load',async()=>{try{const reg=await navigator.serviceWorker.register('./service-worker.js?v=3200-wordtrial-1',{updateViaCache:'none'});await reg.update();}catch(e){console.warn('Service Worker Update fehlgeschlagen',e)}});
 </script>
 <script id="vitasim-offline-auto-trigger-js">
 let offlineAutoTriggers=[];
@@ -385,5 +428,5 @@ function offlineCondFields(c,i,j){if(c.type==='time')return `<label>Zeit seit Fa
 function renderOfflineAutoTriggers(openIndex=-1){const host=$('offlineAutoTriggerRows');if(!host)return;const openIndices=new Set([...host.querySelectorAll('details')].flatMap((d,i)=>d.open?[i]:[]));if(openIndex>=0)openIndices.add(openIndex);
  host.innerHTML=offlineAutoTriggers.map((t,i)=>{const conditions=offlineConditions(t);t.conditions=conditions;delete t.condition;return `<details class="offline-trigger-card" ${openIndices.has(i)?'open':''}><summary><span>${esc(t.name||'Trigger '+(i+1))}<small style="display:block">${conditions.length} Bedingung(en) · ${t.enabled===false?'inaktiv':'aktiv'}</small></span><span>▾</span></summary><div class="offline-trigger-body"><div class="offline-trigger-grid"><label>Bezeichnung<input value="${esc(t.name||'')}" oninput="offlineTriggerEdit(${i},'name',this.value)"></label><label class="offline-trigger-check"><input type="checkbox" ${t.enabled!==false?'checked':''} onchange="offlineTriggerEdit(${i},'enabled',this.checked)"> Trigger aktiv</label></div>${conditions.length>1?`<label>Verknüpfung <select onchange="offlineTriggerEdit(${i},'logic',this.value)"><option value="and" ${t.logic!=='or'?'selected':''}>UND (alle)</option><option value="or" ${t.logic==='or'?'selected':''}>ODER (eine reicht)</option></select></label>`:''}${conditions.map((c,j)=>`<div class="offline-trigger-condition"><header><span>Bedingung ${j+1}</span>${conditions.length>1?`<button class="offline-auto-btn" type="button" onclick="offlineRemoveCondition(${i},${j})">Entfernen</button>`:''}</header><div class="offline-trigger-grid"><label>Wenn<select onchange="offlineConditionEdit(${i},${j},'type',this.value)">${[['time','Zeit erreicht'],['measure','Maßnahme dokumentiert'],['vital','Vitalwert erreicht'],['event','Ereignis ausgelöst']].map(([v,n])=>`<option value="${v}" ${c.type===v?'selected':''}>${n}</option>`).join('')}</select></label>${offlineCondFields(c,i,j)}</div></div>`).join('')}${conditions.length<3?`<button class="offline-auto-btn" type="button" onclick="offlineAddCondition(${i})">+ Weitere Bedingung</button>`:''}<div class="offline-trigger-grid"><label>Dann Fallereignis starten<select onchange="offlineTriggerEdit(${i},'action.event',this.value)">${offlineEventOptions(t.action?.event||'')}</select></label><label>Verzögerung (Sek.)<input type="number" min="0" max="600" value="${Number(t.delaySec)||0}" onchange="offlineTriggerEdit(${i},'delaySec',Number(this.value))"></label><label class="offline-trigger-check"><input type="checkbox" ${t.once!==false?'checked':''} onchange="offlineTriggerEdit(${i},'once',this.checked)"> Nur einmal auslösen</label><label>Dokumentationsnotiz (optional)<input maxlength="220" value="${esc(t.action?.note||'')}" oninput="offlineTriggerEdit(${i},'action.note',this.value)"></label></div><button type="button" class="offline-auto-btn" onclick="removeOfflineAutoTrigger(${i})">Trigger entfernen</button></div></details>`}).join('')||'<p class="helper">Noch keine automatischen Trigger angelegt.</p>';
 }
-</script></body>
+</script><script src="./vitasim-word-export.js?v=3200-test1"></script></body>
 </html>
