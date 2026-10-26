@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#0b2a42">
-<title>Trainingsapp OST Andorf – Offline-Falleditor</title>
+<title>Falleditor</title>
 <link rel="manifest" href="./manifest.webmanifest">
 <link rel="stylesheet" href="./style.css">
 <style>
@@ -131,19 +131,16 @@ body{background:var(--pi-bg)!important;color:var(--pi-text)!important;font-famil
 .offline-trigger-check input{flex:0 0 auto}
 @media(max-width:760px){#caseMeasureVisibility{grid-template-columns:1fr!important}.offline-trigger-grid{grid-template-columns:1fr}.auto-trigger-head button{width:100%}}
 @media(min-width:761px) and (max-width:950px){#caseMeasureVisibility{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+</style><style id="vitasim-editor-clean-ui">
+.offline-status:empty{display:none!important}
+.offline-head{justify-content:flex-start!important}
+.offline-head h1{margin:0!important}
+.offline-toolbar{position:static!important;bottom:auto!important;z-index:auto!important}
 </style></head>
 <body>
 </div>
 <div class="offline-shell">
-<header class="offline-head"><div><div class="pi-app-brand">VitaSim <span>· Falleditor</span></div><h1>Falleditor</h1><p>Fälle erstellen und für den Raspberry Pi exportieren</p></div><span class="offline-badge">V3.20.0 · OFFLINE</span></header>
-<div class="offline-toolbar" aria-label="Fallaktionen">
-  <button type="button" onclick="newCase()">＋ Neuer Fall</button>
-  <label>Fall öffnen<input id="packageOpen" type="file" hidden></label>
-  <label>iPhone: JSON öffnen<input id="jsonOpen" type="file" accept="application/json,.json" hidden></label>
-  <button type="button" class="export-action" onclick="exportPackage()">↓ Fall für Raspberry Pi exportieren</button>
-  <button type="button" onclick="downloadJson()">Nur JSON exportieren</button>
-  <div class="helper" style="flex-basis:100%">iPhone/iPad: Wenn eine .vitasimexport-Datei im Dateidialog grau bleibt, dieselbe Falldatei als .json verwenden und „iPhone: JSON öffnen“ wählen. Inhalt und Fallstruktur sind identisch.</div>
-</div>
+<header class="offline-head"><h1>Falleditor</h1></header>
 <div id="status" class="offline-status" aria-live="polite"></div>
 
 <section class="editor-card">
@@ -233,7 +230,12 @@ body{background:var(--pi-bg)!important;color:var(--pi-text)!important;font-famil
   <div id="variantsEditor"></div></div>
 </section>
 
-<div class="offline-toolbar"><button type="button" class="export-action" onclick="exportPackage()">↓ Fall für Raspberry Pi exportieren</button></div>
+<div class="offline-toolbar" aria-label="Fallaktionen">
+  <button type="button" onclick="newCase()">Neuer Fall</button>
+  <label>Fall öffnen<input id="packageOpen" type="file" accept=".vitasimexport,.json,application/json" hidden></label>
+  <button type="button" class="export-action" onclick="exportPackage()">Fall für Raspberry Pi exportieren</button>
+  <button type="button" onclick="downloadJson()">JSON exportieren</button>
+</div>
 <div class="offline-foot">GitHub-Pages-fähiger Offline-Falleditor. Neue Fälle starten ohne automatisch angelegte Standardereignisse. Der Export erzeugt eine .vitasimexport-Datei mit eingebetteten Bildern für den Import am Pi.</div>
 </div>
 <script>
@@ -345,11 +347,11 @@ async function openPackage(file){
   }
 }
 $('packageOpen').addEventListener('change',e=>openPackage(e.target.files[0]));
-$('jsonOpen').addEventListener('change',e=>openPackage(e.target.files[0]));
+
 function newCase(){if($('presetName').value && !confirm('Editor leeren und neuen Fall beginnen?'))return;const v=defaultVitals();fillPreset({id:'',name:'',caseMode:'scenario',algorithmId:'',values:v,rhythm:'sinus',developments:{},customDevelopments:[],eventCards:[],measureVisibility:[],measureReactions:{},variants:[]},[],[]);if($('presetAlgorithmId'))$('presetAlgorithmId').value='';selectEventOptions('');renderOfflineAlgorithmPreview();setStatus('Neuer Fall angelegt – keine Fallereignisse oder Algorithmen vorausgewählt.')}
 initOfflineAlgorithms();
 newCase();
-if('serviceWorker' in navigator && location.protocol!=='file:')window.addEventListener('load',async()=>{try{const reg=await navigator.serviceWorker.register('./service-worker.js?v=31929-pi-design-2',{updateViaCache:'none'});await reg.update();}catch(e){console.warn('Service Worker Update fehlgeschlagen',e)}});
+if('serviceWorker' in navigator && location.protocol!=='file:')window.addEventListener('load',async()=>{try{const reg=await navigator.serviceWorker.register('./service-worker.js?v=3200-cleanui-2',{updateViaCache:'none'});await reg.update();}catch(e){console.warn('Service Worker Update fehlgeschlagen',e)}});
 </script>
 <script id="vitasim-offline-auto-trigger-js">
 let offlineAutoTriggers=[];
