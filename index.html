@@ -141,12 +141,30 @@ body{background:var(--pi-bg)!important;color:var(--pi-text)!important;font-famil
 #wordExtrasCard .field{min-width:0}#wordExtrasCard .field textarea{min-height:80px!important}
 .word-helper{font-size:13px;color:#59758a;margin:0 0 12px}
 @media(max-width:760px){#wordExtrasCard .editor-grid{grid-template-columns:1fr!important}}
-</style></head>
+</style><style id="vita-dual-mode-style">
+.vita-mode-switch{display:flex;gap:8px;padding:7px;background:#e3eef6;border:1px solid #c7d9e6;border-radius:12px;margin:15px 0;max-width:550px}
+.vita-mode-switch button{flex:1;padding:12px 15px;min-height:48px;border:1px solid transparent;border-radius:9px;color:#244d6d;background:transparent;font:inherit;font-weight:900;cursor:pointer}
+.vita-mode-switch button.active{background:#176fa8;color:#fff;box-shadow:0 2px 7px #123d6030}
+.vita-word-card .fall-band{background:#294f70!important}
+.vita-word-card .editor-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+.vita-word-card .field{min-width:0}
+.vita-word-card .field textarea{min-height:100px;resize:vertical}
+.vita-word-card .field.full{grid-column:1/-1}
+.vita-word-card .vita-word-note{grid-column:1/-1;color:#637d91;font-size:12px;margin:0}
+.vita-word-card .word-subsection{grid-column:1/-1;margin:12px 0 0;padding-bottom:6px;border-bottom:1px solid #cbdce7;color:#294f70;font-weight:900}
+#vitaWordView[hidden]{display:none!important}
+body.vita-word-mode .offline-toolbar button:not(.vita-word-action),body.vita-word-mode .offline-toolbar label:not(.vita-word-action){display:none!important}
+body:not(.vita-word-mode) .offline-toolbar .vita-word-action{display:none!important}
+body.vita-word-mode .offline-toolbar .vita-word-action{display:inline-flex!important}
+@media(max-width:750px){.vita-word-card .editor-grid{grid-template-columns:1fr!important}.vita-word-card .field.full{grid-column:auto}.vita-mode-switch{max-width:none}}
+</style><style>body.vita-word-mode .offline-toolbar .vita-shared-action{display:inline-flex!important}</style></head>
 <body>
 </div>
 <div class="offline-shell">
 <header class="offline-head"><h1>Falleditor</h1></header>
 <div id="status" class="offline-status" aria-live="polite"></div>
+<nav class="vita-mode-switch" aria-label="Vorlage auswählen"><button type="button" id="vitaModePi" class="active" aria-pressed="true" onclick="vitaSetMode('pi')">Pi-Vorlage</button><button type="button" id="vitaModeWord" aria-pressed="false" onclick="vitaSetMode('word')">Word-Vorlage</button></nav>
+
 
 <section class="editor-card">
   <div class="fall-editor-subtitle fall-band fall-band-case">Fallbeschreibung</div>
@@ -268,15 +286,16 @@ body{background:var(--pi-bg)!important;color:var(--pi-text)!important;font-famil
   </div>
 </section>
 
+<div id="vitaWordView" hidden><section class="editor-card vita-word-card" id="vitaWordDispatch"><div class="fall-editor-subtitle fall-band">Einsatzmeldung & 3S</div><div class="editor-grid editor-window" id="vitaWordDispatchFields"></div></section><section class="editor-card vita-word-card" id="vitaWordPlanning"><div class="fall-editor-subtitle fall-band">Detaillierter Ablauf & Ausbildungsziele</div><div class="editor-grid editor-window" id="vitaWordPlanningFields"></div></section><section class="editor-card vita-word-card" id="vitaWordAbcde"><div class="fall-editor-subtitle fall-band">Erster Eindruck & ABCDE-Schema</div><div class="editor-grid editor-window" id="vitaWordAbcdeFields"></div></section><section class="editor-card vita-word-card" id="vitaWordVitals"><div class="fall-editor-subtitle fall-band">Initiale Vitalparameter</div><div class="editor-grid editor-window" id="vitaWordVitalsFields"></div></section><section class="editor-card vita-word-card" id="vitaWordAnam"><div class="fall-editor-subtitle fall-band">Anamnese</div><div class="editor-grid editor-window" id="vitaWordAnamFields"></div></section><section class="editor-card vita-word-card" id="vitaWordInstructor"><div class="fall-editor-subtitle fall-band">Ausbilderinformationen</div><div class="editor-grid editor-window" id="vitaWordInstructorFields"></div></section></div>
 <div class="offline-toolbar" aria-label="Fallaktionen">
   <button type="button" onclick="newCase()">Neuer Fall</button>
   <label>Fall öffnen<input id="packageOpen" type="file" accept=".vitasimexport,.json,application/json" hidden></label>
   <button type="button" class="export-action" onclick="exportPackage()">Fall für Raspberry Pi exportieren</button>
-  <button type="button" onclick="vitaExportWord()">Word exportieren (.docx)</button>
-  <button type="button" onclick="vitaPrintReport()">PDF / Drucken</button>
-  <button type="button" onclick="vitaExportDispatch()">Einsatzmeldung (.png)</button>
-  <button type="button" onclick="vitaExportProject()">Editor-Projekt speichern</button>
-  <label>Editor-Projekt öffnen<input id="vitaProjectOpen" type="file" accept=".vitasimprojekt,application/json" onchange="vitaImportProject(this.files[0])" hidden></label>
+  <button type="button" class="vita-word-action" onclick="vitaExportWord()">Word exportieren (.docx)</button>
+  <button type="button" class="vita-word-action" onclick="vitaPrintReport()">PDF / Drucken</button>
+  <button type="button" class="vita-word-action" onclick="vitaExportDispatch()">Einsatzmeldung (.png)</button>
+  <button type="button" class="vita-shared-action" onclick="vitaExportProject()">Editor-Projekt speichern</button>
+  <label class="vita-shared-action">Editor-Projekt öffnen<input id="vitaProjectOpen" type="file" accept=".vitasimprojekt,application/json" onchange="vitaImportProject(this.files[0])" hidden></label>
   <button type="button" onclick="downloadJson()">JSON exportieren</button>
 </div>
 <div class="offline-foot">GitHub-Pages-fähiger Offline-Falleditor. Neue Fälle starten ohne automatisch angelegte Standardereignisse. Der Export erzeugt eine .vitasimexport-Datei mit eingebetteten Bildern für den Import am Pi.</div>
@@ -394,7 +413,7 @@ $('packageOpen').addEventListener('change',e=>openPackage(e.target.files[0]));
 function newCase(){if($('presetName').value && !confirm('Editor leeren und neuen Fall beginnen?'))return;const v=defaultVitals();fillPreset({id:'',name:'',caseMode:'scenario',algorithmId:'',values:v,rhythm:'sinus',developments:{},customDevelopments:[],eventCards:[],measureVisibility:[],measureReactions:{},variants:[]},[],[]);if($('presetAlgorithmId'))$('presetAlgorithmId').value='';selectEventOptions('');renderOfflineAlgorithmPreview();setStatus('Neuer Fall angelegt – keine Fallereignisse oder Algorithmen vorausgewählt.')}
 initOfflineAlgorithms();
 newCase();
-if('serviceWorker' in navigator && location.protocol!=='file:')window.addEventListener('load',async()=>{try{const reg=await navigator.serviceWorker.register('./service-worker.js?v=3200-wordtrial-1',{updateViaCache:'none'});await reg.update();}catch(e){console.warn('Service Worker Update fehlgeschlagen',e)}});
+if('serviceWorker' in navigator && location.protocol!=='file:')window.addEventListener('load',async()=>{try{const reg=await navigator.serviceWorker.register('./service-worker.js?v=3200-dual1',{updateViaCache:'none'});await reg.update();}catch(e){console.warn('Service Worker Update fehlgeschlagen',e)}});
 </script>
 <script id="vitasim-offline-auto-trigger-js">
 let offlineAutoTriggers=[];
@@ -428,5 +447,5 @@ function offlineCondFields(c,i,j){if(c.type==='time')return `<label>Zeit seit Fa
 function renderOfflineAutoTriggers(openIndex=-1){const host=$('offlineAutoTriggerRows');if(!host)return;const openIndices=new Set([...host.querySelectorAll('details')].flatMap((d,i)=>d.open?[i]:[]));if(openIndex>=0)openIndices.add(openIndex);
  host.innerHTML=offlineAutoTriggers.map((t,i)=>{const conditions=offlineConditions(t);t.conditions=conditions;delete t.condition;return `<details class="offline-trigger-card" ${openIndices.has(i)?'open':''}><summary><span>${esc(t.name||'Trigger '+(i+1))}<small style="display:block">${conditions.length} Bedingung(en) · ${t.enabled===false?'inaktiv':'aktiv'}</small></span><span>▾</span></summary><div class="offline-trigger-body"><div class="offline-trigger-grid"><label>Bezeichnung<input value="${esc(t.name||'')}" oninput="offlineTriggerEdit(${i},'name',this.value)"></label><label class="offline-trigger-check"><input type="checkbox" ${t.enabled!==false?'checked':''} onchange="offlineTriggerEdit(${i},'enabled',this.checked)"> Trigger aktiv</label></div>${conditions.length>1?`<label>Verknüpfung <select onchange="offlineTriggerEdit(${i},'logic',this.value)"><option value="and" ${t.logic!=='or'?'selected':''}>UND (alle)</option><option value="or" ${t.logic==='or'?'selected':''}>ODER (eine reicht)</option></select></label>`:''}${conditions.map((c,j)=>`<div class="offline-trigger-condition"><header><span>Bedingung ${j+1}</span>${conditions.length>1?`<button class="offline-auto-btn" type="button" onclick="offlineRemoveCondition(${i},${j})">Entfernen</button>`:''}</header><div class="offline-trigger-grid"><label>Wenn<select onchange="offlineConditionEdit(${i},${j},'type',this.value)">${[['time','Zeit erreicht'],['measure','Maßnahme dokumentiert'],['vital','Vitalwert erreicht'],['event','Ereignis ausgelöst']].map(([v,n])=>`<option value="${v}" ${c.type===v?'selected':''}>${n}</option>`).join('')}</select></label>${offlineCondFields(c,i,j)}</div></div>`).join('')}${conditions.length<3?`<button class="offline-auto-btn" type="button" onclick="offlineAddCondition(${i})">+ Weitere Bedingung</button>`:''}<div class="offline-trigger-grid"><label>Dann Fallereignis starten<select onchange="offlineTriggerEdit(${i},'action.event',this.value)">${offlineEventOptions(t.action?.event||'')}</select></label><label>Verzögerung (Sek.)<input type="number" min="0" max="600" value="${Number(t.delaySec)||0}" onchange="offlineTriggerEdit(${i},'delaySec',Number(this.value))"></label><label class="offline-trigger-check"><input type="checkbox" ${t.once!==false?'checked':''} onchange="offlineTriggerEdit(${i},'once',this.checked)"> Nur einmal auslösen</label><label>Dokumentationsnotiz (optional)<input maxlength="220" value="${esc(t.action?.note||'')}" oninput="offlineTriggerEdit(${i},'action.note',this.value)"></label></div><button type="button" class="offline-auto-btn" onclick="removeOfflineAutoTrigger(${i})">Trigger entfernen</button></div></details>`}).join('')||'<p class="helper">Noch keine automatischen Trigger angelegt.</p>';
 }
-</script><script src="./vitasim-word-export.js?v=3200-test1"></script></body>
+</script><script src="./vitasim-word-export.js?v=3200-dual1"></script><script src="./vitasim-template-modes.js?v=3200-dual1"></script></body>
 </html>

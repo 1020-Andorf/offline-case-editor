@@ -4,7 +4,12 @@ const ids=['wDate','wKeyword','wEO','wDia','wPat','wInfo','wTravel','wFlow','wEx
 const $=id=>document.getElementById(id),txt=id=>String($(id)?.value||'').trim();
 const xml=s=>String(s??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&apos;');
 const safe=s=>String(s||'Fall').replace(/[^a-zA-Z0-9äöüÄÖÜß_-]+/g,'_').slice(0,65);
-const current=()=>{const p=collectPreset();return {p,w:Object.fromEntries(ids.map(id=>[id,txt(id)]))};};
+const current=()=>{let p;try{p=collectPreset()}catch(e){
+ // Word documents do not require a completed Pi simulation or all mandatory vital values.
+ const read=id=>txt(id),sample=Object.fromEntries(['S','A','M','P','L','E','R'].map(k=>[k,read('presetSample'+k)]));
+ const values={};[['presetHr','hr'],['presetSpo2','spo2'],['presetRr','rr'],['presetSys','systolic'],['presetDia','diastolic'],['presetTemp','temp'],['presetEtco2','etco2'],['presetGlucose','glucose']].forEach(([id,key])=>{if(read(id)!=='')values[key]=read(id)});
+ p={name:read('presetName'),scene:read('presetScene'),safety:read('presetSafety'),caseText:read('presetCaseText'),situation:read('presetCaseText'),trainingGoal:read('presetTrainingGoal'),sample,values,customDevelopments:[]};
+ }return {p,w:Object.fromEntries(ids.map(id=>[id,txt(id)]))};};
 const val=(v)=>v===null||v===undefined||String(v).trim()===''?'—':String(v);
 const name=()=>txt('presetName')||'Fallbeispiel';
 function report(){const {p,w}=current();const v=p.values||{},sample=p.sample||{};
