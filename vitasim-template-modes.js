@@ -33,6 +33,14 @@ function relocateExtras(){
 function init(){
  relocateExtras();wordExtras.hidden=true;
  const dispatch=$(sectionDest.dispatch);
+ // Optional dispatcher metadata; these are Word-only and never enter the Pi preset.
+ if(dispatch){addHeading(dispatch,'Statusleiste der Einsatzmeldung');
+ for(const [id,title] of [['wOrderNo','Auftragsnummer'],['wDispCount','Auftrag / Anzahl'],['wUnit','Fahrzeugkennung'],['wRadio','Funkkennung'],['wNetwork','Netzanzeige']]){
+   const field=document.createElement('div');field.className='field';const label=document.createElement('label');label.htmlFor=id;label.textContent=title;
+   const input=document.createElement('input');input.id=id;input.type='text';field.append(label,input);dispatch.append(field);
+ }
+ }
+
  shared('presetName','Falltitel','dispatch');addHeading(dispatch,'3S – Szene, Sicherheit, Situation');
  shared('presetScene','3S – Szene','dispatch','textarea');shared('presetSafety','3S – Sicherheit','dispatch','textarea');shared('presetCaseText','3S – Situation','dispatch','textarea');
  const planning=$(sectionDest.planning);shared('presetTrainingGoal','Ausbildungsziele','planning','textarea');
@@ -41,6 +49,9 @@ function init(){
  const vitalFields=[['presetRr','AF (/min)'],['presetSpo2','SpO₂ (%)'],['presetHr','HF (/min)'],['presetSys','RR systolisch (mmHg)'],['presetDia','RR diastolisch (mmHg)'],['presetGlucose','BZ (mg/dl)'],['presetTemp','Temperatur (°C)'],['presetEtco2','EtCO₂ (mmHg)']];
  // Place existing Word-only entries (SpO2 under O2, Rekapzeit) beneath shared initial vitals.
  const extra=[...vitals.querySelectorAll('.field')];extra.forEach(e=>e.remove());vitalFields.forEach(([id,title])=>shared(id,title,'vitals'));extra.forEach(e=>vitals.append(e));
+ const nfs=$('vitaWordNfsFields');
+ const rhythmSource=$('presetRhythm')||$('presetEcgRhythm')||document.querySelector('select[id*="Rhythm"]');
+ if(rhythmSource&&nfs){const field=document.createElement('div');field.className='field full';const label=document.createElement('label');label.textContent='EKG-Rhythmus';const select=document.createElement('select');select.id='wNfsRhythm';select.innerHTML=rhythmSource.innerHTML;field.append(label,select);nfs.prepend(field);const update=()=>{select.value=rhythmSource.value};rhythmSource.addEventListener('change',update);select.addEventListener('change',()=>{rhythmSource.value=select.value;rhythmSource.dispatchEvent(new Event('change',{bubbles:true}))});sync.push(update);update();}
  const anam=$(sectionDest.anam);addHeading(anam,'SAMPLE(R)');[['S','Symptome'],['A','Allergien'],['M','Medikamente'],['P','Vorerkrankungen'],['L','Letztes'],['E','Ereignis'],['R','Risikofaktoren']].forEach(([k,label])=>shared('presetSample'+k,k+' – '+label,'anam','textarea'));
  addHeading(anam,'OPQRST');[['O','Onset'],['P','Provocation'],['Q','Quality'],['R','Radiation'],['S','Severity'],['T','Time']].forEach(([k,label])=>shared('presetOpqrst'+k,k+' – '+label,'anam','textarea'));
  window.vitaSetMode('pi');
