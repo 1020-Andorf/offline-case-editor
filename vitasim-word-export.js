@@ -36,17 +36,41 @@ function reportHTML(r){return `<!doctype html><html lang="de"><meta charset="utf
 window.vitaPrintReport=()=>{try{const w=window.open('','_blank');if(!w)throw Error('Pop-up im Browser erlauben');w.document.write(reportHTML(report()));w.document.close();w.focus();setTimeout(()=>w.print(),400)}catch(e){alert('PDF/Druck: '+e.message)}};
 window.vitaExportDispatch=()=>{try{
  const c=document.createElement('canvas');c.width=1600;c.height=900;const x=c.getContext('2d');
- x.fillStyle='#87cae9';x.fillRect(0,0,1210,900);
- const right=[['#ffff00','Auftrag','akzeptiert'],['#ffbf00','Einsatz','beginn'],['#e8e8e8','Sprechwunsch',''],['#e8e8e8','Notruf','']];
- right.forEach(([bg,a,b],i)=>{const y=i*225;x.fillStyle=bg;x.fillRect(1210,y,390,225);x.lineWidth=3;x.strokeStyle='#102330';x.strokeRect(1210,y,390,225);x.fillStyle=i===3?'#d40000':'#000';x.textAlign='center';x.font='bold 37px Arial';x.fillText(a,1405,y+95);if(b)x.fillText(b,1405,y+142)});
- x.textAlign='left';x.fillStyle='#111';x.font='33px Arial';const entries=[['EO:',txt('wEO')],['Dia:',txt('wDia')],['Pat:',txt('wPat')],['Info:',txt('wInfo')],['Unterwegs zum EO:',txt('wTravel')]];
- entries.forEach(([k,v],i)=>{const y=145+i*72;x.font='33px Arial';x.fillText(k,25,y);x.font='29px Arial';x.fillText(v.slice(0,65),k.startsWith('Unterwegs')?350:150,y)});
- x.font='34px Arial';x.fillText('** Ende **',25,627);
- // Original-style blue dispatcher footer strip with number, assignment count, radio status and timestamp.
- x.strokeStyle='#102330';x.lineWidth=3;x.strokeRect(0,0,1600,900);x.strokeRect(0,755,1210,145);x.beginPath();x.moveTo(186,755);x.lineTo(186,900);x.moveTo(775,755);x.lineTo(775,900);x.moveTo(905,755);x.lineTo(905,900);x.moveTo(990,755);x.lineTo(990,900);x.moveTo(186,827);x.lineTo(990,827);x.stroke();
- x.textAlign='center';x.font='bold 38px Arial';x.fillText((txt('wOrderNo')||'—')+' ('+(txt('wDispCount')||'—')+')',480,809);x.font='32px Arial';x.fillText(txt('wUnit')||'—',840,807);x.fillText(txt('wRadio')||'—',940,807);x.font='bold 34px Arial';x.fillText('Neuer Auftrag',584,875);x.font='bold 43px Arial';x.fillText('G',1100,820);x.fillStyle='#00e84e';x.fillRect(1048,841,102,44);x.fillStyle='#050505';x.font='29px Arial';x.fillText(txt('wNetwork')||'—',1100,874);
- // Include the incident header information without obscuring the original-style layout.
- x.textAlign='left';x.fillStyle='#05283a';x.font='bold 24px Arial';x.fillText([txt('wDate'),txt('wKeyword')].filter(Boolean).join('  ·  ').slice(0,80),26,46);
+ const LEFT_W=1210, RIGHT_X=1210, RIGHT_W=390, FOOTER_Y=755, BORDER='#0a2230';
+ x.fillStyle='#ffffff';x.fillRect(0,0,1600,900);
+ x.fillStyle='#87cae9';x.fillRect(0,0,LEFT_W,900);
+ const right=[['#fff200','Auftrag','akzeptiert'],['#ffc000','Einsatz','beginn'],['#ececec','Sprechwunsch',''],['#ececec','Notruf','']];
+ right.forEach(([bg,a,b],i)=>{const y=i*225;x.fillStyle=bg;x.fillRect(RIGHT_X,y,RIGHT_W,225);x.lineWidth=2;x.strokeStyle=BORDER;x.strokeRect(RIGHT_X,y,RIGHT_W,225);x.fillStyle=i===3?'#ff0000':'#000';x.textAlign='center';x.font='bold 38px Arial';x.fillText(a,RIGHT_X+RIGHT_W/2,y+92);if(b)x.fillText(b,RIGHT_X+RIGHT_W/2,y+140)});
+ x.strokeStyle=BORDER;x.lineWidth=2;x.strokeRect(0,0,1600,900);
+ x.font='bold 26px Arial';x.fillStyle='#000';x.textAlign='left';
+ const dt=txt('wDate'); if(dt) x.fillText(dt,10,34);
+ const keyword=txt('wKeyword'); if(keyword){x.font='20px Arial'; x.fillText(keyword,10,62);} 
+ const entries=[['EO:',txt('wEO')],['Dia:',txt('wDia')],['Pat:',txt('wPat')],['Info:',txt('wInfo')],['Unterwegs zum EO:',txt('wTravel')]];
+ entries.forEach(([k,v],i)=>{const y=140+i*69;x.font='32px Arial';x.fillStyle='#000';x.fillText(k,22,y);x.font='28px Arial';const startX=k.startsWith('Unterwegs')?305:150;const maxW=LEFT_W-startX-24;const text=(v||'').slice(0,90);x.fillText(text,startX,y,maxW)});
+ x.font='29px Arial';x.fillText('** Ende**',22,640);
+ // footer block layout closer to original template
+ x.strokeRect(0,FOOTER_Y,LEFT_W,145);
+ x.beginPath();
+ x.moveTo(186,FOOTER_Y);x.lineTo(186,900);
+ x.moveTo(772,FOOTER_Y);x.lineTo(772,900);
+ x.moveTo(905,FOOTER_Y);x.lineTo(905,900);
+ x.moveTo(990,FOOTER_Y);x.lineTo(990,900);
+ x.moveTo(186,826);x.lineTo(990,826);
+ x.stroke();
+ // vector loudspeaker, closer to template than emoji
+ const bx=42, by=809;
+ x.fillStyle='#f5b42e';
+ x.beginPath();x.moveTo(bx,by);x.lineTo(bx+42,by-22);x.lineTo(bx+42,by+22);x.closePath();x.fill();
+ x.fillStyle='#4a4a4a';
+ x.beginPath();x.moveTo(bx-8,by-18);x.lineTo(bx+10,by-18);x.lineTo(bx+18,by+18);x.lineTo(bx-8,by+18);x.closePath();x.fill();
+ x.strokeStyle='#ff7a36';x.lineWidth=7;
+ [[58,0,85,-12,85,12],[72,0,106,-23,106,23],[86,0,128,-34,128,34]].forEach(([sx,sy,ax,ay,bx2,by2])=>{x.beginPath();x.moveTo(bx+sx,by+sy);x.lineTo(bx+ax,by+ay);x.stroke();x.beginPath();x.moveTo(bx+sx,by+sy);x.lineTo(bx+bx2,by+by2);x.stroke();});
+ x.textAlign='center';x.fillStyle='#000';x.font='bold 37px Arial';x.fillText((txt('wOrderNo')||'—')+' ('+(txt('wDispCount')||'—')+')',479,807);
+ x.font='31px Arial';x.fillText(txt('wUnit')||'—',839,807);x.fillText(txt('wRadio')||'—',947,807);
+ x.font='bold 34px Arial';x.fillText('Neuer Auftrag',585,873);
+ x.font='bold 41px Arial';x.fillText('G',1100,816);
+ x.fillStyle='#13ff13';x.fillRect(1042,838,108,42);x.strokeStyle=BORDER;x.lineWidth=1.5;x.strokeRect(1042,838,108,42);
+ x.fillStyle='#000';x.font='31px Arial';x.fillText(txt('wNetwork')||'GPRS',1096,869);
  c.toBlob(blob=>{if(blob)download(safe(name())+'_Einsatzmeldung.png',blob)},'image/png')
  }catch(e){alert('Einsatzmeldung: '+e.message)}};
 function data(){return Object.fromEntries(ids.map(id=>[id,txt(id)]))}
