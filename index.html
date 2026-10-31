@@ -223,13 +223,6 @@ body:not(.vita-word-mode) .offline-toolbar .vita-pi-action{display:inline-flex!i
 </section>
 
 <section class="editor-card" id="offlineCaseUiCard"><div class="fall-editor-subtitle">Maßnahmenanzeige &amp; Ablauf</div><p class="helper">Optional kannst du die sichtbaren Maßnahmen für diesen Fall reduzieren und einen klickbaren Algorithmus auswählen.</p><div class="case-ui-grid"><div id="offlineMeasureUi"><div class="case-measure-head"><b>Maßnahmen in der Fernbedienung</b><span><button type="button" onclick="setCaseMeasureVisibility(true)">Alle</button><button type="button" onclick="setCaseMeasureVisibility(false)">Keine</button></span></div><div id="caseMeasureVisibility" class="case-measure-visibility"></div></div><label class="case-algorithm-select" id="offlineAlgorithmSelect" hidden><b>Algorithmus / Flow</b><select id="presetAlgorithmId"><option value="">Bitte Algorithmus auswählen</option></select><div id="offlineAlgorithmPreview" class="offline-algorithm-preview"></div></label></div></section>
-<section class="editor-card" id="offlineTriggersCard">
- <div class="fall-editor-subtitle fall-band" style="background:#1c7590">Automatische Trigger</div>
- <div class="editor-window">
-  <div class="auto-trigger-head"><span>Eine Zeit, eine dokumentierte Maßnahme, ein Vitalwert oder ein Ereignis kann automatisch eine Entwicklung auslösen. Bis zu drei Bedingungen pro Trigger sind möglich.</span><button type="button" onclick="addOfflineAutoTrigger()">+ Trigger hinzufügen</button></div>
-  <div id="offlineAutoTriggerRows"></div>
- </div>
-</section>
 <section class="editor-card" id="offlineEventsCard">
   <div class="fall-editor-subtitle fall-band fall-band-events">Fallereignisse &amp; Verlauf</div>
   <p class="helper">Alle Fallereignisse werden an einer Stelle bearbeitet. Titel, Beschreibung und Zielwerte lassen sich pro Ereignis direkt pflegen. Standardereignisse und eigene Ereignisse werden später gemeinsam als Karten dargestellt. „Nur Dokumentation“ erzeugt ausschließlich einen Zeitstrahl-Eintrag.</p>
@@ -256,6 +249,13 @@ body:not(.vita-word-mode) .offline-toolbar .vita-pi-action{display:inline-flex!i
 
 </section>
 
+<section class="editor-card" id="offlineTriggersCard">
+ <div class="fall-editor-subtitle fall-band" style="background:#1c7590">Automatische Trigger</div>
+ <div class="editor-window">
+  <div class="auto-trigger-head"><span>Eine Zeit, eine dokumentierte Maßnahme, ein Vitalwert oder ein Ereignis kann automatisch eine Entwicklung auslösen. Bis zu drei Bedingungen pro Trigger sind möglich.</span><button type="button" onclick="addOfflineAutoTrigger()">+ Trigger hinzufügen</button></div>
+  <div id="offlineAutoTriggerRows"></div>
+ </div>
+</section>
 <section class="editor-card" id="offlineVariantsCard">
   <div class="fall-editor-subtitle fall-band fall-band-variants">Fallvarianten</div><div class="fall-variants-window">
   <p class="helper">Varianten speichern eigene Werte. Sie werden vom Pi-Falleditor beim Import unverändert übernommen.</p>
